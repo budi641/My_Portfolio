@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3fb985d8.css",
+    "main.js": "/static/js/main.1ec44940.js",
+    "static/media/BG.jpg": "/static/media/BG.1f1372a81f3e6921a4af.jpg",
+    "static/media/Back to Back.png": "/static/media/Back to Back.887a723514885b2e0c86.png",
+    "static/media/Quizify.png": "/static/media/Quizify.2855b30b30faafdab231.png",
+    "static/media/Virtual Reality Training Simulation.png": "/static/media/Virtual Reality Training Simulation.d82eb78bd8c052b4ae80.png",
+    "static/media/SFML Pac-Man.png": "/static/media/SFML Pac-Man.2c9b4a4dc44927f323fb.png",
+    "static/media/Project Ultra.png": "/static/media/Project Ultra.81e6f1be409f0fb5672a.png",
+    "static/media/TASM-Space-Invaders.png": "/static/media/TASM-Space-Invaders.d590ea108395351e40d4.png",
+    "service-worker.js": "/service-worker.js",
+    "static/media/serenity forge.png": "/static/media/serenity forge.673cc10225fd48c1744e.png",
+    "index.html": "/index.html",
+    "static/media/logo.svg": "/static/media/logo.bb93797698e4b371ebb393d6b9b76126.svg",
+    "static/media/nav.svg": "/static/media/nav.85ba140c2f500306ce3aa2a68fb94269.svg",
+    "static/media/GH.svg": "/static/media/GH.43b74d14902170934af1a3aef46d0dd5.svg",
+    "main.3fb985d8.css.map": "/static/css/main.3fb985d8.css.map",
+    "main.1ec44940.js.map": "/static/js/main.1ec44940.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3fb985d8.css",
+    "static/js/main.1ec44940.js"
+  ]
+}
