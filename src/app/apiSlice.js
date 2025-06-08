@@ -1,5 +1,6 @@
 // https://redux-toolkit.js.org/rtk-query/overview
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 // Config
 import { githubUsername } from "../config";
 
