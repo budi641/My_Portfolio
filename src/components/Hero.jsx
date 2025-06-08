@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { Icon } from "@iconify/react";
 // Images
 import Logo from "../images/logo.svg";
-import { Light, Dark } from "../config";
+import { Dark } from "../config";
 // Components
 import { useErrorBoundary } from "react-error-boundary";
 import { Link } from "react-scroll";

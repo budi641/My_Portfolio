@@ -27,8 +27,8 @@ export const navLogo = "./images/nav.svg"
 export const Blog = null;
 
 // Hero images (imported above - lines 8-9)
-export { HeroLight as Light };
-export { HeroDark as Dark };
+export const Light = HeroLight;
+export const Dark = HeroDark;
 
 /* About Me
  **************************************************************
