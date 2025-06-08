@@ -35,6 +35,8 @@ const SocialLinks = () => {
         href={userData.html_url}
         aria-label="Check out my GitHub profile."
         className="link-icons"
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <Icon icon="icomoon-free:github" />
       </a>
@@ -68,6 +70,8 @@ const SocialLinks = () => {
               href={element.url}
               aria-label="External link"
               className="link-icons"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {icon}
             </a>
@@ -78,6 +82,8 @@ const SocialLinks = () => {
           href={userData.blog}
           aria-label="External link"
           className="link-icons"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {Blog ? Blog : <Icon icon="ph:link-bold" />}
         </a>

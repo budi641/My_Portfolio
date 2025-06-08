@@ -2,20 +2,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: "light",
+  isOpen: false,
 };
 
-export const appSlice = createSlice({
+const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setMode: (state, action) => {
-      state.mode = action.payload;
+    toggleMenu: (state) => {
+      state.isOpen = !state.isOpen;
     },
   },
 });
 
-export const selectMode = (state) => state.app.mode;
-export const { setMode } = appSlice.actions;
-
+export const { toggleMenu } = appSlice.actions;
+export const selectIsOpen = (state) => state.app.isOpen;
 export default appSlice.reducer;

@@ -38,3 +38,34 @@ export const postData = async (url, data) => {
   });
   return response;
 };
+
+// #region scroll
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+export const scrollToElement = (elementId) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
+// #endregion
+
+// #region validation
+export const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+};
+
+export const validateName = (name) => {
+  return name.length >= 2;
+};
+
+export const validateMessage = (message) => {
+  return message.length >= 10;
+};
+// #endregion

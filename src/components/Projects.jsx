@@ -1,98 +1,90 @@
-import React from "react";
-// State
-import { useSelector } from "react-redux";
-import { selectMode } from "../app/appSlice";
-import { selectProjects, selectMainProjects } from "../app/projectsSlice";
-import { useGetProjectsQuery } from "../app/apiSlice";
-// Router
-import { Link } from "react-router-dom";
-// Icons
-import { Icon } from "@iconify/react";
-// Components
-import { Element } from "react-scroll";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import Loading from "./Loading";
-import Title from "./Title";
-import ProjectCard from "./ProjectCard";
+import React from 'react';
+import styled from 'styled-components';
+import { Container, Row, Col } from 'react-bootstrap';
+import ProjectCard from './ProjectCard';
+import projects from '../data/projects';
 
-// #region component
-const Projects = () => {
-  const theme = useSelector(selectMode);
-  const projects = useSelector(selectProjects);
-  const mainProjects = useSelector(selectMainProjects);
-  const { isLoading, isSuccess, isError, error } = useGetProjectsQuery();
-  let content;
+const StyledProjects = styled.section`
+  padding: var(--spacing-xxl) 0;
+  background: var(--color-gray-900);
+  position: relative;
+  overflow: hidden;
 
-  if (isLoading) {
-    content = (
-      <Container className="d-flex">
-        <Loading />
-      </Container>
-    );
-  } else if (isSuccess) {
-    content = (
-      <>
-        {!error && projects.length === 0 && (
-          <h2 className="text-center">
-            Oops, you do not have any GitHub projects yet...
-          </h2>
-        )}
-        {mainProjects.length !== 0 && (
-          <>
-            <Row xs={1} md={2} lg={3} className="g-4 justify-content-center">
-              {mainProjects.map((element) => {
-                return (
-                  <Col key={element.id}>
-                    <ProjectCard
-                      image={element.image}
-                      name={element.name}
-                      description={element.description}
-                      url={element.html_url}
-                      demo={element.homepage}
-                    />
-                  </Col>
-                );
-              })}
-            </Row>
-            {projects.length > 3 && (
-              <Container className="text-center mt-5">
-                <Link to="/All-Projects">
-                  <Button
-                    size="lg"
-                    variant={
-                      theme === "light" ? "outline-dark" : "outline-light"
-                    }
-                  >
-                    All <Icon icon="icomoon-free:github" /> Projects
-                  </Button>
-                </Link>
-              </Container>
-            )}
-          </>
-        )}
-      </>
-    );
-  } else if (isError) {
-    content = (
-      <Container className="d-flex align-items-center justify-content-center">
-        <h2>{`${error.status} - check getProjects query in src/app/apiSlice.js`}</h2>
-      </Container>
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--color-primary),
+      transparent
     );
   }
 
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+  }
+
+  .section-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    letter-spacing: -0.02em;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    margin: var(--spacing-sm) auto 0;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    padding: var(--spacing-xl) 0;
+    
+    .projects-grid {
+      gap: var(--spacing-lg);
+    }
+  }
+`;
+
+const Projects = () => {
   return (
-    <Element name={"Projects"} id="projects">
-      <section className="section">
-        <Container>
-          <Container className="d-flex justify-content-center">
-            <Title size={"h2"} text={"Projects"} />
-          </Container>
-          {content}
-        </Container>
-      </section>
-    </Element>
+    <StyledProjects id="projects">
+      <Container>
+        <h2 className="section-title">Here's some Projects I worked on</h2>
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              title={project.title}
+              description={project.shortDescription}
+              fullDescription={project.fullDescription}
+              image={project.image}
+              links={project.links}
+              technologies={project.technologies}
+            />
+          ))}
+        </div>
+      </Container>
+    </StyledProjects>
   );
 };
-// #endregion
 
 export default Projects;
