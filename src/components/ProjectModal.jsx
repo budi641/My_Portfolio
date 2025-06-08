@@ -116,19 +116,26 @@ const StyledModalContent = styled(motion.div)`
   }
 
   .close-button {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-    background: none;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    transition: all 0.3s ease;
     border: none;
-    color: var(--color-gray-400);
-    font-size: var(--text-xl);
     cursor: pointer;
-    transition: color 0.3s ease;
-    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    min-width: 120px;
+    justify-content: center;
+    margin-top: var(--spacing-lg);
 
     &:hover {
-      color: var(--color-white);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -226,9 +233,6 @@ const ProjectModal = ({ show, onHide, title, image, fullDescription, links }) =>
             exit="exit"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="close-button" onClick={onHide}>
-              ×
-            </button>
             {image && <img src={image} alt={title} className="modal-image" />}
             <div className="modal-body">
               <h3>{title}</h3>
@@ -249,6 +253,10 @@ const ProjectModal = ({ show, onHide, title, image, fullDescription, links }) =>
                   ))}
                 </div>
               )}
+              <button className="close-button" onClick={onHide}>
+                <Icon icon="mdi:close" />
+                <span>Close</span>
+              </button>
             </div>
           </StyledModalContent>
         </StyledModalOverlay>
