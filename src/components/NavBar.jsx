@@ -13,9 +13,11 @@ const navLinks = {
   to: [
     { id: "1T", name: "Home", to: "Home" },
     { id: "2T", name: "About Me", to: "About" },
-    { id: "3T", name: "Skills", to: "Skills" },
-    { id: "4T", name: "Projects", to: "projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    { id: "3T", name: "Education", to: "Education" },
+    { id: "4T", name: "Work", to: "Work" },
+    { id: "5T", name: "Skills", to: "Skills" },
+    { id: "6T", name: "Projects", to: "projects" },
+    { id: "7T", name: "Contact", to: "Contact" },
   ],
 };
 

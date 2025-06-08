@@ -16,6 +16,82 @@ const fadeInUp = keyframes`
   }
 `;
 
+const glowAnimation = keyframes`
+  0% {
+    box-shadow: 0 0 5px var(--color-primary),
+                0 0 10px var(--color-primary),
+                0 0 15px var(--color-primary);
+  }
+  50% {
+    box-shadow: 0 0 10px var(--color-primary),
+                0 0 20px var(--color-primary),
+                0 0 30px var(--color-primary);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--color-primary),
+                0 0 10px var(--color-primary),
+                0 0 15px var(--color-primary);
+  }
+`;
+
+const StyledSkillItem = styled.div`
+  text-align: center;
+  font-size: var(--text-lg);
+  color: var(--color-gray-300);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+
+  &:hover {
+    transform: scale(1.1);
+    animation: ${glowAnimation} 2s infinite;
+    background: rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
+  }
+
+  figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    height: 100%;
+    width: 100%;
+  }
+
+  figcaption {
+    font-size: var(--text-base);
+    color: var(--color-gray-200);
+    transition: color 0.3s ease;
+    margin-top: var(--spacing-sm);
+  }
+
+  &:hover figcaption {
+    color: var(--color-primary);
+  }
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 180px;
+  }
+
+  @media (max-width: 480px) {
+    width: 160px;
+    height: 160px;
+  }
+`;
+
 const StyledSkills = styled.section`
   padding: var(--spacing-xxxl) 0;
 
@@ -28,21 +104,6 @@ const StyledSkills = styled.section`
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  .skill-item {
-    text-align: center;
-    font-size: var(--text-lg);
-    color: var(--color-gray-300);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .skill-icon {
-    font-size: 3rem;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-sm);
   }
 
   .resume-button {
@@ -77,6 +138,18 @@ const StyledSkills = styled.section`
       border-width: 2px;
     }
   }
+
+  @media (max-width: 768px) {
+    .skill-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .skill-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 
 const Skills = () => {
@@ -89,16 +162,15 @@ const Skills = () => {
           </Container>
           <div className="skill-grid">
             {skillData.map((skill, index) => (
-              <div
+              <StyledSkillItem
                 key={skill.id}
-                className="skill-item"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <figure>
                   {skill.skill}
                   <figcaption>{skill.name}</figcaption>
                 </figure>
-              </div>
+              </StyledSkillItem>
             ))}
           </div>
           {resume && (

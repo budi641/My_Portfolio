@@ -34,8 +34,9 @@ export { HeroDark as Dark };
  **************************************************************
   Add a second paragraph for the about me section.
 */
-export const moreInfo =
-  "I enjoy learning about technology and helping others use it to improve their lives and be more productive. I built this site with React, React Bootstrap, Redux, and the GitHub REST API.";
+
+
+export const moreInfo = "I'm a passionate game developer and graphics programmer with a focus on real-time rendering, physics simulation, and interaction systems. I specialize in Unreal Engine and enjoy building immersive, high-performance experiences using C++, Python, and Vulkan.\n\nI love solving complex problems and turning creative ideas into interactive systems. Whether it's gameplay mechanics, custom engines, or visual effects, I bring innovation, dedication, and technical skill to every project.";
 
 /* Skills
  ************************************************************** 

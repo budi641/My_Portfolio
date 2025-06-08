@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { Container, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { Element } from "react-scroll";
 
 // New animations
 const scaleUp = keyframes`
@@ -287,69 +288,65 @@ const StyledAbout = styled.section`
   }
 `;
 
-const About = ({ name, bio, image, techStack }) => {
-  const aboutTextArray = bio.split('\n');
-
+const About = ({ name, image, techStack }) => {
   return (
-    <StyledAbout id="About">
-      <BlobOne />
-      <BlobTwo />
-      <Container>
-        <div className="about-content">
-          <h2 className="about-title">About Me</h2>
+    <Element name="About" id="about">
+      <StyledAbout className="section">
+        <BlobOne />
+        <BlobTwo />
+        <Container>
           <Row className="align-items-center">
-            <Col md={6}>
-              {aboutTextArray.map((paragraph, index) => (
-                <p 
-                  key={index} 
-                  className="about-text"
-                  style={{ animationDelay: `${0.5 + index * 0.15}s` }}
-                >
-                  {paragraph}
-                </p>
-              ))}
-              <div className="tech-stack">
-                <h3 className="tech-stack-title">Tech Stack</h3>
-                <ul className="tech-list">
-                  {techStack.map((tech, index) => (
-                    <li
-                      key={index}
-                      className="tech-item"
-                      style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
+            <Col lg={6} className="mb-5 mb-lg-0">
+              <div className="image-container">
+                <img src={image} alt={name} className="profile-image" />
+                <div className="glow-effect"></div>
               </div>
             </Col>
-            <Col md={6}>
+            <Col lg={6}>
               <motion.div
+                className="about-content"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="image-container"
+                viewport={{ once: true }}
               >
-                <div className="glow-effect"></div>
-                <img
-                  src={image}
-                  alt={name}
-                  className="profile-image"
-                />
+                <h2 className="about-title">About Me</h2>
+                <div className="about-text">
+                  <p>
+                    I'm a passionate game developer and graphics programmer with a focus on real-time rendering, physics simulation, and interaction systems. I specialize in Unreal Engine and enjoy building immersive, high-performance experiences using C++, Python, and Vulkan.
+                  </p>
+                  <p>
+                    I love solving complex problems and turning creative ideas into interactive systems. Whether it's gameplay mechanics, custom engines, or visual effects, I bring innovation, dedication, and technical skill to every project.
+                  </p>
+                </div>
+                <div className="tech-stack">
+                  {techStack.map((tech, index) => (
+                    <motion.span
+                      key={index}
+                      className="tech-item"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                      whileHover={{ scale: 1.1, textShadow: "0 0 8px var(--color-primary)" }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
               </motion.div>
             </Col>
           </Row>
-        </div>
-      </Container>
-    </StyledAbout>
+        </Container>
+      </StyledAbout>
+    </Element>
   );
 };
 
 About.propTypes = {
-  name: PropTypes.string,
-  bio: PropTypes.string,
-  image: PropTypes.string,
-  techStack: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  techStack: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default About; 

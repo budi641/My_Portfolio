@@ -162,7 +162,7 @@ const Hero = ({ name }) => {
           <Col md={6} className="text-center text-md-start">
             <h1 className="hero-title">Hi, I'm {name}</h1>
             <p className="hero-subtitle">
-              Full Stack Developer & UI/UX Enthusiast
+              Gameplay & Graphics Programmer | Unreal Engine Developer | VR Developer
             </p>
             <SocialLinks />
           </Col>
