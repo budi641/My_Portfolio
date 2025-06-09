@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+
+    /* Chart colors */
+    --chart-1: 195 100% 50%;
+    --chart-2: 217 100% 41%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-navy-900/20 backdrop-blur-xl border border-navy-700/30;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-electric-400 via-violet-400 to-electric-500 bg-clip-text text-transparent;
+  }
+
+  .glow-effect {
+    @apply shadow-lg shadow-electric-500/20 hover:shadow-electric-500/40 transition-shadow duration-300;
+  }
+
+  /* Custom text glow effect for the name */
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 135, 255, 0.3), 0 0 20px rgba(135, 25, 255, 0.2), 0 0 30px rgba(0, 135, 255, 0.1);
+  }
+}
