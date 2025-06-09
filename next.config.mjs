@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const isProd = process.env.NODE_ENV === 'production';
+const repoName = 'My_Portfolio';
 
 const nextConfig = {
-  output: 'export',
+  ...(isProd && {
+    output: 'export',
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}/`,
+  }),
   trailingSlash: true,
   distDir: 'build',
   eslint: {
@@ -16,13 +21,14 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'github.com',
-        pathname: '/**',
+        hostname: '**.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.github.io',
       },
     ],
   },
-  assetPrefix: isProd ? '/My_Portfolio/' : '',
-  basePath: isProd ? '/My_Portfolio' : '',
 }
 
 export default nextConfig
