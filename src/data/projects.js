@@ -84,11 +84,13 @@ Sample Budget: Over 1,000 samples per pixel in under a second—compared to 1 sa
 Noise Reduction: Higher sampling density and cosine importance sampling reduce visible noise.
 
 🧪 Comparison with Other Methods
-Method | Global Illumination | Caustics | Performance | Fidelity
-Monte Carlo | ✅ Yes | ✅ Yes | 🟨 GPU-fast | ✅ High
-Deterministic RT | ❌ No | ❌ No | ✅ Fast | 🟨 Medium
-Radiosity (FEM) | ✅ Yes (diffuse) | ❌ No | 🟨 Slow | 🟨 Medium
-Analytical | ❌ Rarely feasible | ❌ No | ✅ Fast | ✅ Exact (simple scenes)
+
+| Method | Global Illumination | Caustics | Performance | Fidelity |
+|--------|-------------------|-----------|------------|-----------|
+| Monte Carlo | ✅ Yes | ✅ Yes | 🟨 GPU-fast | ✅ High |
+| Deterministic RT | ❌ No | ❌ No | ✅ Fast | 🟨 Medium |
+| Radiosity (FEM) | ✅ Yes (diffuse) | ❌ No | 🟨 Slow | 🟨 Medium |
+| Analytical | ❌ Rarely feasible | ❌ No | ✅ Fast | ✅ Exact (simple scenes) |
 
 📚 Skills Demonstrated
 - Physically-based rendering (PBR) and light transport modeling
@@ -111,7 +113,7 @@ Analytical | ❌ Rarely feasible | ❌ No | ✅ Fast | ✅ Exact (simple scenes)
   },
   {
     id: 2,
-    title: "VulkanAbstraction Engine",
+    title: "Vulkan Abstraction Engine",
     shortDescription: "A modern C++20 abstraction layer for Vulkan, providing a clean and type-safe interface for graphics programming.",
     fullDescription: `A modern C++20 abstraction layer for Vulkan, providing a clean and type-safe interface for graphics programming. This project demonstrates advanced C++ features and modern graphics programming techniques.
 
