@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  skipTrailingSlashRedirect: true,
-  distDir: 'dist',
+  distDir: 'build',
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,10 +12,17 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        pathname: '/**',
+      },
+    ],
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/My_Portfolio/' : '',
-  basePath: process.env.NODE_ENV === 'production' ? '/My_Portfolio' : '',
+  assetPrefix: isProd ? '/My_Portfolio/' : '',
+  basePath: isProd ? '/My_Portfolio' : '',
 }
 
 export default nextConfig
