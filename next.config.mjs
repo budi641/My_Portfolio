@@ -13,7 +13,6 @@ const nextConfig = {
   images: {
     unoptimized: true
   },
-  // Update this to match your GitHub repository name
   assetPrefix: process.env.NODE_ENV === 'production' ? '/My_Portfolio/' : '',
   basePath: process.env.NODE_ENV === 'production' ? '/My_Portfolio' : '',
 }

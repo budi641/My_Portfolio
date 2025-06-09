@@ -87,7 +87,6 @@ export function Hero() {
                 variant="outline"
                 size="icon"
                 className="border-violet-500/50 text-violet-400 hover:bg-gradient-to-r hover:from-violet-500 hover:to-electric-500 hover:text-gray-100 transition-all duration-500 hover:scale-110 glow-effect bg-navy-900/50 backdrop-blur-sm"
-                onClick={() => window.open("https://www.linkedin.com/in/abdelrahmanameen/", "_blank")}
               >
                 <Linkedin className="h-5 w-5" />
               </Button>
