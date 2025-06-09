@@ -1,10 +1,10 @@
 {
   "name": "porfolio",
-  "homepage": "https://budi641.github.io/My_Portfolio/",
+  "homepage": "https://actac.github.io/My_Portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build && echo '' > build/.nojekyll && cp public/404.html build/404.html && cp public/robots.txt build/robots.txt && cp public/sitemap.xml build/sitemap.xml",
+    "predeploy": "npm run build && echo. > build/.nojekyll && copy public\\404.html build\\404.html && copy public\\robots.txt build\\robots.txt && copy public\\sitemap.xml build\\sitemap.xml",
     "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
