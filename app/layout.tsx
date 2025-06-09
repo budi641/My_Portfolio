@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Abdelrahman Ameem | Portfolio',
   description: 'Welcome to my portfolio website showcasing my projects and skills',
   generator: 'Next.js',
+  icons: {
+    icon: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
