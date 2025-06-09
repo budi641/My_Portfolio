@@ -69,4 +69,32 @@
   .text-glow {
     text-shadow: 0 0 10px rgba(0, 135, 255, 0.3), 0 0 20px rgba(135, 25, 255, 0.2), 0 0 30px rgba(0, 135, 255, 0.1);
   }
+
+  /* Modal Scrollbar Styles */
+  .modal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 rgba(30, 41, 59, 0.2);
+  }
+
+  .modal-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.2);
+    border-radius: 8px;
+    margin: 4px;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #3b82f6, #1e40af);
+    border-radius: 8px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+    cursor: pointer;
+  }
 }

@@ -28,7 +28,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-navy-950 via-navy-900/95 to-navy-950 border-navy-700/50 text-gray-200 backdrop-blur-xl custom-scrollbar w-[95vw] sm:w-[85vw] md:w-4/5 p-4 sm:p-6">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-navy-950 via-navy-900/95 to-navy-950 border-navy-700/50 text-gray-200 backdrop-blur-xl modal-scrollbar w-[95vw] sm:w-[85vw] md:w-4/5 p-4 sm:p-6">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-electric-400 to-navy-300 bg-clip-text text-transparent">
             {project.title}
@@ -105,33 +105,6 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </Button>
           </div>
         </div>
-
-        <style jsx>{`
-          .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-          }
-          
-          .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(1, 25, 105, 0.2);
-            border-radius: 4px;
-          }
-          
-          .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #001969, #0087ff);
-            border-radius: 4px;
-            border: 1px solid rgba(0, 135, 255, 0.3);
-          }
-          
-          .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #0087ff, #001969);
-          }
-          
-          /* Firefox scrollbar */
-          .custom-scrollbar {
-            scrollbar-width: thin;
-            scrollbar-color: #001969 rgba(1, 25, 105, 0.2);
-          }
-        `}</style>
       </DialogContent>
     </Dialog>
   )
