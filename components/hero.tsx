@@ -30,7 +30,7 @@ export function Hero() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('${process.env.NEXT_PUBLIC_BASE_PATH || ''}/images/hero-bg.jpg')`,
+          backgroundImage: `url('/My_Portfolio/images/hero-bg.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",

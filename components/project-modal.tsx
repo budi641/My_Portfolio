@@ -39,7 +39,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           {/* Project Image */}
           <div className="relative overflow-hidden rounded-xl">
             <img
-              src={project.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${project.image}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
+              src={project.image ? `/My_Portfolio${project.image.startsWith('/') ? project.image : `/${project.image}`}` : '/My_Portfolio/placeholder.svg'}
               alt={project.title}
               className="w-full h-48 sm:h-64 object-cover rounded-xl"
             />
