@@ -34,7 +34,7 @@ export function Education() {
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="flex-shrink-0">
                     <img
-                      src={edu.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${edu.image}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
+                      src={edu.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${edu.image.startsWith('/') ? edu.image : `/${edu.image}`}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
                       alt="University Logo"
                       className="w-24 h-24 rounded-lg border border-navy-600 bg-white p-2 object-contain"
                     />

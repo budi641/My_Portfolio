@@ -662,7 +662,7 @@ export function Projects() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${project.image}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
+                  src={project.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${project.image.startsWith('/') ? project.image : `/${project.image}`}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
                   alt={project.title}
                   className="w-full h-40 sm:h-48 object-cover transition-all duration-500 group-hover:scale-110 rounded-t-xl"
                 />
