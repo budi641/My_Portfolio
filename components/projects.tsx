@@ -662,7 +662,7 @@ export function Projects() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image ? `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}${project.image.startsWith('/') ? project.image : `/${project.image}`}` : `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}/placeholder.svg`}
+                  src={project.image ? `/My_Portfolio${project.image.startsWith('/') ? project.image : `/${project.image}`}` : '/My_Portfolio/placeholder.svg'}
                   alt={project.title}
                   className="w-full h-48 object-cover rounded-t-lg"
                 />

@@ -34,7 +34,7 @@ export function Education() {
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="flex-shrink-0">
                     <img
-                      src={edu.image ? `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}${edu.image.startsWith('/') ? edu.image : `/${edu.image}`}` : `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}/placeholder.svg`}
+                      src={edu.image ? `/My_Portfolio${edu.image.startsWith('/') ? edu.image : `/${edu.image}`}` : '/My_Portfolio/placeholder.svg'}
                       alt={edu.school}
                       className="w-16 h-16 rounded-full object-cover"
                     />
