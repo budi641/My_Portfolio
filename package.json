@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "predeploy": "npm run build && echo. > build/.nojekyll && copy public\\404.html build\\404.html && copy public\\robots.txt build\\robots.txt && copy public\\sitemap.xml build\\sitemap.xml",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --dotfiles",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

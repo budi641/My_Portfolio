@@ -70,7 +70,7 @@ export function Work() {
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative">
                         <img
-                          src={item.image || "/placeholder.svg"}
+                          src={item.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${item.image}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
                           alt={`${item.company} Logo`}
                           className="w-20 h-12 rounded-lg object-contain bg-transparent"
                         />
@@ -107,7 +107,7 @@ export function Work() {
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative">
                         <img
-                          src={item.image || "/placeholder.svg"}
+                          src={item.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${item.image}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
                           alt={`${item.company} Logo`}
                           className="w-16 h-16 rounded-lg object-contain bg-transparent"
                         />

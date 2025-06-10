@@ -3,11 +3,10 @@ const isProd = process.env.NODE_ENV === 'production';
 const repoName = 'My_Portfolio';
 
 const nextConfig = {
-  ...(isProd && {
-    // output: 'export', // Removed to allow server-side rendering
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}/`,
-  }),
+  output: 'export',  // Enable static exports
+  distDir: 'build',  // Set build directory to match gh-pages
+  basePath: isProd ? `/${repoName}` : '',
+  assetPrefix: isProd ? `/${repoName}/` : '',
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,

@@ -73,7 +73,7 @@ export function About() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-violet-500 rounded-full blur-lg opacity-30 animate-pulse"></div>
               <img
-                src={profile?.avatar_url || "/placeholder.svg?height=300&width=300"}
+                src={profile?.avatar_url || `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg?height=300&width=300`}
                 alt="Profile"
                 className={`relative rounded-full border-4 border-gradient-to-r from-blue-500 to-violet-500 object-cover ${
                   isMobile ? "w-48 h-48" : "w-64 h-64 md:w-72 md:h-72"
