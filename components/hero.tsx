@@ -34,7 +34,7 @@ export function Hero() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
+          backgroundAttachment: isMobile ? "scroll" : "fixed",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-navy-950/95 via-navy-900/85 to-violet-950/90"></div>
