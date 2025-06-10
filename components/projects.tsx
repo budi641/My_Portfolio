@@ -662,9 +662,9 @@ export function Projects() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image ? `${process.env.NEXT_PUBLIC_BASE_PATH || ''}${project.image.startsWith('/') ? project.image : `/${project.image}`}` : `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg`}
+                  src={project.image ? `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}${project.image.startsWith('/') ? project.image : `/${project.image}`}` : `${process.env.NODE_ENV === 'production' ? '/My_Portfolio' : ''}/placeholder.svg`}
                   alt={project.title}
-                  className="w-full h-40 sm:h-48 object-cover transition-all duration-500 group-hover:scale-110 rounded-t-xl"
+                  className="w-full h-48 object-cover rounded-t-lg"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center rounded-t-xl">
                   <div className="bg-gradient-to-r from-electric-500/90 to-violet-600/90 hover:from-electric-600/90 hover:to-violet-700/90 text-gray-100 px-4 sm:px-6 py-2 sm:py-3 rounded-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 flex items-center space-x-2 shadow-2xl">

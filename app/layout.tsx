@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href={(process.env.NEXT_PUBLIC_BASE_PATH ? process.env.NEXT_PUBLIC_BASE_PATH : '') + '/tabicon.svg'} type="image/svg+xml" />
+        <link rel="icon" href={(process.env.NODE_ENV === 'production' ? '/My_Portfolio' : '') + '/tabicon.svg'} type="image/svg+xml" />
       </head>
       <body>{children}</body>
     </html>
