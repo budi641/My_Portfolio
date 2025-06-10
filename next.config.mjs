@@ -4,12 +4,11 @@ const repoName = 'My_Portfolio';
 
 const nextConfig = {
   ...(isProd && {
-    output: 'export',
+    // output: 'export', // Removed to allow server-side rendering
     basePath: `/${repoName}`,
     assetPrefix: `/${repoName}/`,
   }),
   trailingSlash: true,
-  distDir: 'build',
   eslint: {
     ignoreDuringBuilds: true,
   },
