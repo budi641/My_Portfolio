@@ -9,6 +9,7 @@ import { ParallaxBackground } from "./parallax-background"
 import { useGitHubProfile } from "@/hooks/useGitHubProfile"
 import { useState, useEffect, Suspense } from "react"
 import { useMobile } from "@/hooks/use-mobile"
+import { assetPath } from "@/lib/asset-path"
 
 export function Hero() {
   const { profile } = useGitHubProfile("budi641")
@@ -30,7 +31,7 @@ export function Hero() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('/My_Portfolio/images/hero-bg.jpg')`,
+          backgroundImage: `url('${assetPath("/images/NewHeroBG.png")}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -41,8 +42,8 @@ export function Hero() {
       </div>
 
       {/* Enhanced 3D Space Background */}
-      <div className="absolute inset-0 z-1">
-        <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+      <div className="absolute inset-0 z-[1] pointer-events-none">
+        <Canvas className="!w-full !h-full" camera={{ position: [0, 0, 10], fov: 75 }} gl={{ alpha: true }}>
           <ParallaxBackground />
         </Canvas>
       </div>
@@ -66,11 +67,11 @@ export function Hero() {
               </span>
             </h1>
             <h2 className="text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-electric-300 to-violet-300 bg-clip-text text-transparent mb-4 md:mb-6 font-semibold">
-              Gameplay & Graphics Programmer
+              Technical Game Designer & Graphics Programmer
             </h2>
             <p className="text-base md:text-lg text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-              {profile?.bio ||
-                "Passionate about creating immersive gaming experiences through innovative gameplay mechanics and cutting-edge graphics programming. Specializing in Unreal Engine and VR development with modern rendering techniques."}
+              I design gameplay systems and build graphics tooling for real-time applications. My work spans Unreal
+              Engine, C++, and Vulkan across shipped titles, custom engines, and rendering research.
             </p>
 
             {/* Enhanced Social Links - Removed Email Button */}
@@ -115,7 +116,7 @@ export function Hero() {
           {/* Your Custom 3D Model */}
           <div className="h-64 sm:h-80 md:h-96 lg:h-[500px] w-full relative order-1 md:order-2">
             <div className="absolute inset-0 bg-gradient-to-r from-electric-500/10 via-violet-500/10 to-electric-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <Canvas camera={{ position: [0, 0, isMobile ? 10 : 8] }}>
+            <Canvas className="!w-full !h-full" camera={{ position: [0, 0, isMobile ? 10 : 8] }} gl={{ alpha: true }}>
               <ambientLight intensity={0.4} />
               <pointLight position={[10, 10, 10]} intensity={1.5} color="#0087ff" />
               <pointLight position={[-10, -10, -10]} intensity={1} color="#8719ff" />
@@ -134,7 +135,7 @@ export function Hero() {
                 <Custom3DModel scrollY={scrollY} isMobile={isMobile} />
               </Suspense>
 
-              <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={0.3} enablePan={false} />
+              <OrbitControls enableZoom={false} enablePan={false} enableRotate={!isMobile} />
             </Canvas>
           </div>
         </div>

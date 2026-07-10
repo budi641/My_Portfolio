@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github, Play } from "lucide-react"
 import { useMobile } from "@/hooks/use-mobile"
+import { assetPath } from "@/lib/asset-path"
 
 interface Project {
   id: number
@@ -39,7 +40,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           {/* Project Image */}
           <div className="relative overflow-hidden rounded-xl">
             <img
-              src={project.image ? `/My_Portfolio${project.image.startsWith('/') ? project.image : `/${project.image}`}` : '/My_Portfolio/placeholder.svg'}
+              src={project.image ? assetPath(project.image) : assetPath("/placeholder.svg")}
               alt={project.title}
               className="w-full h-48 sm:h-64 object-cover rounded-xl"
             />

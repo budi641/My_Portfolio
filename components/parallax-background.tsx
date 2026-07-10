@@ -2,49 +2,63 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import type * as THREE from "three"
+import * as THREE from "three"
 
 export function ParallaxBackground() {
   const starsRef = useRef<THREE.Points>(null)
   const nebulasRef = useRef<THREE.Group>(null)
 
   const starsCount = 2000
-  const starsPositions = useMemo(() => {
+
+  const starsGeometry = useMemo(() => {
     const positions = new Float32Array(starsCount * 3)
     for (let i = 0; i < starsCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 100
       positions[i * 3 + 1] = (Math.random() - 0.5) * 100
       positions[i * 3 + 2] = (Math.random() - 0.5) * 100
     }
-    return positions
+
+    const geo = new THREE.BufferGeometry()
+    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3))
+    return geo
   }, [])
 
+  const nebulas = useMemo(
+    () =>
+      Array.from({ length: 5 }, (_, i) => ({
+        position: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50] as [
+          number,
+          number,
+          number,
+        ],
+        size: Math.random() * 3 + 1,
+        color: i % 2 === 0 ? "#1e40af" : "#00BFFF",
+      })),
+    [],
+  )
+
   useFrame((state) => {
+    const t = state.clock.elapsedTime
     if (starsRef.current) {
-      starsRef.current.rotation.y = state.clock.elapsedTime * 0.01
-      starsRef.current.rotation.x = state.clock.elapsedTime * 0.005
+      starsRef.current.rotation.y = t * 0.01
+      starsRef.current.rotation.x = t * 0.005
     }
     if (nebulasRef.current) {
-      nebulasRef.current.rotation.y = -state.clock.elapsedTime * 0.02
+      nebulasRef.current.rotation.y = -t * 0.02
     }
   })
 
   return (
     <>
-      {/* Stars */}
-      <points ref={starsRef}>
-        <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={starsCount} array={starsPositions} itemSize={3} />
-        </bufferGeometry>
-        <pointsMaterial size={0.05} color="#00BFFF" transparent opacity={0.8} sizeAttenuation />
+      <points ref={starsRef} geometry={starsGeometry} frustumCulled={false}>
+        <pointsMaterial size={0.05} color="#00BFFF" transparent opacity={0.8} sizeAttenuation depthWrite={false} />
       </points>
 
-      {/* Nebula clouds */}
       <group ref={nebulasRef}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <mesh key={i} position={[(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50]}>
-            <sphereGeometry args={[Math.random() * 3 + 1, 16, 16]} />
-            <meshBasicMaterial color={i % 2 === 0 ? "#1e40af" : "#00BFFF"} transparent opacity={0.1} fog={false} />
+        {nebulas.map((nebula, i) => (
+          <mesh key={i} position={nebula.position}>
+            <sphereGeometry args={[nebula.size, 16, 16]} />
+            <meshBasicMaterial color={nebula.color} transparent opacity={0.1} fog={false} depthWrite={false} />
           </mesh>
         ))}
       </group>

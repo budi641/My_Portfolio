@@ -17,8 +17,8 @@ export default function Portfolio() {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950">
       {/* Three.js Background */}
-      <div className="fixed inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Canvas className="!w-full !h-full" camera={{ position: [0, 0, 5], fov: 75 }} gl={{ alpha: true }}>
           <Suspense fallback={null}>
             <ParticleBackground />
           </Suspense>

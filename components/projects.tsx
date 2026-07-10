@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge"
 import { Eye } from "lucide-react"
 import { ProjectModal } from "./project-modal"
 import { useMobile } from "@/hooks/use-mobile"
+import { assetPath } from "@/lib/asset-path"
 
 // Complete project data with all 12 projects
 const projects = [
@@ -13,68 +14,38 @@ const projects = [
     id: 1,
     title: "Vulkan Ray Tracing Engine with Monte Carlo Integration",
     shortDescription:
-      "A real-time physically-based rendering engine using Vulkan's ray tracing extensions, Monte Carlo integration, and cosine-weighted hemisphere sampling for global illumination and realistic light transport.",
-    fullDescription: `This project implements a real-time physically-based rendering engine using Vulkan's ray tracing extensions, Monte Carlo integration, and cosine-weighted hemisphere sampling to simulate global illumination and realistic light transport. It leverages RTX GPU acceleration for efficient sampling and rendering in complex 3D environments.
+      "A physically based renderer built on Vulkan ray tracing extensions, using Monte Carlo integration and importance sampling for global illumination.",
+    fullDescription: `This project implements a real-time physically based rendering engine using Vulkan ray tracing extensions, Monte Carlo integration, and cosine-weighted hemisphere sampling. It targets global illumination, soft shadows, reflections, and indirect light transport with RTX acceleration.
 
-📐 Core Technologies
-API: Vulkan 1.3 with VK_KHR_ray_tracing_pipeline, VK_KHR_acceleration_structure
+Core Technologies
+- Vulkan 1.3 with VK_KHR_ray_tracing_pipeline and VK_KHR_acceleration_structure
+- SPIR-V shaders in GLSL
+- GLM for vector and matrix math
+- Monte Carlo integration with cosine-weighted hemisphere sampling
+- Tested on NVIDIA RTX hardware (3060 and above)
 
-Shading: SPIR-V shaders written in GLSL
+Objectives
+- Approximate the rendering equation through numerical integration
+- Capture indirect lighting, soft shadows, reflections, and caustics
+- Compare CPU and GPU implementations
+- Measure convergence and rendering error across sampling budgets
 
-Math Library: GLM (OpenGL Mathematics) for vector/matrix operations
+Implementation
+- BVH-based BLAS and TLAS acceleration structures
+- Ray generation, closest-hit, and miss shader stages
+- Multi-bounce light transport with unbiased Monte Carlo estimation
+- Variance reduction through importance sampling
 
-Sampling Methods: Monte Carlo integration, Cosine-weighted hemisphere sampling
+Performance
+- Real-time HD rendering on RTX hardware
+- More than 1,000 samples per pixel in under one second, compared with roughly one sample per second in the Python reference implementation
+- Higher sample density and cosine-weighted sampling reduce visible noise
 
-Hardware: NVIDIA RTX (tested on RTX 3060+)
-
-🎯 Objectives
-Implement the rendering equation via numerical integration.
-
-Capture indirect lighting, soft shadows, reflections, and caustics.
-
-Compare CPU-based (Python) and GPU-based (Vulkan) implementations.
-
-Evaluate rendering quality and convergence using statistical error metrics.
-
-📊 Mathematical Foundation
-At the heart of the renderer is the rendering equation:
-
-𝐿𝑜(𝑥,𝜔𝑜) = 𝐿𝑒(𝑥,𝜔𝑜) + ∫Ω 𝑓𝑟(𝑥,𝜔𝑖,𝜔𝑜)𝐋𝑖(𝑥,𝜔𝑖)(𝜔𝑖⋅𝑛)𝑑𝜔𝑖
-
-Approximated with Monte Carlo integration:
-
-𝐋𝑜(𝑥,𝜔𝑜) ≈ 1/𝑁 ∑𝑖=1𝑁 𝑓𝑟(𝑥,𝜔𝑖,𝜔𝑜)𝐋𝑖(𝑥,𝜔𝑖)(𝜔𝑖⋅𝑛)/𝑝(𝜔𝑖)
-
-💡 Key Features
-✅ Vulkan Ray Tracing Implementation
-Acceleration Structures: BVH-based BLAS (bottom-level) and TLAS (top-level) acceleration using Vulkan ray tracing extensions.
-
-Shader Stages:
-- raygen: Generates rays for each pixel
-- closest-hit: Computes light contribution using Monte Carlo sampling
-- miss: Handles rays that don't hit geometry (e.g., background color)
-
-✅ Sampling & Light Transport
-Cosine-weighted sampling over hemispheres to reduce variance for diffuse surfaces.
-
-Support for multiple light bounces to simulate global illumination.
-
-Unbiased estimator using random sampling with variance analysis and convergence tracking.
-
-🚀 Performance & Optimization
-GPU Acceleration: Real-time rendering at HD resolutions using RTX hardware and Vulkan's parallel compute model.
-
-Sample Budget: Over 1,000 samples per pixel in under a second—compared to 1 sample per second in the Python version.
-
-Noise Reduction: Higher sampling density and cosine importance sampling reduce visible noise.
-
-📚 Skills Demonstrated
-- Physically-based rendering (PBR) and light transport modeling
-- Advanced Vulkan development with GPU ray tracing
-- Numerical methods: Monte Carlo integration, error estimation, variance reduction
-- Shader programming (SPIR-V)
-- Real-time GPU optimization and pipeline management
-- Comparative evaluation of rendering techniques`,
+Skills Demonstrated
+- Physically based rendering and light transport
+- Vulkan ray tracing pipeline development
+- Monte Carlo integration and variance analysis
+- Shader programming and GPU optimization`,
     image: "/images/vulkan-raytracing.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/Vulkan-Raytracing-Engine" }],
     technologies: [
@@ -92,42 +63,25 @@ Noise Reduction: Higher sampling density and cosine importance sampling reduce v
     id: 2,
     title: "Vulkan Abstraction Engine",
     shortDescription:
-      "A modern C++20 abstraction layer for Vulkan, providing a clean and type-safe interface for graphics programming.",
-    fullDescription: `A modern C++20 abstraction layer for Vulkan, providing a clean and type-safe interface for graphics programming. This project demonstrates advanced C++ features and modern graphics programming techniques.
+      "A C++20 abstraction layer over Vulkan with RAII resource management and a type-safe graphics API.",
+    fullDescription: `A C++20 abstraction layer for Vulkan that provides a cleaner, type-safe interface for graphics programming while keeping performance and control close to the underlying API.
 
-🔧 Core Features
+Core Features
 - RAII-based resource management
-- Type-safe API design
-- Modern C++20 features
-- Comprehensive error handling
-- Efficient memory management
+- Type-safe API design with modern C++20 features
+- Structured error handling and memory management
 - Cross-platform support
 
-🛠️ Technical Implementation
-- Smart pointers for resource management
-- Template metaprogramming for type safety
-- Exception handling for robust error management
+Technical Implementation
+- Smart pointers and template metaprogramming for resource safety
+- Command buffer, pipeline, descriptor, and synchronization abstractions
 - Memory pools for efficient allocation
-- Command buffer management
-- Pipeline state objects
-- Descriptor sets and layouts
-- Synchronization primitives
+- Pipeline state and descriptor set management
 
-📚 Key Concepts
-- Modern C++ best practices
-- Graphics programming fundamentals
-- Resource management
-- Error handling
-- Performance optimization
-- Cross-platform development
-
-🎯 Project Goals
-- Simplify Vulkan programming
-- Provide type-safe abstractions
-- Maintain performance
-- Ensure resource safety
-- Support modern C++ features
-- Enable cross-platform development`,
+Goals
+- Reduce Vulkan boilerplate without hiding important behavior
+- Keep resource lifetimes explicit and safe
+- Preserve performance characteristics of direct Vulkan usage`,
     image: "/images/vulkan-abstraction.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/VulkanAbstraction" }],
     technologies: ["C++", "Vulkan", "GLFW", "Modern C++", "Graphics Programming", "RAII", "System Programming"],
@@ -136,61 +90,37 @@ Noise Reduction: Higher sampling density and cosine importance sampling reduce v
     id: 3,
     title: "Custom 3D Game Engine",
     shortDescription:
-      "A custom-built 3D game engine developed from the ground up in modern C++20 using OpenGL, designed to power a third-person beat 'em up game inspired by Adventure Time: Guardians of Sunshine.",
-    fullDescription: `A custom-built 3D game engine developed from the ground up in modern C++20 using OpenGL, designed to power a third-person beat 'em up game inspired by Adventure Time: Guardians of Sunshine. The engine integrates real-time physics, skeletal animation, rendering, and audio systems into a modular, extensible framework.
+      "A custom C++20 OpenGL engine built for a third-person beat 'em up prototype with physics, animation, rendering, and audio systems.",
+    fullDescription: `A custom 3D game engine developed in C++20 and OpenGL for a third-person beat 'em up prototype. The engine combines physics, skeletal animation, rendering, audio, and gameplay systems in a modular architecture.
 
-🔧 Core Features
+Core Systems
+Entity-Component System
+- Modular entity and component architecture for scalable gameplay code
 
-Entity-Component System (ECS)
-- Modular architecture for managing entities and components
-- Enables clean separation of logic and data, optimized for scalability
+Physics
+- ReactPhysics3D integration for rigid body simulation
+- Dynamic, static, and kinematic bodies with multiple collider types
+- Physics debug rendering in the main render path
 
-Physics System
-- Integrated ReactPhysics3D for real-time rigid body simulation
-- Supports dynamic, static, and kinematic objects
-- Collision filtering and multiple collider types (box, sphere, capsule, mesh)
-- Built-in physics debug rendering integrated into the rendering pipeline
+Rendering
+- Forward OpenGL renderer with cubemap skybox support
+- Directional, point, and spot lights
+- Transparency, post-processing, and material support for diffuse, specular, and normal maps
 
-Rendering System
-- Forward renderer based on OpenGL
-- Skybox system using cubemaps for immersive background rendering
-- Transparency support with correct depth sorting and blending
-- Multiple dynamic light types: directional, point, and spotlights
-- Post-processing effects: bloom, tone mapping, and more
-- Material system with support for diffuse, specular, and normal maps
+Animation and Content
+- Assimp-based model loading for OBJ and DAE assets
+- Skeletal animation with bone hierarchy and keyframe interpolation
 
-Model Loading & Skeletal Animation
-- Model importing via Assimp, supporting .OBJ and .DAE formats
-- Fully-featured skeletal animation system
-- Bone hierarchy and keyframe interpolation
-- Supports animated 3D characters and enemies
+Audio and Scene Management
+- OpenAL for 3D positional audio
+- JSON-based scene serialization and loading
 
-Audio System
-- OpenAL integration for 3D positional audio
-- Supports ambient sounds, spatial effects, and music
+Gameplay
+- Playable character switching, enemy AI, combat, and collection mechanics
+- Debug tooling for collider visualization and engine diagnostics
 
-Level & Scene Management
-- JSON-based scene loading and saving
-- Easily serializes game state, including entity/component setups
-
-Gameplay Systems
-- Switchable characters: Finn and Jake, each with custom emotes and behavior
-- Custom enemy AI for attack and detection logic
-- Coin collection, combat mechanics, and enemy interactions
-
-Debugging & Development Tools
-- Real-time physics collider visualization
-- Engine-level logging and diagnostics tools
-
-⚙️ Technologies Used
-- C++20 – modern language features for clean, performant architecture
-- OpenGL – graphics rendering
-- GLFW – cross-platform windowing and input
-- ReactPhysics3D – physics simulation and collision detection
-- Assimp – model and animation importing
-- OpenAL – 3D audio playback
-- JSON for Modern C++ – data serialization
-- Custom engine modules – ECS, rendering, lighting, animation, physics, audio, and AI`,
+Technologies
+- C++20, OpenGL, GLFW, ReactPhysics3D, Assimp, OpenAL, and JSON for Modern C++`,
     image: "/images/game-engine.png",
     links: [
       { type: "GitHub", url: "https://github.com/budi641/OpenGL_Game_Engine" },
@@ -202,59 +132,31 @@ Debugging & Development Tools
     id: 4,
     title: "Back to Back",
     shortDescription:
-      "A cooperative asymmetric multiplayer game set in three distinct historical periods of Egypt, developed with Unreal Engine 5.5 and available on Steam.",
-    fullDescription: `A cooperative asymmetric multiplayer game set in three distinct historical periods of Egypt, developed with Unreal Engine 5.5 and available on Steam.
+      "A cooperative asymmetric multiplayer game set across three historical periods of Egypt, built in Unreal Engine 5.5 and released on Steam.",
+    fullDescription: `Back to Back is a cooperative asymmetric multiplayer game developed in Unreal Engine 5.5 and released on Steam. Two players work through three historical periods of Egypt, each with distinct environments, roles, and challenges.
 
-🎮 Game Overview
-Back to Back is an immersive cooperative experience where two players must work together to overcome challenges across different eras of Egyptian history. The game features asymmetric gameplay mechanics, where each player has unique abilities and roles.
+Game Overview
+- Asymmetric co-op design with role-specific abilities
+- Three historical settings with period-specific level design
+- Steam integration for multiplayer matchmaking
 
-🤖 AI & Combat Systems
+Systems Work
 Enemy AI
-- Developed sophisticated enemy behavior systems using Unreal Engine's AI framework
-- Implemented state machines for different enemy types (ranged, melee, special units)
-- Created dynamic pathfinding and combat decision-making systems
-- Designed group coordination behaviors for enemy squads
+- State machines for ranged, melee, and special enemy types
+- Pathfinding, combat decision-making, and squad coordination
 
 Boss AI
-- Created unique boss encounters with distinct attack patterns and phases
-- Implemented adaptive difficulty scaling based on player performance
-- Developed complex state machines for boss behaviors and transitions
-- Designed telegraphing systems for boss attacks and special moves
+- Multi-phase boss encounters with telegraphed attacks
+- Difficulty scaling based on player performance
 
-Trap System
-- Built a modular trap system with various types (mechanical, magical, environmental)
-- Implemented trap detection and disarming mechanics
-- Created trap placement and triggering systems
-- Designed visual and audio feedback for trap interactions
+Traps and Weapons
+- Modular trap system with detection and disarm mechanics
+- Weapon framework with customization, upgrades, and combo support
 
-Weapon Systems
-- Developed a comprehensive weapon framework supporting multiple weapon types
-- Implemented weapon customization and upgrade systems
-- Created unique weapon abilities and special attacks
-- Designed weapon switching and combo systems
-
-🎯 Key Features
-- Asymmetric multiplayer gameplay with unique character abilities
-- Three distinct historical periods with unique environments and challenges
-- Advanced AI systems for enemies and bosses
-- Complex trap and weapon systems
-- Steam integration for multiplayer matchmaking
-- Cross-platform play support
-
-🛠️ Technical Highlights
-- Developed using Unreal Engine 5.5's latest features
-- Implemented advanced AI systems using Behavior Trees and EQS
-- Created custom gameplay systems for traps and weapons
-- Optimized networking for smooth multiplayer experience
-- Integrated Steam SDK for multiplayer functionality
-
-🎨 Art & Design
-- Historically accurate environments and assets
-- Distinct visual styles for each time period
-- Detailed character designs and animations
-- Atmospheric lighting and effects
-
-The game showcases advanced AI programming, complex gameplay systems, and professional game development practices, all while maintaining historical accuracy and engaging cooperative gameplay.`,
+Technical Notes
+- Behavior Trees and EQS for AI authoring
+- Custom trap and weapon gameplay systems
+- Networking and Steam SDK integration for online play`,
     image: "/images/back-to-back.jpeg",
     links: [
       { type: "Steam", url: "https://store.steampowered.com/app/3304730/Back_To_Back/" },
@@ -274,19 +176,19 @@ The game showcases advanced AI programming, complex gameplay systems, and profes
     id: 5,
     title: "Project Ultra",
     shortDescription:
-      "An indie multiplayer sci-fi third-person shooter developed solo using Unreal Engine, featuring Epic Online Services integration.",
-    fullDescription: `Project Ultra is an ambitious indie multiplayer sci-fi third-person shooter that I developed entirely solo using Unreal Engine. Released in its alpha state, the game has already garnered over 190 downloads, showcasing its potential in the gaming community.
+      "A solo-developed multiplayer sci-fi third-person shooter in Unreal Engine with Epic Online Services integration.",
+    fullDescription: `Project Ultra is a sci-fi third-person shooter developed solo in Unreal Engine and released in alpha on itch.io.
 
-The project features full integration with Epic Online Services (EOS), leveraging Epic's robust infrastructure for comprehensive multiplayer functionality. This includes sophisticated matchmaking systems, secure player authentication, and efficient server management.
+The project integrates Epic Online Services for matchmaking, authentication, and backend player data management.
 
-Key technical achievements include:
-- Implementation of real-time multiplayer networking
-- Advanced player movement and combat mechanics
-- Dynamic weapon systems with unique sci-fi elements
-- Custom UI/UX design for multiplayer interactions
-- Integration with Epic's backend services for player data management
+Technical Scope
+- Real-time multiplayer networking
+- Third-person movement and combat systems
+- Sci-fi weapon mechanics
+- Multiplayer UI and session flow
+- EOS-backed player and session handling
 
-The game represents a significant technical achievement in solo game development, demonstrating expertise in both game design and multiplayer systems implementation.`,
+The project covers both gameplay implementation and online service integration in a single-developer pipeline.`,
     image: "/images/project-ultra.png",
     links: [
       { type: "GitHub", url: "https://github.com/budi641/Project-Ultra" },
@@ -299,45 +201,21 @@ The game represents a significant technical achievement in solo game development
     id: 6,
     title: "Time Bomb",
     shortDescription:
-      "A proof-of-concept 3D side-scrolling platformer featuring innovative time-manipulation mechanics, built with Unreal Engine 5.5.",
-    fullDescription: `Time Bomb is a bite-sized, proof-of-concept 3D side-scrolling platformer where you play as a mad scientist trying to escape a chaotic lab overrun by your own creations. The game explores creative time-manipulation mechanics within a single, hand-crafted level that encourages mastery of timing, movement, and experimentation.
+      "A proof-of-concept side-scrolling platformer built in Unreal Engine 5.5 around time-manipulation mechanics.",
+    fullDescription: `Time Bomb is a proof-of-concept 3D side-scrolling platformer built in Unreal Engine 5.5. The player escapes a lab using time-based mechanics across a single authored level.
 
-🧠 Key Features
-Time Control Mechanics
+Core Mechanics
+- Pause time for precise platforming and hazard avoidance
+- Rewind time to restore terrain or reposition against enemies
+- Ability pickups that introduce mechanics such as double jump and extended rewind
+- Environmental interactions, including redirecting projectiles and altering walkways
 
-Pause Time to line up precision jumps and avoid hazards
+Production Notes
+- Built in UE 5.5 with Blueprint-driven level scripting
+- MetaHuman Creator used for the main menu presentation
+- Mechanics, triggers, and progression implemented without separate tutorial screens
 
-Rewind Time to restore broken terrain or outsmart enemies
-
-Ability Progression
-
-Pickups scattered across the level teach you new mechanics (e.g., double-jump, extended rewind) as part of natural gameplay flow
-
-Environmental Interaction
-
-Turn enemy missiles back against their launchers
-
-Collapse or restore walkways to open new paths
-
-🛠 Technology & Tools
-Unreal Engine 5.5 (Blueprints and Level Design)
-
-Facial Scanning + MetaHuman Creator:
-I appear in the game's main menu as a MetaHuman version of myself—scanned and customized using Unreal's tools
-
-Level Scripting & Animation:
-Built all mechanics from scratch using Blueprints, including time effects and triggers
-
-🎯 Project Focus
-Time Bomb serves as a design and tech demo showcasing my ability to:
-
-Script unique game mechanics using UE5's visual system
-
-Design a focused gameplay experience around a single core idea (time manipulation)
-
-Integrate player progression through level design without tutorials
-
-Apply polish and personality with custom animations, sound, and a personal Easter egg`,
+The project focuses on one core design idea—time control—and builds the level around teaching and testing that system through play.`,
     image: "/images/timebomb.png",
     links: [{ type: "Itch.io", url: "https://abdelrahman-ameen.itch.io/time-bomb" }],
     technologies: [
@@ -352,24 +230,18 @@ Apply polish and personality with custom animations, sound, and a personal Easte
   {
     id: 7,
     title: "Virtual Reality Training Simulation",
-    shortDescription: "A VR-based training platform for medical students to safely practice and learn human anatomy.",
-    fullDescription: `The Virtual Reality Training Simulation (VRTS) is an innovative educational platform designed to revolutionize how medical students learn and practice human anatomy. This project addresses the limitations of traditional learning methods by providing a safe, interactive, and immersive environment for students to make mistakes and learn from them.
+    shortDescription: "A VR training platform for medical students to practice anatomy in an interactive 3D environment.",
+    fullDescription: `Virtual Reality Training Simulation is a VR application for medical education built in Unreal Engine. It provides an interactive environment for studying human anatomy outside traditional lab constraints.
 
-Key features include:
-- Detailed 3D models of human anatomy
-- Interactive learning modules
-- Real-time feedback system
-- Progress tracking and assessment tools
-- Multi-user collaboration capabilities
+Features
+- Detailed anatomical 3D models
+- Structured learning modules
+- Real-time feedback during interaction
+- Progress tracking and assessment support
+- Multi-user collaboration support
 
-The platform offers several advantages over traditional methods:
-- Safe environment for practice
-- Unlimited repetition of procedures
-- Detailed visualization of complex anatomical structures
-- Immediate feedback on actions
-- Cost-effective compared to physical models
-
-This project demonstrates the potential of VR technology in medical education and training.`,
+Use Case
+The platform is designed to give students repeated, low-risk practice with complex anatomical structures and procedural tasks that are difficult to scale with physical models alone.`,
     image: "/images/virtual-reality-training.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/VrTrainingSimulation" }],
     technologies: ["Unreal Engine", "C++", "VR Development", "3D Modeling", "Medical Education"],
@@ -378,91 +250,29 @@ This project demonstrates the potential of VR technology in medical education an
     id: 8,
     title: "Python 2D Physics Engine",
     shortDescription:
-      "A custom-built 2D physics engine with position-based dynamics, showcased through a realistic 8-ball pool game implementation.",
-    fullDescription: `2D Physics Engine + Game Demo | Python & Pygame
+      "A custom 2D physics engine in Python, demonstrated through a full 8-ball pool simulation.",
+    fullDescription: `A custom 2D physics engine implemented in Python and demonstrated through an 8-ball pool game built with Pygame. The engine uses position-based dynamics, Verlet integration, and iterative constraint solving.
 
-This project features a custom-built 2D physics engine implemented in Python and showcased through a fully functional 8-ball pool game. The engine models realistic physical interactions using position-based dynamics (PBD), Verlet integration, and a constraint-solving system, offering both soft- and rigid-body simulation capabilities.
-
-🧠 Engine Features
+Engine Features
 Physics Core
+- Rigid bodies with mass, inertia, and restitution
+- Verlet integration for stable time-step behavior
+- Position-based constraint solver for soft and rigid interactions
 
-Custom rigid body system with mass, inertia, and restitution
+Collision and Constraints
+- Circle-circle and circle-edge collision detection
+- Impulse-based response with penetration correction
+- Distance constraints for spring-like behavior
+- Friction modeled through contact forces
 
-Verlet integration for stable, time-step-independent motion
+Demo Game
+- Configurable ball mass, friction, and restitution
+- Cue control with angle and power input
+- Pocket detection and table reset logic
 
-Position-based constraint solver for soft-body dynamics
-
-Collision Handling
-
-Circle-circle and circle-edge collision detection
-
-Impulse-based collision response with penetration resolution
-
-Friction modeling using contact forces
-
-Constraint System
-
-Distance constraints for soft-body modeling (e.g., springs)
-
-Iterative constraint resolution for stable simulation
-
-Particles & Effects
-
-Lightweight particle emitters for collisions and visual feedback
-
-Configurable lifetime and visual styles (e.g., impact sparks, confetti)
-
-🕹️ Game Mechanics
-Realistic 8-Ball Pool
-
-Customizable ball mass, friction, and restitution
-
-Accurate cue control and power-charging mechanics
-
-Ball-pocket detection and physics-based collision behavior
-
-Game Components
-
-Cue stick mechanics with angle and force control
-
-Pocketing and game reset logic
-
-Configurable table dimensions and materials
-
-📁 Tech Stack & Structure
-Python 3.8+, Pygame, NumPy
-
-Modular structure:
-
-physics/: core engine (collision, body, constraints, world)
-
-game/: visual and gameplay logic (table, ball, cue)
-
-main.py: entry point with game loop and UI integration
-
-🛠 Notable Equations
-Verlet Integration:
-
-𝑥(𝑡+Δ𝑡) = 2𝑥(𝑡) − 𝑥(𝑡−Δ𝑡) + 𝑎(𝑡)Δ𝑡²
-
-Impulse Response:
-
-𝑗 = −(1+𝑒)⋅(𝑣₁−𝑣₂)⋅𝑛 / (1/𝑚₁ + 1/𝑚₂)
-
-Friction:
-
-𝐹 = −𝜇𝑁⋅𝑣/|𝑣|
-
-🧪 Focus & Takeaways
-This project demonstrates my ability to design and implement:
-
-A physics engine from first principles
-
-Real-time interactive simulations
-
-Stable constraint-solving with visually satisfying outcomes
-
-Modular game architecture with clean separation of concerns`,
+Tech Stack
+- Python 3.8+, Pygame, NumPy
+- Modular layout separating physics core from game presentation`,
     image: "/images/physics-engine.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/Python-2D-Physics-Engine" }],
     technologies: [
@@ -479,61 +289,27 @@ Modular game architecture with clean separation of concerns`,
     id: 9,
     title: "PathFinder-AI",
     shortDescription:
-      "A Python-based AI pathfinding visualizer for grid-based environments, implementing various search algorithms with real-time visualization.",
-    fullDescription: `A Python-based AI pathfinding visualizer for grid-based environments.
+      "A Python pathfinding visualizer for grid environments with multiple search algorithms and real-time playback.",
+    fullDescription: `PathFinder-AI is a Python pathfinding visualizer for grid-based environments. An agent navigates an n×n grid containing obstacles, collectibles, and a goal state while maximizing collected items.
 
-🔍 Overview
-Developed an AI agent capable of traversing an n×n grid filled with:
-- Obstacles (impassable terrain)
-- Collectibles (items to gather)
-- Empty passable cells
+Overview
+- Grid states include position and collected item configuration
+- Objective: reach the goal while collecting items efficiently
+- Supports four-directional movement without diagonals
 
-Objective: Maximize collected items while reaching a specified goal cell optimally.
+Algorithms Implemented
+- Uninformed search: DFS, BFS, iterative deepening
+- Informed search: greedy best-first and A*
+- Cost-based search: uniform cost search
+- Local search: hill climbing and simulated annealing
 
-🛠 Technologies Used
-- Python 3.10+
-- Pygame – Real-time grid and path visualization
-- NetworkX & Matplotlib – Search tree visualizations
-- OOP Design – Grid and AI states modeled using classes (Grid, State, etc.)
+Engineering
+- Object-oriented grid and state modeling
+- Pygame visualization for agent movement
+- NetworkX and Matplotlib for search tree inspection
+- Test coverage for path validity, optimality, and edge cases
 
-🧭 AI Features
-State-Space Modeling:
-- Includes position and collected item state
-- Accounts for collectible combinations and movement restrictions
-
-Search Algorithms Implemented:
-- Uninformed: DFS, BFS, Iterative Deepening Search
-- Informed: Greedy Best-First, A* Search
-- Cost-Based: Uniform Cost Search
-- Local Search: Hill Climbing, Simulated Annealing
-
-Action Space:
-- Supports four-directional movement (no diagonal)
-- Avoids obstacles, collects items on contact
-
-🧪 Testing & Optimization
-Test framework for:
-- Valid path correctness
-- Path optimality (when applicable)
-- Robustness against edge cases (e.g., no path, full obstacles)
-
-State Space Estimation:
-- Considers valid cells × collectible combinations
-- Example: 5×5 grid with 3 obstacles and 2 collectibles → 88 possible states
-
-📊 Visualization
-Real-Time Grid Display:
-- Pygame interface for simulating and observing agent movement
-
-Search Tree Output:
-- Optional display of explored search tree
-- Nodes and edges colored and labeled for clarity
-
-📌 Highlights
-- Modular and scalable grid design
-- Clear separation of logic and visualization
-- Easily extensible for more AI strategies or environment variations
-- Great for teaching pathfinding algorithms and AI search strategies`,
+The project separates search logic from visualization so new algorithms and grid layouts can be added with minimal coupling.`,
     image: "/images/pathfinder-ai.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/PathFinder-AI" }],
     technologies: ["Python", "Pygame", "NetworkX", "Matplotlib", "AI", "Pathfinding", "OOP", "Data Structures"],
@@ -542,22 +318,16 @@ Search Tree Output:
     id: 10,
     title: "SFML Pac-Man",
     shortDescription:
-      "A complete recreation of the classic Pac-Man game using C++ and SFML, focusing on authentic enemy behavior.",
-    fullDescription: `This project is a faithful recreation of the classic Pac-Man game, developed entirely in C++ using the SFML (Simple and Fast Multimedia Library). The implementation focuses on accurately replicating the original game's mechanics, particularly the sophisticated enemy AI behavior that made the original game so challenging and engaging.
+      "A C++ and SFML recreation of Pac-Man with a focus on accurate ghost behavior and classic arcade mechanics.",
+    fullDescription: `A C++ implementation of Pac-Man using SFML, focused on reproducing the original game's movement rules and ghost AI behavior.
 
-Technical achievements include:
-- Precise recreation of ghost movement patterns
-- Authentic game physics and collision detection
-- Original sound effects and music implementation
-- Faithful visual reproduction of the classic arcade style
-- Efficient memory management and performance optimization
+Implementation Highlights
+- Ghost state and movement patterns based on the classic arcade design
+- Collision detection and maze navigation
+- Sprite rendering and audio playback through SFML
+- Memory-conscious structure suitable for real-time arcade gameplay
 
-The project demonstrates:
-- Strong understanding of game development fundamentals
-- Mastery of C++ programming
-- Ability to work with multimedia libraries
-- Attention to detail in game mechanics
-- Understanding of classic game design principles.`,
+The project was built to study classic game AI and low-level gameplay implementation in C++.`,
     image: "/images/sfml-pac-man.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/SFML_Pac_Man" }],
     technologies: ["C++", "SFML", "Game Development", "AI Programming"],
@@ -566,29 +336,23 @@ The project demonstrates:
     id: 11,
     title: "Quizify",
     shortDescription:
-      "A gamified social learning platform built with ASP.NET, featuring comprehensive documentation and Azure deployment.",
-    fullDescription: `Quizify is a sophisticated online learning platform that combines social features with gamification elements to create an engaging educational experience. The project was developed using modern web technologies and follows industry best practices in software development.
+      "An ASP.NET learning platform with social features, gamification, and Azure deployment.",
+    fullDescription: `Quizify is a web-based learning platform built with ASP.NET Razor Pages and C#. It combines quiz authoring, social interaction, and progress tracking in a single application.
 
-Technical Implementation:
-- Built with ASP.NET Razor pages using C#
-- Comprehensive database design using SQL
-- Azure cloud deployment with App Services
-- Automated CI/CD pipelines via Azure DevOps
-- Secure authentication and authorization systems
+Technical Implementation
+- ASP.NET Razor Pages backend in C#
+- SQL database for content and user data
+- Azure App Services deployment
+- CI/CD through Azure DevOps
+- Authentication and authorization for user accounts
 
-Development Process:
-- Followed Agile and Scrum methodologies
-- Implemented comprehensive testing strategies
-- Created detailed system documentation
-- Utilized modern development tools and practices
-- Incorporated user feedback in iterative development
-
-The platform features:
-- Interactive quiz creation and management
-- Social learning features
+Product Features
+- Quiz creation and management
+- Social learning workflows
 - Progress tracking and analytics
-- Gamification elements
-- Real-time feedback systems.`,
+- Gamified feedback loops
+
+The project was developed with structured documentation, testing, and iterative delivery practices.`,
     image: "/images/quizify.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/Quizify" }],
     technologies: ["ASP.NET", "C#", "SQL", "Azure", "CI/CD", "Agile Development"],
@@ -597,22 +361,16 @@ The platform features:
     id: 12,
     title: "TASM-Space-Invaders",
     shortDescription:
-      "A classic Space Invaders game implementation in x86 Assembly Language (TASM), demonstrating low-level programming skills.",
-    fullDescription: `This project is a complete implementation of the classic Space Invaders game using x86 Assembly Language (TASM). The game features authentic gameplay mechanics, smooth graphics, and responsive controls, all achieved through direct hardware interaction and efficient assembly programming.
+      "A Space Invaders clone written in x86 assembly (TASM) with direct hardware interaction for graphics and timing.",
+    fullDescription: `A Space Invaders implementation written in x86 assembly using TASM. The project handles rendering, timing, collision, and audio close to the hardware.
 
-Key technical achievements include:
-- Direct video memory manipulation for graphics
-- Precise timing control using system interrupts
-- Efficient collision detection algorithms
-- Smooth sprite animation and movement
-- Sound effects using PC speaker
+Technical Scope
+- Direct video memory writes for sprite rendering
+- Interrupt-driven timing for consistent frame pacing
+- Collision detection and enemy movement logic in assembly
+- PC speaker audio for game feedback
 
-The project demonstrates:
-- Deep understanding of computer architecture
-- Mastery of assembly language programming
-- Ability to work with hardware directly
-- Optimization skills for performance-critical code
-- Understanding of retro game development techniques.`,
+The project was built to practice low-level systems programming, memory layout, and performance-conscious game loops without high-level engine support.`,
     image: "/images/tasm-space-invaders.png",
     links: [{ type: "GitHub", url: "https://github.com/budi641/TASM-Space-Invaders" }],
     technologies: ["Assembly", "TASM", "x86", "Low-Level Programming", "Game Development"],
@@ -642,8 +400,7 @@ export function Projects() {
             </span>
           </h2>
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-6 md:mb-8">
-            A comprehensive showcase of my work in game development, graphics programming, AI, and interactive
-            experiences.
+            Selected work across game development, graphics programming, AI, and interactive systems.
           </p>
         </div>
 
@@ -662,7 +419,7 @@ export function Projects() {
             >
               <div className="relative overflow-hidden">
                 <img
-                  src={project.image ? `/My_Portfolio${project.image.startsWith('/') ? project.image : `/${project.image}`}` : '/My_Portfolio/placeholder.svg'}
+                  src={project.image ? assetPath(project.image) : assetPath("/placeholder.svg")}
                   alt={project.title}
                   className="w-full h-48 object-cover rounded-t-lg"
                 />

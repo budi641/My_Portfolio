@@ -2,14 +2,13 @@
 
 import { useRef, useMemo } from "react"
 import { useFrame } from "@react-three/fiber"
-import type * as THREE from "three"
+import * as THREE from "three"
 
 export function ParticleBackground() {
   const meshRef = useRef<THREE.Points>(null)
-
   const particlesCount = 1000
 
-  const positions = useMemo(() => {
+  const geometry = useMemo(() => {
     const positions = new Float32Array(particlesCount * 3)
 
     for (let i = 0; i < particlesCount; i++) {
@@ -18,7 +17,9 @@ export function ParticleBackground() {
       positions[i * 3 + 2] = (Math.random() - 0.5) * 20
     }
 
-    return positions
+    const geo = new THREE.BufferGeometry()
+    geo.setAttribute("position", new THREE.BufferAttribute(positions, 3))
+    return geo
   }, [])
 
   useFrame((state) => {
@@ -29,11 +30,8 @@ export function ParticleBackground() {
   })
 
   return (
-    <points ref={meshRef}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={particlesCount} array={positions} itemSize={3} />
-      </bufferGeometry>
-      <pointsMaterial size={0.02} color="#00BFFF" transparent opacity={0.6} sizeAttenuation />
+    <points ref={meshRef} geometry={geometry} frustumCulled={false}>
+      <pointsMaterial size={0.02} color="#00BFFF" transparent opacity={0.6} sizeAttenuation depthWrite={false} />
     </points>
   )
 }

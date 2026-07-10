@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Code, Gamepad2, Cpu, Zap } from "lucide-react"
 import { useGitHubProfile } from "@/hooks/useGitHubProfile"
 import { useMobile } from "@/hooks/use-mobile"
+import { assetPath } from "@/lib/asset-path"
 
 export function About() {
   const { profile } = useGitHubProfile("budi641")
@@ -13,22 +14,22 @@ export function About() {
     {
       icon: <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-blue-400" />,
       title: "Game Development",
-      description: "Expert in gameplay mechanics, physics simulation, and interactive systems development",
+      description: "Gameplay systems, physics, AI, and interactive mechanics in production and prototype environments.",
     },
     {
       icon: <Cpu className="h-6 w-6 sm:h-8 sm:w-8 text-purple-400" />,
       title: "Graphics Programming",
-      description: "Specialized in real-time rendering, visual effects, and high-performance graphics systems",
+      description: "Real-time rendering, shaders, and performance-focused graphics pipelines.",
     },
     {
       icon: <Code className="h-6 w-6 sm:h-8 sm:w-8 text-violet-400" />,
-      title: "Technical Expertise",
-      description: "Proficient in C++, Python, Vulkan, and Unreal Engine development",
+      title: "Technical Stack",
+      description: "C++, Python, Vulkan, and Unreal Engine for engine work, tools, and shipped features.",
     },
     {
       icon: <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-cyan-400" />,
-      title: "VR & Innovation",
-      description: "Pioneering immersive VR experiences and cutting-edge interactive technologies",
+      title: "VR & Simulation",
+      description: "Immersive training and interactive applications built for practical use cases.",
     },
   ]
 
@@ -50,21 +51,18 @@ export function About() {
             </h3>
             <div className="space-y-3 md:space-y-4 text-gray-300 text-sm md:text-base">
               <p>
-                I'm a passionate game developer and graphics programmer with a focus on real-time rendering, physics
-                simulation, and interaction systems. I specialize in Unreal Engine and enjoy building immersive,
-                high-performance experiences using C++, Python, and Vulkan.
+                I am a technical game designer and graphics programmer working across gameplay systems, engine
+                development, and real-time rendering. I build in Unreal Engine and C++, and I am equally comfortable
+                prototyping mechanics, shipping production features, and working close to the graphics stack.
               </p>
               <p>
-                I love solving complex problems and turning creative ideas into interactive systems. Whether it's
-                gameplay mechanics, custom engines, or visual effects, I bring innovation, dedication, and technical
-                skill to every project. My expertise extends into virtual reality development, where I create
-                groundbreaking immersive experiences that push the boundaries of what's possible.
+                My background includes shipped multiplayer work, custom engine development, VR training tools, and
+                graphics research with Vulkan ray tracing. I focus on systems that are clear to design, stable in
+                production, and straightforward to extend.
               </p>
               <p>
-                With a strong foundation in low-level graphics programming and engine architecture, I excel at
-                optimizing performance-critical systems and developing cutting-edge rendering techniques. My work spans
-                from indie game development to enterprise VR solutions, always maintaining a focus on delivering
-                exceptional user experiences through technical excellence.
+                I work best where design and implementation meet: defining how a feature should behave, building the
+                systems behind it, and refining performance until the result holds up in real use.
               </p>
             </div>
           </div>
@@ -73,7 +71,7 @@ export function About() {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-violet-500 rounded-full blur-lg opacity-30 animate-pulse"></div>
               <img
-                src={profile?.avatar_url || `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/placeholder.svg?height=300&width=300`}
+                src={profile?.avatar_url || assetPath("/placeholder.svg")}
                 alt="Profile"
                 className={`relative rounded-full border-4 border-gradient-to-r from-blue-500 to-violet-500 object-cover ${
                   isMobile ? "w-48 h-48" : "w-64 h-64 md:w-72 md:h-72"

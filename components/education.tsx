@@ -2,14 +2,15 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { assetPath } from "@/lib/asset-path"
 
 export function Education() {
   const educationData = [
     {
       degree: "Bachelor of Software Development",
       school: "Computational Science and AI at university of science and technology, Zewail city",
-      date: "Oct 2022 – 2026",
-      description: "• Concentration: Gaming and Computer Graphics",
+      date: "Oct 2022 – Jun 2026",
+      description: "Concentration: Gaming and Computer Graphics",
       image: "/images/zewail-city.png",
       courses: ["Computational Science", "Artificial Intelligence", "Game Development", "Computer Graphics"],
     },
@@ -34,7 +35,7 @@ export function Education() {
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="flex-shrink-0">
                     <img
-                      src={edu.image ? `/My_Portfolio${edu.image.startsWith('/') ? edu.image : `/${edu.image}`}` : '/My_Portfolio/placeholder.svg'}
+                      src={edu.image ? assetPath(edu.image) : assetPath("/placeholder.svg")}
                       alt={edu.school}
                       className="w-16 h-16 rounded-full object-cover"
                     />

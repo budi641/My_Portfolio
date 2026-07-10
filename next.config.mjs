@@ -7,6 +7,9 @@ const nextConfig = {
   distDir: 'build',  // Set build directory to match gh-pages
   basePath: isProd ? `/${repoName}` : '',
   assetPrefix: isProd ? `/${repoName}/` : '',
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : '',
+  },
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,

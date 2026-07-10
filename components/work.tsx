@@ -2,13 +2,22 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { assetPath } from "@/lib/asset-path"
 
 export function Work() {
   const workData = [
     {
+      position: "Technical Game Designer",
+      company: "Nout Games",
+      dateLocation: "Nov 2025 – present | Remote",
+      description: [],
+      skills: ["Unreal Engine", "Game Design", "Technical Design"],
+      image: "/images/NoutLogo.png",
+    },
+    {
       position: "Unreal Engine Developer",
       company: "Hazem Mansour",
-      dateLocation: "Apr 2025 – present | Shiekh Zayed, Egypt",
+      dateLocation: "Apr 2025 – Jun 2026 | Shiekh Zayed, Egypt",
       description: [],
       skills: ["Unreal Engine", "VR Development", "C++", "Automation", "3ds Max"],
       image: "/images/hazem-mansour.jpeg",
@@ -70,7 +79,7 @@ export function Work() {
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative">
                         <img
-                          src={item.image ? `/My_Portfolio${item.image.startsWith('/') ? item.image : `/${item.image}`}` : '/My_Portfolio/placeholder.svg'}
+                          src={item.image ? assetPath(item.image) : assetPath("/placeholder.svg")}
                           alt={`${item.company} Logo`}
                           className="w-20 h-12 rounded-lg object-contain bg-transparent"
                         />
@@ -107,7 +116,7 @@ export function Work() {
                     <div className="flex items-center gap-4 mb-6">
                       <div className="relative">
                         <img
-                          src={item.image ? `/My_Portfolio${item.image.startsWith('/') ? item.image : `/${item.image}`}` : '/My_Portfolio/placeholder.svg'}
+                          src={item.image ? assetPath(item.image) : assetPath("/placeholder.svg")}
                           alt={`${item.company} Logo`}
                           className="w-16 h-16 rounded-lg object-contain bg-transparent"
                         />

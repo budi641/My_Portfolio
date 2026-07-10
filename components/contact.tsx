@@ -86,7 +86,8 @@ export function Contact() {
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Ready to collaborate on your next project? Let's discuss how we can create something amazing together.
+            Open to collaboration, contract work, and full-time opportunities in game development and graphics
+            programming.
           </p>
         </div>
 
@@ -98,8 +99,8 @@ export function Contact() {
                 Let's Connect
               </h3>
               <p className="text-gray-400 mb-8 leading-relaxed">
-                I'm always interested in hearing about new opportunities, collaborations, or just having a chat about
-                game development and graphics programming.
+                Reach out for project inquiries, job opportunities, or technical discussions related to game design,
+                engine work, and graphics programming.
               </p>
             </div>
 
