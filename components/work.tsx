@@ -119,7 +119,7 @@ export function Work() {
                       <img
                         src={assetPath(entry.image)}
                         alt={`${entry.company} logo`}
-                        className="h-12 w-12 shrink-0 rounded-full object-cover ring-1 ring-white/10"
+                        className="h-12 w-12 shrink-0 rounded-xl object-contain ring-1 ring-white/10"
                       />
                       <div>
                         <h3 className="text-lg font-semibold text-white">{entry.company}</h3>
