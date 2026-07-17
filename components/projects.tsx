@@ -1,14 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Eye } from "lucide-react"
-import { ProjectModal } from "./project-modal"
-import { useMobile } from "@/hooks/use-mobile"
+import { ChevronDown, ExternalLink, Github, Play } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
 import { assetPath } from "@/lib/asset-path"
+import { useAtmosphere } from "@/lib/atmosphere"
 
-// Complete project data with all 12 projects
 const projects = [
   {
     id: 1,
@@ -377,106 +374,171 @@ The project was built to practice low-level systems programming, memory layout, 
   },
 ]
 
-export function Projects() {
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const isMobile = useMobile()
+type Project = (typeof projects)[number]
+type Link = Project["links"][number]
 
-  const openProjectModal = (project: (typeof projects)[0]) => {
-    setSelectedProject(project)
-    setIsModalOpen(true)
+function youtubeId(url: string) {
+  try {
+    const parsed = new URL(url)
+    if (parsed.hostname.includes("youtu.be")) return parsed.pathname.slice(1).split("?")[0]
+    return parsed.searchParams.get("v")
+  } catch {
+    return null
+  }
+}
+
+function MediaFrame({
+  src,
+  alt,
+  youtubeUrl,
+}: {
+  src: string
+  alt: string
+  youtubeUrl?: string
+}) {
+  const [playing, setPlaying] = useState(false)
+  const id = youtubeUrl ? youtubeId(youtubeUrl) : null
+
+  if (id && playing) {
+    return (
+      <div className="media-frame relative aspect-video bg-black">
+        <iframe
+          title={alt}
+          src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`}
+          className="absolute inset-0 h-full w-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    )
   }
 
   return (
-    <section
-      id="projects"
-      className="py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-navy-950/80 via-navy-900/60 to-violet-950/80"
+    <button
+      type="button"
+      onClick={() => id && setPlaying(true)}
+      className={`media-frame group relative aspect-video w-full text-left ${id ? "cursor-pointer" : "cursor-default"}`}
+      aria-label={id ? `Play video for ${alt}` : alt}
     >
-      <div className="container mx-auto">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
-            <span className="bg-gradient-to-r from-electric-400 via-violet-400 to-electric-500 bg-clip-text text-transparent">
-              Featured Projects
+      <img
+        src={assetPath(src)}
+        alt={alt}
+        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050b1e]/65 via-transparent to-transparent" />
+      {id && (
+        <span className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full border border-electric-300/60 bg-[#050b1e]/75 text-electric-100 shadow-[0_0_30px_rgba(56,182,255,.4)] transition group-hover:scale-110">
+            <Play className="ml-0.5 h-5 w-5 fill-current" />
+          </span>
+        </span>
+      )}
+    </button>
+  )
+}
+
+function LinkButtons({ links }: { links: Link[] }) {
+  return (
+    <div className="flex flex-wrap gap-3">
+      {links.map((link) => (
+        <motion.a
+          key={link.url}
+          href={link.url}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-pill-ghost !min-h-10 !px-4 !text-xs"
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          {link.type === "GitHub" ? <Github className="h-3.5 w-3.5" /> : <ExternalLink className="h-3.5 w-3.5" />}
+          {link.type === "YouTube" ? "Watch" : link.type}
+        </motion.a>
+      ))}
+    </div>
+  )
+}
+
+function ProjectRow({ project, flip }: { project: Project; flip: boolean }) {
+  const [open, setOpen] = useState(false)
+  const pulse = useAtmosphere((s) => s.pulse)
+  const youtube = project.links.find((l) => l.type === "YouTube")?.url
+
+  return (
+    <motion.article
+      className="grid gap-6 border-b border-white/[0.08] py-10 sm:gap-8 sm:py-12 md:py-16 lg:grid-cols-2 lg:items-center lg:gap-12"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ type: "spring", stiffness: 120, damping: 22 }}
+    >
+      <motion.div className={flip ? "lg:order-2" : ""} whileHover={{ scale: 1.015 }} transition={{ type: "spring", stiffness: 260, damping: 24 }}>
+        <MediaFrame src={project.image} alt={project.title} youtubeUrl={youtube} />
+      </motion.div>
+      <div className={flip ? "lg:order-1" : ""}>
+        <h3 className="text-xl font-semibold tracking-[-0.035em] text-white sm:text-2xl md:text-4xl">{project.title}</h3>
+        <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-400 sm:mt-4 sm:text-base">{project.shortDescription}</p>
+        <div className="mt-5 flex flex-wrap gap-2">
+          {project.technologies.slice(0, 5).map((tech) => (
+            <span key={tech} className="chip">
+              {tech}
             </span>
-          </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-6 md:mb-8">
-            Selected work across game development, graphics programming, AI, and interactive systems.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project, index) => (
-            <Card
-              key={project.id}
-              className="group bg-gradient-to-br from-navy-900/40 via-navy-800/30 to-violet-900/40 border-navy-700/30 hover:border-electric-500/50 transition-all duration-500 hover:transform hover:scale-105 cursor-pointer backdrop-blur-xl glow-effect"
-              onClick={() => openProjectModal(project)}
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animation: "fadeInUp 0.8s ease-out forwards",
-                opacity: 0,
-                transform: "translateY(30px)",
-              }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image ? assetPath(project.image) : assetPath("/placeholder.svg")}
-                  alt={project.title}
-                  className="w-full h-48 object-cover rounded-t-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center rounded-t-xl">
-                  <div className="bg-gradient-to-r from-electric-500/90 to-violet-600/90 hover:from-electric-600/90 hover:to-violet-700/90 text-gray-100 px-4 sm:px-6 py-2 sm:py-3 rounded-xl transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 flex items-center space-x-2 shadow-2xl">
-                    <Eye className="h-4 w-4" />
-                    <span className="font-medium">View Details</span>
-                  </div>
-                </div>
-              </div>
-
-              <CardHeader className="p-4 sm:p-5">
-                <CardTitle className="text-base sm:text-lg text-gray-200 group-hover:bg-gradient-to-r group-hover:from-electric-400 group-hover:to-violet-400 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500 line-clamp-2">
-                  {project.title}
-                </CardTitle>
-              </CardHeader>
-
-              <CardContent className="p-4 sm:p-5 pt-0 space-y-4">
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed line-clamp-3">
-                  {project.shortDescription}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.slice(0, isMobile ? 2 : 3).map((tech, techIndex) => (
-                    <Badge
-                      key={techIndex}
-                      variant="secondary"
-                      className="bg-gradient-to-r from-electric-500/20 to-violet-500/20 text-electric-300 border-electric-500/30 hover:from-electric-500/30 hover:to-violet-500/30 transition-all duration-300 text-xs"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.technologies.length > (isMobile ? 2 : 3) && (
-                    <Badge
-                      variant="secondary"
-                      className="bg-gradient-to-r from-violet-500/20 to-electric-500/20 text-violet-300 border-violet-500/30 text-xs"
-                    >
-                      +{project.technologies.length - (isMobile ? 2 : 3)} more
-                    </Badge>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
           ))}
         </div>
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <LinkButtons links={project.links} />
+          <motion.button
+            type="button"
+            aria-expanded={open}
+            onClick={() => {
+              setOpen((v) => !v)
+              pulse()
+            }}
+            className="btn-pill !min-h-10 !px-4 !text-xs"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            {open ? "Hide details" : "Read full details"}
+            <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-180" : ""}`} />
+          </motion.button>
+        </div>
+        <AnimatePresence initial={false}>
+          {open && (
+            <motion.pre
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 200, damping: 28 }}
+              className="mt-6 overflow-hidden whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-400"
+            >
+              {project.fullDescription}
+            </motion.pre>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.article>
+  )
+}
 
-        <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+export function Projects() {
+  return (
+    <section id="projects" className="relative border-t border-white/[0.06]">
+      <div className="section-shell !pb-8">
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ type: "spring", stiffness: 120, damping: 22 }}
+        >
+          Projects
+        </motion.h2>
       </div>
 
-      <style jsx>{`
-        @keyframes fadeInUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+      <div className="mx-auto max-w-[1500px] px-4 pb-20 sm:px-8 sm:pb-24 md:pb-32 lg:px-12">
+        {projects.map((project, index) => (
+          <ProjectRow key={project.id} project={project} flip={index % 2 === 1} />
+        ))}
+      </div>
     </section>
   )
 }

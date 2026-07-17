@@ -1,20 +1,36 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Menu, X, Gamepad2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Menu, X } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
+import { useAtmosphere } from "@/lib/atmosphere"
+import { assetPath } from "@/lib/asset-path"
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const activeSection = useAtmosphere((state) => state.activeSection)
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      const height = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(height > 0 ? (window.scrollY / height) * 100 : 0)
     }
+    handleScroll()
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [isMobileMenuOpen])
 
   const navItems = [
     { href: "#home", label: "Home" },
@@ -34,85 +50,88 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         isScrolled || isMobileMenuOpen
-          ? "bg-gradient-to-r from-navy-950/95 via-navy-900/95 to-navy-950/95 backdrop-blur-2xl border-b border-gradient-to-r from-electric-500/30 via-violet-500/30 to-electric-500/30 shadow-2xl shadow-electric-500/10"
+          ? "border-b border-white/[0.08] bg-[#050b1e]/90 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <div
+        className="absolute inset-x-0 top-0 h-[2px] origin-left bg-electric-400 shadow-[0_0_12px_rgba(56,182,255,.8)]"
+        style={{ transform: `scaleX(${progress / 100})` }}
+        aria-hidden="true"
+      />
+      <nav className="mx-auto max-w-[1500px] px-4 py-4 sm:px-8 lg:px-12" aria-label="Primary navigation">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3 group cursor-pointer">
-            <div className="relative">
-              <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-gray-100 transition-all duration-500 group-hover:text-electric-400 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-electric-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </div>
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-electric-400 via-violet-400 to-electric-500 bg-clip-text text-transparent">
-              Portfolio
-            </span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-6 lg:space-x-8">
-            {navItems.map((item, index) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="relative text-gray-300 hover:text-transparent hover:bg-gradient-to-r hover:from-electric-400 hover:to-violet-400 hover:bg-clip-text transition-all duration-500 font-medium group"
-                style={{
-                  animationDelay: `${index * 0.1}s`,
-                  animation: "fadeInDown 0.8s ease-out forwards",
-                }}
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-electric-400 via-violet-400 to-electric-500 transition-all duration-500 group-hover:w-full"></span>
-                <div className="absolute inset-0 bg-electric-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-gray-300 hover:text-electric-400 hover:bg-electric-500/10 transition-all duration-300"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <button
+            onClick={() => scrollToSection("#home")}
+            className="flex h-10 w-10 items-center justify-center rounded-xl transition hover:scale-105 hover:opacity-90"
+            aria-label="Go to Home"
           >
-            <div className="relative w-6 h-6">
-              <Menu
-                className={`absolute inset-0 transition-all duration-500 ${
-                  isMobileMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
-                }`}
-              />
-              <X
-                className={`absolute inset-0 transition-all duration-500 ${
-                  isMobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
-                }`}
-              />
-            </div>
-          </Button>
-        </div>
+            <img src={assetPath("/tabicon.svg")} alt="" className="h-8 w-8" />
+          </button>
 
-        {/* Mobile Navigation */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-700 ${
-            isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="mt-4 py-4 bg-gradient-to-r from-navy-900/95 via-navy-800/95 to-navy-900/95 backdrop-blur-2xl rounded-xl border border-electric-500/20 shadow-2xl shadow-electric-500/10">
-            {navItems.map((item, index) => (
+          <div className="hidden items-center gap-5 lg:flex xl:gap-8">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1)
+              return (
               <button
                 key={item.href}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-6 py-3 text-gray-300 hover:text-transparent hover:bg-gradient-to-r hover:from-electric-400 hover:to-violet-400 hover:bg-clip-text hover:bg-electric-500/10 transition-all duration-500 transform hover:translate-x-2"
-                style={{ animationDelay: `${index * 0.05}s` }}
+                className={`relative min-h-11 py-3 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors ${
+                  isActive ? "text-white" : "text-slate-400 hover:text-white"
+                }`}
+                aria-current={isActive ? "page" : undefined}
               >
                 {item.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="active-nav"
+                    className="absolute inset-x-0 bottom-1 h-px bg-electric-300 shadow-[0_0_10px_rgba(56,182,255,.8)]"
+                    transition={{ type: "spring", stiffness: 380, damping: 34 }}
+                  />
+                )}
               </button>
-            ))}
+              )
+            })}
           </div>
+
+          <button
+            className="flex h-11 w-11 items-center justify-center text-slate-200 transition-colors hover:text-electric-300 lg:hidden"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </nav>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="fixed inset-x-0 bottom-0 top-[73px] z-40 overflow-y-auto bg-[#050b1e]/98 px-4 py-8 backdrop-blur-xl sm:px-5 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="mx-auto flex max-w-[1500px] flex-col">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.href}
+                  onClick={() => scrollToSection(item.href)}
+                  className="border-b border-white/[0.08] py-4 text-left font-display text-[clamp(2rem,9vw,4rem)] font-semibold tracking-[-0.05em] text-white"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.045, type: "spring", stiffness: 220, damping: 25 }}
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

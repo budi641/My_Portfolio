@@ -2,23 +2,26 @@
 
 import { useState, useEffect } from "react"
 
+const MOBILE_BREAKPOINT = 768
+
+function getIsMobile() {
+  if (typeof window === "undefined") return false
+  return window.innerWidth < MOBILE_BREAKPOINT
+}
+
 export function useMobile() {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(getIsMobile)
 
   useEffect(() => {
-    const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    // Initial check
-    checkIfMobile()
-
-    // Add event listener for window resize
-    window.addEventListener("resize", checkIfMobile)
-
-    // Clean up
-    return () => window.removeEventListener("resize", checkIfMobile)
+    const media = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`)
+    const onChange = () => setIsMobile(media.matches)
+    onChange()
+    media.addEventListener("change", onChange)
+    return () => media.removeEventListener("change", onChange)
   }, [])
 
   return isMobile
 }
+
+/** Alias for shadcn sidebar and other components that expect this name. */
+export const useIsMobile = useMobile

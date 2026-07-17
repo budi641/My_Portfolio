@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { ArrowUpRight } from "lucide-react"
 import {
   SiUnrealengine,
   SiCplusplus,
@@ -15,12 +15,15 @@ import {
 } from "react-icons/si"
 import { FaJava } from "react-icons/fa"
 import { TbBrandCSharp } from "react-icons/tb"
+import { motion } from "motion/react"
+import { useAtmosphere } from "@/lib/atmosphere"
 
+/** Letter-mark logos already spell the name — hide the text label so it doesn't read as "C C" / "C# C#". */
 const skillsData = [
   { id: 1, name: "Unreal Engine", icon: <SiUnrealengine size={48} /> },
-  { id: 2, name: "C++", icon: <SiCplusplus size={48} /> },
-  { id: 3, name: "C", icon: <SiC size={48} /> },
-  { id: 4, name: "C#", icon: <TbBrandCSharp size={48} /> },
+  { id: 2, name: "C++", icon: <SiCplusplus size={48} />, iconIsLabel: true },
+  { id: 3, name: "C", icon: <SiC size={48} />, iconIsLabel: true },
+  { id: 4, name: "C#", icon: <TbBrandCSharp size={48} />, iconIsLabel: true },
   { id: 5, name: "Java", icon: <FaJava size={48} /> },
   { id: 6, name: "Python", icon: <SiPython size={48} /> },
   { id: 7, name: "JavaScript", icon: <SiJavascript size={48} /> },
@@ -33,62 +36,75 @@ const skillsData = [
 
 export function Skills() {
   const resumeUrl = "https://drive.google.com/file/d/1iAOxp6L1LT2DlaTYNEFMdxYRUWTZws8i/view?usp=sharing"
+  const pulse = useAtmosphere((state) => state.pulse)
+  const skillByName = new Map(skillsData.map((skill) => [skill.name, skill]))
+  const groups = [
+    { label: "Engines & Gameplay", names: ["Unreal Engine", "C++"] },
+    { label: "Graphics & Rendering", names: ["Vulkan", "OpenGL"] },
+    { label: "Systems & Languages", names: ["C", "C#", "Java", "Python", "JavaScript"] },
+    { label: "Tools & Web", names: ["Git", "GitHub", "React"] },
+  ].map((group) => ({
+    ...group,
+    skills: group.names.map((name) => skillByName.get(name)!),
+  }))
 
   return (
-    <section id="skills" className="py-20 px-6 bg-gradient-to-br from-slate-900/50 via-purple-900/30 to-slate-900/50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-violet-400 bg-clip-text text-transparent">
-              Skills
-            </span>
-          </h2>
-        </div>
+    <section id="skills" className="relative border-t border-white/[0.06] bg-[#071127]/50">
+      <div className="section-shell">
+        <motion.h2
+          className="section-title mb-10 sm:mb-14"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ type: "spring", stiffness: 120, damping: 22 }}
+        >
+          Skills
+        </motion.h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
-          {skillsData.map((skill, index) => (
-            <div
-              key={skill.id}
-              className="group relative bg-gradient-to-br from-slate-800/30 via-purple-900/20 to-slate-800/30 backdrop-blur-sm border border-purple-500/30 rounded-xl p-6 h-32 flex flex-col items-center justify-center transition-all duration-300 hover:transform hover:scale-105 hover:border-blue-500/50 hover:shadow-lg hover:shadow-blue-500/20"
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animation: "fadeInUp 0.6s ease-out forwards",
-                opacity: 0,
-                transform: "translateY(20px)",
-              }}
+        <div className="space-y-3">
+          {groups.map((group, groupIndex) => (
+            <motion.div
+              key={group.label}
+              className="grid gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-4 py-5 transition hover:border-electric-400/30 hover:bg-electric-500/[0.04] sm:gap-6 sm:px-5 sm:py-7 lg:grid-cols-[.7fr_1.3fr] lg:items-center"
+              onMouseEnter={pulse}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ type: "spring", stiffness: 150, damping: 24, delay: groupIndex * 0.06 }}
+              whileHover={{ y: -3 }}
             >
-              <div className="text-blue-400 group-hover:text-purple-400 transition-colors duration-300 mb-2">
-                {skill.icon}
+              <h3 className="text-xl font-semibold text-white sm:text-2xl">{group.label}</h3>
+              <div className="flex flex-wrap gap-x-7 gap-y-4">
+                {group.skills.map((skill) => (
+                  <motion.div
+                    key={`${group.label}-${skill.name}`}
+                    className="flex items-center gap-3 text-slate-300"
+                    whileHover={{ scale: 1.06, color: "#dceeff" }}
+                    aria-label={skill.name}
+                    title={skill.name}
+                  >
+                    <span className="text-electric-300 [&_svg]:h-8 [&_svg]:w-8">{skill.icon}</span>
+                    {!skill.iconIsLabel && (
+                      <span className="text-base font-medium sm:text-lg">{skill.name}</span>
+                    )}
+                  </motion.div>
+                ))}
               </div>
-              <span className="text-gray-300 text-sm font-medium text-center group-hover:text-gray-200 transition-colors duration-300">
-                {skill.name}
-              </span>
-
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-violet-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-violet-500/10 transition-all duration-300"></div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="text-center">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-gray-100 font-semibold px-8 py-3 rounded-lg transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
-            onClick={() => window.open(resumeUrl, "_blank")}
-          >
-            RESUME
-          </Button>
-        </div>
+        <motion.a
+          href={resumeUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="btn-pill mt-12"
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          View resume <ArrowUpRight className="h-4 w-4" />
+        </motion.a>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeInUp {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   )
 }

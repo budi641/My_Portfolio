@@ -1,35 +1,50 @@
 "use client"
 
 import { Canvas } from "@react-three/fiber"
-import { OrbitControls, Environment } from "@react-three/drei"
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin } from "lucide-react"
-import { Custom3DModel } from "./custom-3d-model"
+import { Github, Linkedin, ArrowDownRight } from "lucide-react"
 import { ParallaxBackground } from "./parallax-background"
+import { HeroRobot } from "./hero-robot"
 import { useGitHubProfile } from "@/hooks/useGitHubProfile"
-import { useState, useEffect, Suspense } from "react"
+import { Suspense } from "react"
 import { useMobile } from "@/hooks/use-mobile"
 import { assetPath } from "@/lib/asset-path"
+import { motion, useReducedMotion } from "motion/react"
+
+function RobotCanvas({ isMobile }: { isMobile: boolean }) {
+  return (
+    <Canvas
+      className="!h-full !w-full"
+      dpr={isMobile ? [1, 1.25] : [1, 1.6]}
+      shadows={!isMobile}
+      camera={{ position: [0, isMobile ? -0.05 : 0.15, isMobile ? 4.2 : 3.6], fov: isMobile ? 36 : 36 }}
+      gl={{ alpha: true, antialias: !isMobile, powerPreference: "high-performance" }}
+    >
+      <Suspense fallback={null}>
+        <ambientLight intensity={isMobile ? 0.45 : 0.32} color="#b9dfff" />
+        <directionalLight position={[-2.5, 4, 3]} intensity={isMobile ? 2.6 : 2.2} color="#dcefff" castShadow={!isMobile} />
+        <pointLight position={[2, 1, -1.5]} intensity={5} color="#0055bb" distance={6} />
+        <HeroRobot isMobile={isMobile} />
+      </Suspense>
+    </Canvas>
+  )
+}
 
 export function Hero() {
   const { profile } = useGitHubProfile("budi641")
-  const [scrollY, setScrollY] = useState(0)
   const isMobile = useMobile()
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const reduceMotion = useReducedMotion()
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-4 sm:px-6 relative overflow-hidden py-16 md:py-0"
+      className={`relative min-h-[100svh] px-4 pb-10 sm:px-8 sm:pb-12 lg:px-12 ${
+        isMobile
+          ? "overflow-x-hidden overflow-y-visible pt-20"
+          : "overflow-hidden pt-24 sm:pt-28"
+      }`}
     >
-      {/* Enhanced Background with deeper gradients */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0"
         style={{
           backgroundImage: `url('${assetPath("/images/NewHeroBG.webp")}')`,
           backgroundSize: "cover",
@@ -37,108 +52,133 @@ export function Hero() {
           backgroundRepeat: "no-repeat",
           backgroundAttachment: isMobile ? "scroll" : "fixed",
         }}
+      />
+      <div
+        className={`absolute inset-0 ${
+          isMobile
+            ? "bg-[linear-gradient(100deg,rgba(5,11,30,.97)_4%,rgba(5,11,30,.78)_45%,rgba(5,11,30,.35)_75%,rgba(5,11,30,.78)_100%)]"
+            : "bg-[linear-gradient(100deg,rgba(5,11,30,.97)_0%,rgba(5,11,30,.92)_38%,rgba(5,11,30,.45)_68%,rgba(5,11,30,.55)_100%)]"
+        }`}
+      />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#050b1e] to-transparent" />
+
+      {!isMobile && (
+        <div className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true">
+          <Canvas
+            dpr={[1, 1.35]}
+            camera={{ position: [0, 0, 5], fov: 75 }}
+            gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
+          >
+            <Suspense fallback={null}>
+              <ParallaxBackground />
+            </Suspense>
+          </Canvas>
+        </div>
+      )}
+
+      {/* Desktop: full-bleed stage behind copy */}
+      {!isMobile && (
+        <div className="absolute inset-0 z-[2] touch-manipulation">
+          <motion.div
+            className="h-full w-full"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ type: "spring", stiffness: 110, damping: 20, delay: 0.2 }}
+          >
+            <div
+              className="pointer-events-none absolute inset-x-[35%] left-[45%] bottom-[8%] h-16 rounded-full bg-electric-500/[0.06] blur-3xl"
+              aria-hidden="true"
+            />
+            <RobotCanvas isMobile={false} />
+          </motion.div>
+        </div>
+      )}
+
+      <div
+        className={`pointer-events-none relative z-10 mx-auto flex max-w-[1500px] flex-col ${
+          isMobile
+            ? "justify-start gap-0"
+            : "min-h-[calc(100svh-6rem)] items-start justify-end lg:min-h-[calc(100svh-8rem)]"
+        }`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-950/95 via-navy-900/85 to-violet-950/90"></div>
-      </div>
+        {/* Mobile: robot sits directly above the first name, pinned toward the top */}
+        {isMobile && (
+          <motion.div
+            className="relative z-[2] -mb-6 h-[280px] w-full shrink-0 overflow-visible touch-manipulation sm:h-[300px]"
+            initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", stiffness: 110, damping: 20, delay: 0.18 }}
+          >
+            <div
+              className="pointer-events-none absolute inset-x-10 bottom-2 h-8 rounded-full bg-electric-500/[0.08] blur-2xl"
+              aria-hidden="true"
+            />
+            <RobotCanvas isMobile />
+          </motion.div>
+        )}
 
-      {/* Enhanced 3D Space Background */}
-      <div className="absolute inset-0 z-[1] pointer-events-none">
-        <Canvas className="!w-full !h-full" camera={{ position: [0, 0, 10], fov: 75 }} gl={{ alpha: true }}>
-          <ParallaxBackground />
-        </Canvas>
-      </div>
+        <motion.div
+          className={`pointer-events-auto pb-2 ${
+            isMobile ? "max-w-3xl" : "max-w-[min(36rem,52%)] lg:max-w-[34rem]"
+          }`}
+          initial={reduceMotion ? false : { opacity: 0, y: 36 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 120, damping: 22, delay: 0.15 }}
+        >
+          <h1 className="text-balance text-[clamp(2.6rem,9vw,7.5rem)] font-bold leading-[0.9] tracking-[-0.065em] text-soft-white">
+            Abdelrahman
+            <span className="block text-electric-300">Ameen</span>
+          </h1>
+          <h2 className="mt-4 text-base font-medium tracking-tight text-white/90 sm:mt-6 sm:text-xl md:text-2xl">
+            Technical Game Designer & Graphics Programmer
+          </h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-5 sm:text-base md:text-lg">
+            I design gameplay systems and build graphics tooling for real-time applications. My work spans Unreal
+            Engine, C++, and Vulkan across shipped titles, custom engines, and rendering research.
+          </p>
 
-      <div className="container mx-auto relative z-10">
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-          {/* Enhanced Content */}
-          <div className="text-center md:text-left order-2 md:order-1">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6">
-              <span className="block text-gray-200 mb-1 md:mb-2">Hi, I'm</span>
-              <span className="bg-gradient-to-r from-electric-400 via-violet-400 to-electric-500 bg-clip-text text-transparent relative inline-block">
-                Abdelrahman Ameen
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-electric-400/15 via-violet-400/15 to-electric-500/15 blur-2xl -z-10 animate-pulse scale-110"
-                  style={{ animationDuration: "4s" }}
-                ></div>
-                <div
-                  className="absolute inset-0 bg-gradient-to-r from-electric-400/10 via-violet-400/10 to-electric-500/10 blur-3xl -z-10 animate-pulse scale-125"
-                  style={{ animationDuration: "6s" }}
-                ></div>
-              </span>
-            </h1>
-            <h2 className="text-xl sm:text-2xl md:text-3xl bg-gradient-to-r from-electric-300 to-violet-300 bg-clip-text text-transparent mb-4 md:mb-6 font-semibold">
-              Technical Game Designer & Graphics Programmer
-            </h2>
-            <p className="text-base md:text-lg text-gray-400 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-              I design gameplay systems and build graphics tooling for real-time applications. My work spans Unreal
-              Engine, C++, and Vulkan across shipped titles, custom engines, and rendering research.
-            </p>
-
-            {/* Enhanced Social Links - Removed Email Button */}
-            <div className="flex justify-center md:justify-start space-x-4 mb-6 md:mb-8">
-              <Button
-                variant="outline"
-                size="icon"
-                className="border-electric-500/50 text-electric-400 hover:bg-gradient-to-r hover:from-electric-500 hover:to-violet-500 hover:text-gray-100 transition-all duration-500 hover:scale-110 glow-effect bg-navy-900/50 backdrop-blur-sm"
-                onClick={() => window.open(profile?.html_url || "https://github.com/budi641", "_blank")}
-              >
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                className="border-violet-500/50 text-violet-400 hover:bg-gradient-to-r hover:from-violet-500 hover:to-electric-500 hover:text-gray-100 transition-all duration-500 hover:scale-110 glow-effect bg-navy-900/50 backdrop-blur-sm"
-                onClick={() => window.open("https://www.linkedin.com/in/abdelrahmanameen/", "_blank")}
-              >
-                <Linkedin className="h-5 w-5" />
-              </Button>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-electric-500 via-violet-500 to-electric-600 hover:from-electric-600 hover:via-violet-600 hover:to-electric-700 transition-all duration-500 hover:scale-105 glow-effect text-gray-100 font-semibold shadow-2xl"
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
+              <motion.button
+                whileHover={reduceMotion || isMobile ? undefined : { scale: 1.04, y: -2 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                className="btn-pill"
                 onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
               >
-                View My Work
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-electric-500/50 text-electric-400 hover:bg-gradient-to-r hover:from-electric-500/20 hover:to-violet-500/20 hover:text-gray-200 transition-all duration-500 hover:scale-105 bg-navy-900/50 backdrop-blur-sm"
+                View my work
+                <ArrowDownRight className="h-4 w-4" />
+              </motion.button>
+              <motion.button
+                whileHover={reduceMotion || isMobile ? undefined : { scale: 1.04, y: -2 }}
+                whileTap={reduceMotion ? undefined : { scale: 0.98 }}
+                className="btn-pill-ghost"
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
               >
-                Get In Touch
-              </Button>
+                Get in touch
+              </motion.button>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <a
+                href={profile?.html_url || "https://github.com/budi641"}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 text-slate-300 transition hover:border-electric-300 hover:text-electric-200"
+                aria-label="GitHub profile"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abdelrahmanameen/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 text-slate-300 transition hover:border-electric-300 hover:text-electric-200"
+                aria-label="LinkedIn profile"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
             </div>
           </div>
-
-          {/* Your Custom 3D Model */}
-          <div className="h-64 sm:h-80 md:h-96 lg:h-[500px] w-full relative order-1 md:order-2">
-            <div className="absolute inset-0 bg-gradient-to-r from-electric-500/10 via-violet-500/10 to-electric-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <Canvas className="!w-full !h-full" camera={{ position: [0, 0, isMobile ? 10 : 8] }} gl={{ alpha: true }}>
-              <ambientLight intensity={0.4} />
-              <pointLight position={[10, 10, 10]} intensity={1.5} color="#0087ff" />
-              <pointLight position={[-10, -10, -10]} intensity={1} color="#8719ff" />
-              <spotLight position={[0, 10, 5]} intensity={2} color="#0087ff" angle={0.3} />
-              <spotLight position={[5, -5, 5]} intensity={1.5} color="#8719ff" angle={0.4} />
-              <Environment preset="night" />
-
-              <Suspense
-                fallback={
-                  <mesh>
-                    <boxGeometry args={[2, 2, 2]} />
-                    <meshStandardMaterial color="#0087ff" wireframe />
-                  </mesh>
-                }
-              >
-                <Custom3DModel scrollY={scrollY} isMobile={isMobile} />
-              </Suspense>
-
-              <OrbitControls enableZoom={false} enablePan={false} enableRotate={!isMobile} />
-            </Canvas>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

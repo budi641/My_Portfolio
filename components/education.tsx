@@ -1,8 +1,7 @@
 "use client"
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { assetPath } from "@/lib/asset-path"
+import { motion } from "motion/react"
 
 export function Education() {
   const educationData = [
@@ -17,51 +16,48 @@ export function Education() {
   ]
 
   return (
-    <section id="education" className="py-20 px-6 bg-navy-900/50">
-      <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
-            <span className="text-electric-400">Education</span>
-          </h2>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
+    <section id="education" className="relative border-t border-white/[0.06]">
+      <div className="section-shell">
+        <motion.h2
+          className="section-title mb-10 sm:mb-16"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ type: "spring", stiffness: 120, damping: 22 }}
+        >
+          Education
+        </motion.h2>
+        <div className="relative max-w-5xl border-l border-electric-400/40 pl-7 sm:pl-12">
+          <div className="absolute -left-px top-0 h-24 w-px bg-electric-300 shadow-[0_0_16px_rgba(56,182,255,.8)]" />
           {educationData.map((edu, index) => (
-            <Card
+            <motion.article
               key={index}
-              className="bg-navy-800/30 backdrop-blur-sm border-navy-700/50 hover:border-electric-500/50 transition-all duration-300 hover:transform hover:translateY(-2px) hover:shadow-lg hover:shadow-electric-500/10"
+              className="grid gap-8 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 lg:grid-cols-[auto_1fr]"
+              initial={{ opacity: 0, x: -28, y: 20 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, amount: 0.45 }}
+              transition={{ type: "spring", stiffness: 140, damping: 22 }}
+              whileHover={{ y: -4 }}
             >
-              <CardContent className="p-8">
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className="flex-shrink-0">
-                    <img
-                      src={edu.image ? assetPath(edu.image) : assetPath("/placeholder.svg")}
-                      alt={edu.school}
-                      className="w-16 h-16 rounded-full object-cover"
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-electric-400 mb-2">{edu.degree}</h3>
-                    <h4 className="text-lg text-gray-200 mb-2">{edu.school}</h4>
-                    <p className="text-sm text-gray-400 mb-4">{edu.date}</p>
-                    <p className="text-gray-300 mb-4">{edu.description}</p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {edu.courses.map((course, courseIndex) => (
-                        <Badge
-                          key={courseIndex}
-                          variant="secondary"
-                          className="bg-electric-500/20 text-electric-300 hover:bg-electric-500/30 transition-colors duration-200"
-                        >
-                          {course}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
+              <img
+                src={edu.image ? assetPath(edu.image) : assetPath("/placeholder.svg")}
+                alt=""
+                className="h-20 w-20 rounded-xl object-contain"
+              />
+              <div>
+                <p className="mb-4 text-sm text-slate-400">{edu.date}</p>
+                <h3 className="text-2xl font-semibold tracking-[-0.035em] text-white sm:text-3xl md:text-5xl">{edu.degree}</h3>
+                <h4 className="mt-3 max-w-3xl text-base text-slate-300 sm:mt-4 sm:text-lg">{edu.school}</h4>
+                <p className="mt-6 text-electric-200">{edu.description}</p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  {edu.courses.map((course) => (
+                    <span key={course} className="chip">
+                      {course}
+                    </span>
+                  ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>

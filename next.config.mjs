@@ -3,8 +3,9 @@ const isProd = process.env.NODE_ENV === 'production';
 const repoName = 'My_Portfolio';
 
 const nextConfig = {
-  output: 'export',  // Enable static exports
-  distDir: 'build',  // Set build directory to match gh-pages
+  // Static export writes to `out/` (used by gh-pages).
+  // Keep the default `.next` distDir so `next dev` never shares state with export output.
+  output: 'export',
   basePath: isProd ? `/${repoName}` : '',
   assetPrefix: isProd ? `/${repoName}/` : '',
   env: {
@@ -15,7 +16,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   images: {
     unoptimized: true,

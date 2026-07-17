@@ -20,6 +20,9 @@ const config = {
     },
     extend: {
       colors: {
+        midnight: "#050b1e",
+        royal: "#2148c0",
+        "soft-white": "#f4f7ff",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -80,24 +83,16 @@ const config = {
           900: "#000515",
           950: "#00020a",
         },
-        violet: {
-          50: "#f3e8ff",
-          100: "#e7d1ff",
-          200: "#cfa3ff",
-          300: "#b775ff",
-          400: "#9f47ff",
-          500: "#8719ff", // Violet
-          600: "#6c14cc",
-          700: "#510f99",
-          800: "#360a66",
-          900: "#1b0533",
-          950: "#0d0219",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ["var(--font-geist)", "system-ui", "sans-serif"],
+        display: ["var(--font-space-grotesk)", "var(--font-geist)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       keyframes: {
         "accordion-down": {
@@ -114,7 +109,7 @@ const config = {
         },
         "pulse-glow": {
           "0%, 100%": { boxShadow: "0 0 20px rgba(0, 135, 255, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(135, 25, 255, 0.6)" },
+          "50%": { boxShadow: "0 0 40px rgba(56, 182, 255, 0.55)" },
         },
       },
       animation: {
