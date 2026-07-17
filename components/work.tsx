@@ -116,11 +116,13 @@ export function Work() {
                   <span className="absolute left-[7px] top-2 h-3 w-3 rounded-full border border-electric-300 bg-[#050b1e] shadow-[0_0_14px_rgba(56,182,255,.7)] md:left-1/2 md:-translate-x-1/2" />
                   <article className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 text-left transition hover:border-electric-400/25 hover:bg-electric-500/[0.04]">
                     <div className="mb-5 flex items-center gap-4">
-                      <img
-                        src={assetPath(entry.image)}
-                        alt={`${entry.company} logo`}
-                        className="h-12 w-12 shrink-0 rounded-xl object-contain ring-1 ring-white/10"
-                      />
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white/[0.06] p-1.5 ring-1 ring-white/10">
+                        <img
+                          src={assetPath(entry.image)}
+                          alt={`${entry.company} logo`}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
                       <div>
                         <h3 className="text-lg font-semibold text-white">{entry.company}</h3>
                         <p className="mt-1 text-sm text-slate-400">{entry.summary}</p>
