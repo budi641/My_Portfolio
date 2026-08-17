@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react"
-import { ContactShadows, Environment, Float } from "@react-three/drei"
+import { ContactShadows, Environment, Float, Lightformer } from "@react-three/drei"
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber"
 import * as THREE from "three"
 import { useAtmosphere } from "@/lib/atmosphere"
@@ -214,7 +214,11 @@ export function HeroRobot({ isMobile = false }: HeroRobotProps) {
   const angryTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const roamTarget = useRef({ x: 0, lookX: 0, lookY: 0 })
   /** Raw client coordinates — look math runs each frame from the robot head. */
-  const mouse = useRef({ x: typeof window !== "undefined" ? window.innerWidth * 0.5 : 0, y: typeof window !== "undefined" ? window.innerHeight * 0.4 : 0 })
+  const mouse = useRef({ x: 0, y: 0 })
+  useEffect(() => {
+    mouse.current.x = window.innerWidth * 0.5
+    mouse.current.y = window.innerHeight * 0.4
+  }, [])
   const lookScratch = useMemo(
     () => ({
       headWorld: new THREE.Vector3(),
@@ -384,7 +388,32 @@ export function HeroRobot({ isMobile = false }: HeroRobotProps) {
           color="#00173b"
         />
       </group>
-      <Environment preset="studio" environmentIntensity={1.15} />
+      {/* Procedural env map — no remote HDRI (avoids GitHub raw.githubusercontent 429s) */}
+      <Environment resolution={256} environmentIntensity={1.1}>
+        <group>
+          <Lightformer
+            form="rect"
+            intensity={2.4}
+            color="#e8f2ff"
+            position={[4, 6, 2]}
+            scale={[8, 4, 1]}
+          />
+          <Lightformer
+            form="rect"
+            intensity={1.2}
+            color="#4f8cff"
+            position={[-5, 2, -3]}
+            scale={[6, 5, 1]}
+          />
+          <Lightformer
+            form="ring"
+            intensity={0.85}
+            color="#7eb6ff"
+            position={[0, 3, 5]}
+            scale={4}
+          />
+        </group>
+      </Environment>
     </>
   )
 }
