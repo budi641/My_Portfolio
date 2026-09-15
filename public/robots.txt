@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://budi641.github.io/My_Portfolio/sitemap.xml 
+Sitemap: https://ameen.games/sitemap.xml 

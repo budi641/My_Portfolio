@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ameen-games",
+  "account_id": "b71bb247b91d54baa0716e67520a503e",
+  "compatibility_date": "2026-09-15",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    { "pattern": "ameen.games/*", "zone_name": "ameen.games" },
+    { "pattern": "www.ameen.games/*", "zone_name": "ameen.games" }
+  ]
+}

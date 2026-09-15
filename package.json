@@ -1,18 +1,16 @@
 {
   "name": "porfolio",
-  "homepage": "https://budi641.github.io/My_Portfolio",
+  "homepage": "https://ameen.games",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build && touch out/.nojekyll && cp public/404.html public/robots.txt public/sitemap.xml out/",
-    "deploy": "gh-pages -d out --dotfiles",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "wrangler deploy"
   },
   "dependencies": {
-    "gh-pages": "^6.3.0",
     "lucide-react": "^0.454.0",
     "next": "15.2.4",
     "react": "^19",
@@ -25,6 +23,7 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.32.0"
   }
 }
