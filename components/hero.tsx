@@ -10,14 +10,14 @@ export function Hero() {
       <div className="hero-row">
         <div className="hero-copy">
           <h1 className="hero-name whitespace-pre-line text-ink">{name}</h1>
-          <p className="mt-[var(--line)] max-w-xl text-ink/85">{text}</p>
+          <p className="hero-blurb mt-[var(--line)] max-w-xl text-ink/85">{text}</p>
         </div>
         {photo.trim() ? (
           <div className="photo-home">
             <div className="polaroid">
               <img
                 src={assetPath(photo)}
-                alt={content.site.name}
+                alt={`${content.site.name}, technical game designer and game developer`}
                 width={1024}
                 height={765}
               />

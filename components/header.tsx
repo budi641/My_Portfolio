@@ -31,7 +31,7 @@ export function Header() {
           <img src={assetPath("/images/joystick.png")} alt="" className="h-11 w-11 object-contain" />
         </a>
 
-        <div className="hidden items-end gap-6 lg:gap-8 xl:gap-10 md:flex">
+        <div className="hidden items-end gap-6 lg:flex lg:gap-8 xl:gap-10">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className="nav-link text-[1.625rem] leading-[var(--line)] text-mute">
               {item.label}
@@ -41,7 +41,7 @@ export function Header() {
 
         <button
           type="button"
-          className="flex h-11 w-11 items-center justify-center text-ink md:hidden"
+          className="flex h-11 w-11 items-center justify-center text-ink lg:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
@@ -51,7 +51,7 @@ export function Header() {
       </nav>
 
       {open && (
-        <nav className="page-x bg-paper py-[var(--line)] md:hidden" aria-label="Mobile">
+        <nav className="page-x bg-paper py-[var(--line)] lg:hidden" aria-label="Mobile">
           <div className="flex flex-col">
             {navItems.map((item) => (
               <a

@@ -45,7 +45,7 @@ export function About() {
               />
             </div>
           </div>
-          <div className="min-w-0">
+          <div className="pair-copy">
             <p className="whitespace-pre-line text-ink/90">{about.paragraph}</p>
             <div className="mt-[var(--line)] grid w-fit max-w-full grid-cols-2 gap-x-3 gap-y-[var(--line)]">
               {linkedIn ? <AboutLink link={linkedIn} /> : null}
