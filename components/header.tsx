@@ -1,149 +1,71 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
-import { useAtmosphere } from "@/lib/atmosphere"
 import { assetPath } from "@/lib/asset-path"
+import { navItems } from "@/lib/content"
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const activeSection = useAtmosphere((state) => state.activeSection)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-      const height = document.documentElement.scrollHeight - window.innerHeight
-      setProgress(height > 0 ? (window.scrollY / height) * 100 : 0)
-    }
-    handleScroll()
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    if (!isMobileMenuOpen) return
-    const previous = document.body.style.overflow
-    document.body.style.overflow = "hidden"
+    document.body.style.overflow = open ? "hidden" : ""
     return () => {
-      document.body.style.overflow = previous
+      document.body.style.overflow = ""
     }
-  }, [isMobileMenuOpen])
-
-  const navItems = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#skills", label: "Skills" },
-    { href: "#education", label: "Education" },
-    { href: "#work", label: "Work" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-  ]
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    element?.scrollIntoView({ behavior: "smooth" })
-    setIsMobileMenuOpen(false)
-  }
+  }, [open])
 
   return (
-    <>
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          isScrolled || isMobileMenuOpen
-            ? "border-b border-white/[0.08] bg-[#050b1e]/90 backdrop-blur-xl"
-            : "bg-transparent"
-        }`}
+    <header className="site-header sticky top-0 z-50">
+      <nav
+        className="page-x flex w-full items-end justify-between"
+        style={{ height: "var(--header-h)" }}
+        aria-label="Primary"
       >
-        <div
-          className="absolute inset-x-0 top-0 h-[2px] origin-left bg-electric-400 shadow-[0_0_12px_rgba(56,182,255,.8)]"
-          style={{ transform: `scaleX(${progress / 100})` }}
-          aria-hidden="true"
-        />
-        <nav className="mx-auto max-w-[1500px] px-4 py-4 sm:px-8 lg:px-12" aria-label="Primary navigation">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => scrollToSection("#home")}
-              className="flex h-10 w-10 items-center justify-center rounded-xl transition hover:scale-105 hover:opacity-90"
-              aria-label="Go to Home"
-            >
-              <img src={assetPath("/tabicon.svg")} alt="" className="h-8 w-8" />
-            </button>
+        <a
+          href="#home"
+          className="flex h-11 w-11 items-center justify-center"
+          onClick={() => setOpen(false)}
+          aria-label="Go to Home"
+        >
+          <img src={assetPath("/images/joystick.png")} alt="" className="h-11 w-11 object-contain" />
+        </a>
 
-            <div className="hidden items-center gap-5 lg:flex xl:gap-8">
-              {navItems.map((item) => {
-                const isActive = activeSection === item.href.slice(1)
-                return (
-                  <button
-                    key={item.href}
-                    onClick={() => scrollToSection(item.href)}
-                    className={`relative min-h-11 py-3 font-mono text-[11px] uppercase tracking-[0.15em] transition-colors ${
-                      isActive ? "text-white" : "text-slate-400 hover:text-white"
-                    }`}
-                    aria-current={isActive ? "page" : undefined}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <motion.span
-                        layoutId="active-nav"
-                        className="absolute inset-x-0 bottom-1 h-px bg-electric-300 shadow-[0_0_10px_rgba(56,182,255,.8)]"
-                        transition={{ type: "spring", stiffness: 380, damping: 34 }}
-                      />
-                    )}
-                  </button>
-                )
-              })}
-            </div>
+        <div className="hidden items-end gap-6 lg:gap-8 xl:gap-10 md:flex">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} className="nav-link text-[1.625rem] leading-[var(--line)] text-mute">
+              {item.label}
+            </a>
+          ))}
+        </div>
 
-            <button
-              className="relative z-[60] flex h-11 w-11 items-center justify-center text-slate-200 transition-colors hover:text-electric-300 lg:hidden"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Close navigation" : "Open navigation"}
-              aria-expanded={isMobileMenuOpen}
-            >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
+        <button
+          type="button"
+          className="flex h-11 w-11 items-center justify-center text-ink md:hidden"
+          onClick={() => setOpen((value) => !value)}
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+        >
+          {open ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
+        </button>
+      </nav>
+
+      {open && (
+        <nav className="page-x bg-paper py-[var(--line)] md:hidden" aria-label="Mobile">
+          <div className="flex flex-col">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="nav-link py-[var(--line)] text-[1.75rem] leading-[var(--line)] text-ink"
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </nav>
-      </header>
-
-      {/* Outside header so backdrop-filter does not break position:fixed */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="fixed inset-0 z-40 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="absolute inset-0 bg-[#050b1e]/98 backdrop-blur-xl" aria-hidden="true" />
-            <nav
-              className="relative flex h-full flex-col overflow-y-auto px-5 pb-10 pt-24"
-              aria-label="Mobile navigation"
-            >
-              <div className="mx-auto flex w-full max-w-[1500px] flex-col">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.href}
-                    type="button"
-                    onClick={() => scrollToSection(item.href)}
-                    className="border-b border-white/[0.08] py-5 text-left font-display text-3xl font-semibold tracking-[-0.04em] text-white transition-colors hover:text-electric-300 sm:text-4xl"
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -8 }}
-                    transition={{ delay: index * 0.04, type: "spring", stiffness: 260, damping: 28 }}
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+      )}
+    </header>
   )
 }

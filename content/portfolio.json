@@ -1,0 +1,790 @@
+{
+  "site": {
+    "name": "Abdelrahman Ameen",
+    "url": "https://budi641.github.io/My_Portfolio"
+  },
+  "home": {
+    "name": "Abdelrahman\nAmeen",
+    "text": "I just really like games. Playing them, making them, and getting stuck on how they work.",
+    "photo": "/images/home-polaroid.jpg"
+  },
+  "about": {
+    "id": "about",
+    "title": "About",
+    "paragraph": "Hello, I'm Abdelrahman Ameen.\n\nI'm someone who loves technology and games, and I've been working in the software development and interactive media field for over five years. Along the way, I've gotten to work on a wide variety of projects spanning games, software, graphics, tools, simulation, visualization, and a lot of stuff in between.\n\nI'm fascinated by games as a medium. I love how playing a game can make you connect with an idea, a story, a place, or an experience in a way that few other mediums can. I also love how games can bring people together, let us share experiences, and communicate ideas and cultures across completely different backgrounds.\n\nThat fascination is a big part of why I make games. I'm constantly curious about what makes a game work, why certain things are fun, how a mechanic communicates something to the player, and how all of that comes together through design and technology.\n\nOver the years, that curiosity has taken me into a lot of different parts of development. I've worked with Unreal, built custom engines and graphics systems, designed and implemented game mechanics, made tools, written software, and worked on all kinds of interactive projects.\n\nThere's a bit of all of this in that portfolio.\n\nI like making things, figuring out how things work, and probably spending too much time thinking about why a game is fun.\n\nHave a look around.",
+    "image": "/images/aboutpic.png",
+    "links": [
+      {
+        "label": "LinkedIn",
+        "text": "LinkedIn",
+        "url": "https://www.linkedin.com/in/abdelrahmanameen/"
+      },
+      {
+        "label": "GitHub",
+        "text": "GitHub",
+        "url": "https://github.com/budi641"
+      },
+      {
+        "label": "Email",
+        "text": "aameendev@gmail.com",
+        "url": "mailto:aameendev@gmail.com"
+      },
+      {
+        "label": "Resume",
+        "text": "Resume",
+        "url": "https://drive.google.com/file/d/1iAOxp6L1LT2DlaTYNEFMdxYRUWTZws8i/view?usp=sharing"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "games",
+      "title": "Games",
+      "projects": [
+        {
+          "title": "Project Ultra",
+          "shortDescription": "A solo-developed multiplayer sci-fi third-person shooter in Unreal Engine with Epic Online Services integration.",
+          "fullDescription": "Project Ultra is a sci-fi third-person shooter developed solo in Unreal Engine and released in alpha on itch.io.\n\nThe project integrates Epic Online Services for matchmaking, authentication, and backend player data management.\n\nTechnical Scope\n- Real-time multiplayer networking\n- Third-person movement and combat systems\n- Sci-fi weapon mechanics\n- Multiplayer UI and session flow\n- EOS-backed player and session handling\n\nThe project covers both gameplay implementation and online service integration in a single-developer pipeline.",
+          "image": "/images/project-ultra.png",
+          "video": "https://youtu.be/avYfwPt-Ftg?si=XUtLp-emfcTVx_8O",
+          "technologies": [
+            "Unreal Engine",
+            "C++",
+            "Epic Online Services",
+            "Multiplayer Networking"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Project-Ultra"
+            },
+            {
+              "type": "Itch.io",
+              "url": "https://abdelrahman-ameen.itch.io/project-ultra"
+            }
+          ]
+        },
+        {
+          "title": "Back to Back",
+          "shortDescription": "A cooperative asymmetric multiplayer game set across three historical periods of Egypt, built in Unreal Engine 5.5 and released on Steam.",
+          "fullDescription": "Back to Back is a cooperative asymmetric multiplayer game developed in Unreal Engine 5.5 and released on Steam. Two players work through three historical periods of Egypt, each with distinct environments, roles, and challenges.\n\nGame Overview\n- Asymmetric co-op design with role-specific abilities\n- Three historical settings with period-specific level design\n- Steam integration for multiplayer matchmaking\n\nSystems Work\nEnemy AI\n- State machines for ranged, melee, and special enemy types\n- Pathfinding, combat decision-making, and squad coordination\n\nBoss AI\n- Multi-phase boss encounters with telegraphed attacks\n- Difficulty scaling based on player performance\n\nTraps and Weapons\n- Modular trap system with detection and disarm mechanics\n- Weapon framework with customization, upgrades, and combo support\n\nTechnical Notes\n- Behavior Trees and EQS for AI authoring\n- Custom trap and weapon gameplay systems\n- Networking and Steam SDK integration for online play",
+          "image": "/images/back-to-back.jpeg",
+          "video": "",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "C++",
+            "Blueprints",
+            "AI Programming",
+            "Multiplayer",
+            "Steam SDK",
+            "Game Design"
+          ],
+          "links": [
+            {
+              "type": "Steam",
+              "url": "https://store.steampowered.com/app/3304730/Back_To_Back/"
+            },
+            {
+              "type": "Itch.io",
+              "url": "https://bassel.itch.io/backtoback"
+            }
+          ]
+        },
+        {
+          "title": "Time Bomb",
+          "shortDescription": "A proof-of-concept side-scrolling platformer built in Unreal Engine 5.5 around time-manipulation mechanics.",
+          "fullDescription": "Time Bomb is a proof-of-concept 3D side-scrolling platformer built in Unreal Engine 5.5. The player escapes a lab using time-based mechanics across a single authored level.\n\nCore Mechanics\n- Pause time for precise platforming and hazard avoidance\n- Rewind time to restore terrain or reposition against enemies\n- Ability pickups that introduce mechanics such as double jump and extended rewind\n- Environmental interactions, including redirecting projectiles and altering walkways\n\nProduction Notes\n- Built in UE 5.5 with Blueprint-driven level scripting\n- MetaHuman Creator used for the main menu presentation\n- Mechanics, triggers, and progression implemented without separate tutorial screens\n\nThe project focuses on one core design idea—time control—and builds the level around teaching and testing that system through play.",
+          "image": "/images/timebomb.png",
+          "video": "",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "Blueprints",
+            "MetaHuman Creator",
+            "Game Design",
+            "Level Design",
+            "3D Animation"
+          ],
+          "links": [
+            {
+              "type": "Itch.io",
+              "url": "https://abdelrahman-ameen.itch.io/time-bomb"
+            }
+          ]
+        },
+        {
+          "title": "Duck, Duck... BOOM!",
+          "shortDescription": "A 3D cartoon top-down action shooter, currently in development. I was a technical game designer. There are no health bars or ammo counters — time is the only resource: hits and abilities spend seconds off your life.",
+          "fullDescription": "Duck, Duck... BOOM! is a 3D cartoon singleplayer top-down shooter. I was a technical game designer on it, listed under Design on the itch.io page.\n\nThe ducks came from nowhere. They quack, they swarm, they do not negotiate, and somewhere in the middle of this feathered apocalypse, a bomb is ticking.\n\nThere are no health bars and no ammo counters. Time is the only resource. Every hit steals seconds off your life. Every ability burns more. A dash through a wall of duck fire costs time. An overcharged shotgun blast costs more. Lifespan is the fuel: survive longer, or spend it to punch through.\n\nStatus: in development. Inputs: keyboard, mouse, and gamepad. Genre: action. Tags: 3D, cartoon, singleplayer, top-down shooter. No generative AI was used.\n\nDev team (from itch.io)\nDesign: Bassel Mostafa (Bassel Kamel), Abdelrahman Ameen\nArt: Sarah Alaa, Mariam Ayman\nTech: Ali Abdat, Amr Hamed\n\nAsset credits (from itch.io): Defender: Top-Down Shooter v3.3, Chameleon Post Process, Hero for RPG : Modular Polyart, POLYGON - Town Pack, and Cute Cartoon Boy With Cloth on Fab; music from Uppbeat.",
+          "image": "",
+          "video": "https://youtu.be/opoottu0wLc",
+          "technologies": [
+            "Technical Game Design",
+            "Top-Down Shooter",
+            "3D",
+            "Action"
+          ],
+          "links": [
+            {
+              "type": "itch.io",
+              "url": "https://amrhamed.itch.io/duck-duck-boom"
+            }
+          ]
+        },
+        {
+          "title": "Justice Seeker: Unsafe Data",
+          "shortDescription": "A fully voiced detective narrative game from Jana Games, currently to be announced on Steam. I worked on this project as a freelance developer.",
+          "fullDescription": "Justice Seeker: Unsafe Data is a detective narrative game that combines interactive gameplay with a plot-twisting narrative in a fully voiced experience. I worked on this project as a freelance developer.\n\nOn a strange night, Axel Zakon, a former police detective and now private detective, is specifically requested by the police to aid them in the investigation of a homicide, with some unknown and mysterious reason behind this request. Find clues, investigate scenes, and interrogate suspects as you solve the murder of the CEO of TechDB, the most famous data analysis company in the city.\n\n- A dark, mysterious story with narrative twists: what secret connects you to the victim’s death?\n- A realistic story told by a cast of characters that shape the tone\n- Freely explore TechDB from floor to floor in search of clues; return to previous rooms at any time if something was missed, and new information may appear\n- Close-up analyze objects, take pictures of notable things, interrogate family members and other TechDB workers, and get the real culprit arrested\n\nDeveloper and publisher: Jana Games. Release: to be announced. Genres: adventure, indie, RPG, strategy. Single-player. English interface, full audio, and subtitles. Award: Best Graphics - GCCDZ. Mature content: mild gore and blood.",
+          "image": "/images/justice-seeker.png",
+          "video": "",
+          "technologies": [
+            "Freelance",
+            "Adventure",
+            "Investigation",
+            "First-Person",
+            "Narrative"
+          ],
+          "links": [
+            {
+              "type": "Steam",
+              "url": "https://store.steampowered.com/app/2229520/Justice_Seeker_Unsafe_Data/"
+            }
+          ]
+        },
+        {
+          "title": "SFML Pac-Man",
+          "shortDescription": "A C++ and SFML recreation of Pac-Man with a focus on accurate ghost behavior and classic arcade mechanics.",
+          "fullDescription": "A C++ implementation of Pac-Man using SFML, focused on reproducing the original game's movement rules and ghost AI behavior.\n\nImplementation Highlights\n- Ghost state and movement patterns based on the classic arcade design\n- Collision detection and maze navigation\n- Sprite rendering and audio playback through SFML\n- Memory-conscious structure suitable for real-time arcade gameplay\n\nThe project was built to study classic game AI and low-level gameplay implementation in C++.",
+          "image": "/images/sfml-pac-man.png",
+          "video": "",
+          "technologies": [
+            "C++",
+            "SFML",
+            "Game Development",
+            "AI Programming"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/SFML_Pac_Man"
+            }
+          ]
+        },
+        {
+          "title": "TASM-Space-Invaders",
+          "shortDescription": "A Space Invaders clone written in x86 assembly (TASM) with direct hardware interaction for graphics and timing.",
+          "fullDescription": "A Space Invaders implementation written in x86 assembly using TASM. The project handles rendering, timing, collision, and audio close to the hardware.\n\nTechnical Scope\n- Direct video memory writes for sprite rendering\n- Interrupt-driven timing for consistent frame pacing\n- Collision detection and enemy movement logic in assembly\n- PC speaker audio for game feedback\n\nThe project was built to practice low-level systems programming, memory layout, and performance-conscious game loops without high-level engine support.",
+          "image": "/images/tasm-space-invaders.png",
+          "video": "",
+          "technologies": [
+            "Assembly",
+            "TASM",
+            "x86",
+            "Low-Level Programming",
+            "Game Development"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/TASM-Space-Invaders"
+            }
+          ]
+        },
+        {
+          "title": "In Their Wake\n(unannounced)",
+          "shortDescription": "",
+          "fullDescription": "",
+          "image": "",
+          "video": "",
+          "technologies": [],
+          "links": []
+        },
+        {
+          "title": "EDIOS\n(unannounced)",
+          "shortDescription": "",
+          "fullDescription": "",
+          "image": "",
+          "video": "",
+          "technologies": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "graphics",
+      "title": "Graphics",
+      "projects": [
+        {
+          "title": "Organito (Graduation Project)",
+          "shortDescription": "A medical visualization platform for students. Graduation project by a team of four. I built the C++ rendering library: DICOM volume ray marching, HU-based tissue isolation, marching-cubes mesh export, compiled to WebAssembly with Emscripten for a Tauri app on Linux, macOS, and Windows.",
+          "fullDescription": "Organito is a medical visualization platform for students. It was our graduation project. We were a team of four: one person worked on deployment, including Kubernetes and Docker; another worked on the software-engineering side of the application; I mainly worked on rendering and visualization.\n\nThe product is a cross-platform desktop app for Linux, macOS, and Windows. It is built with Tauri, with Rust on the backend, and a custom C++ rendering library that I wrote so we could compile the same engine to WebAssembly with Emscripten and JavaScript glue.\n\nThat library is modern C++ (C++17) on OpenGL ES 3.0 / WebGL 2. It ray-marches volumetric CT data and also exports marching-cubes volumes as meshes. I implemented the JavaScript inside the Tauri app that loads the WASM module, owns the canvas, and drives those systems.\n\nHow it works. DICOM slices are parsed in the host (rows, columns, pixel data, RescaleSlope and RescaleIntercept), converted to Hounsfield units, sorted by slice location, and uploaded as an R32F 3D texture. The C++ renderer does not copy that volume through the WASM heap: JavaScript creates the texture on the shared WebGL 2 context, and each frame a JS callback binds it before the volume pass. A full-screen fragment shader builds a camera ray, intersects the volume box, and marches with trilinear sampling. HU is mapped to density, then windowed so a tissue range can be isolated — skin, soft tissue, organs, bone — and other types fall away. Opacity comes from a transfer function; gradients give surface shading; samples composite front-to-back with early termination. The same HU windows are used to generate meshes, which we 3D-printed with soft tissue and hard tissue as separate prints.\n\nI also built SDF ray marching in the library, and optimized the visualization path with SDFs and BVHs.\n\nThe source for my work is in the Raymarching repository: renderer holds the C++ library (headers, implementation, Emscripten bindings, WASM build); Monorepo - Copy is a copy of the full application, including the Tauri host and the renderer viewer that loads DICOM, sets tissue presets, and calls into the WASM module.",
+          "image": "/images/organito.jpg",
+          "video": "https://drive.google.com/file/d/1EIGWY4fJ0yXiHAXxxcGkrJBXh1ls0AI_/view?usp=sharing",
+          "media": [
+            {
+              "type": "image",
+              "src": "/images/organito.jpg"
+            },
+            {
+              "type": "video",
+              "src": "https://drive.google.com/file/d/1EIGWY4fJ0yXiHAXxxcGkrJBXh1ls0AI_/view?usp=sharing"
+            },
+            {
+              "type": "image",
+              "src": "/images/organito-3d-print.jpg"
+            }
+          ],
+          "technologies": [
+            "C++17",
+            "OpenGL ES 3.0",
+            "WebGL 2",
+            "Emscripten",
+            "WebAssembly",
+            "Tauri",
+            "Rust",
+            "React",
+            "DICOM",
+            "Ray Marching",
+            "Marching Cubes"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Raymarching"
+            }
+          ]
+        },
+        {
+          "title": "Custom 3D Game Engine",
+          "shortDescription": "A custom C++20 OpenGL engine built for a third-person beat 'em up prototype with physics, animation, rendering, and audio systems.",
+          "fullDescription": "A custom 3D game engine developed in C++20 and OpenGL for a third-person beat 'em up prototype. The engine combines physics, skeletal animation, rendering, audio, and gameplay systems in a modular architecture.\n\nCore Systems\nEntity-Component System\n- Modular entity and component architecture for scalable gameplay code\n\nPhysics\n- ReactPhysics3D integration for rigid body simulation\n- Dynamic, static, and kinematic bodies with multiple collider types\n- Physics debug rendering in the main render path\n\nRendering\n- Forward OpenGL renderer with cubemap skybox support\n- Directional, point, and spot lights\n- Transparency, post-processing, and material support for diffuse, specular, and normal maps\n\nAnimation and Content\n- Assimp-based model loading for OBJ and DAE assets\n- Skeletal animation with bone hierarchy and keyframe interpolation\n\nAudio and Scene Management\n- OpenAL for 3D positional audio\n- JSON-based scene serialization and loading\n\nGameplay\n- Playable character switching, enemy AI, combat, and collection mechanics\n- Debug tooling for collider visualization and engine diagnostics\n\nTechnologies\n- C++20, OpenGL, GLFW, ReactPhysics3D, Assimp, OpenAL, and JSON for Modern C++",
+          "image": "/images/game-engine.png",
+          "video": "https://youtu.be/i6tOqgaCUBs?si=t0aTFZTMxgfQdaC2",
+          "technologies": [
+            "C++20",
+            "OpenGL",
+            "GLFW",
+            "ReactPhysics3D",
+            "Assimp",
+            "OpenAL",
+            "ECS",
+            "3D Graphics"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/OpenGL_Game_Engine"
+            }
+          ]
+        },
+        {
+          "title": "Vulkan Ray Tracing Engine with Monte Carlo Integration",
+          "shortDescription": "A physically based renderer built on Vulkan ray tracing extensions, using Monte Carlo integration and importance sampling for global illumination.",
+          "fullDescription": "This project implements a real-time physically based rendering engine using Vulkan ray tracing extensions, Monte Carlo integration, and cosine-weighted hemisphere sampling. It targets global illumination, soft shadows, reflections, and indirect light transport with RTX acceleration.\n\nCore Technologies\n- Vulkan 1.3 with VK_KHR_ray_tracing_pipeline and VK_KHR_acceleration_structure\n- SPIR-V shaders in GLSL\n- GLM for vector and matrix math\n- Monte Carlo integration with cosine-weighted hemisphere sampling\n- Tested on NVIDIA RTX hardware (3060 and above)\n\nObjectives\n- Approximate the rendering equation through numerical integration\n- Capture indirect lighting, soft shadows, reflections, and caustics\n- Compare CPU and GPU implementations\n- Measure convergence and rendering error across sampling budgets\n\nImplementation\n- BVH-based BLAS and TLAS acceleration structures\n- Ray generation, closest-hit, and miss shader stages\n- Multi-bounce light transport with unbiased Monte Carlo estimation\n- Variance reduction through importance sampling\n\nPerformance\n- Real-time HD rendering on RTX hardware\n- More than 1,000 samples per pixel in under one second, compared with roughly one sample per second in the Python reference implementation\n- Higher sample density and cosine-weighted sampling reduce visible noise\n\nSkills Demonstrated\n- Physically based rendering and light transport\n- Vulkan ray tracing pipeline development\n- Monte Carlo integration and variance analysis\n- Shader programming and GPU optimization",
+          "image": "/images/vulkan-raytracing.png",
+          "video": "",
+          "technologies": [
+            "Vulkan",
+            "C++",
+            "GLSL",
+            "SPIR-V",
+            "Monte Carlo Integration",
+            "Ray Tracing",
+            "GPU Programming",
+            "Computer Graphics"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Vulkan-Raytracing-Engine"
+            }
+          ]
+        },
+        {
+          "title": "Vulkan Abstraction Engine",
+          "shortDescription": "A C++20 abstraction layer over Vulkan with RAII resource management and a type-safe graphics API.",
+          "fullDescription": "A C++20 abstraction layer for Vulkan that provides a cleaner, type-safe interface for graphics programming while keeping performance and control close to the underlying API.\n\nCore Features\n- RAII-based resource management\n- Type-safe API design with modern C++20 features\n- Structured error handling and memory management\n- Cross-platform support\n\nTechnical Implementation\n- Smart pointers and template metaprogramming for resource safety\n- Command buffer, pipeline, descriptor, and synchronization abstractions\n- Memory pools for efficient allocation\n- Pipeline state and descriptor set management\n\nGoals\n- Reduce Vulkan boilerplate without hiding important behavior\n- Keep resource lifetimes explicit and safe\n- Preserve performance characteristics of direct Vulkan usage",
+          "image": "/images/vulkan-abstraction.png",
+          "video": "",
+          "technologies": [
+            "C++",
+            "Vulkan",
+            "GLFW",
+            "Modern C++",
+            "Graphics Programming",
+            "RAII",
+            "System Programming"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/VulkanAbstraction"
+            }
+          ]
+        },
+        {
+          "title": "AstraTrace",
+          "shortDescription": "A C++20 physically based software renderer for glTF 2.0 scenes. It is a path-tracing rendering engine that is mainly CPU-only, with Whitted-style ray tracing, progressive CPU path tracing, textured PBR, and an interactive SDL/ImGui viewer.",
+          "fullDescription": "AstraTrace is a C++20 physically based software renderer for glTF 2.0 scenes. It is a path-tracing rendering engine that is mainly CPU-only. It combines Whitted-style ray tracing, progressive CPU path tracing, textured PBR materials, and an interactive SDL/ImGui viewer. The project does not expose a GPU renderer.\n\nCore capabilities\n- glTF 2.0 ingestion (.gltf and .glb) from the command line, with scene-graph transforms and camera and punctual-light import\n- Physically based shading: Lambert diffuse BRDF and Cook-Torrance GGX specular BRDF\n- PBR textures: base color, metallic, roughness, emissive, occlusion, normal\n- glTF extensions used: KHR_materials_emissive_strength, KHR_lights_punctual; conservative smooth-glass mapping for simple KHR_materials_transmission + KHR_materials_ior; softened tinted preview fallback for KHR_materials_iridescence (true thin-film interference is deferred)\n- Fallback normal/tangent generation for incomplete mesh data\n- First-person camera and screenshot capture (P)\n- BVH-accelerated traversal: top-level object BVH with diagnostics and optional refit, and per-mesh triangle BVH using median splits on the longest centroid axis\n- Built-in material showcase for glass, smooth mirror/metal, rough metal, and dielectric PBR\n- Non-interactive PNG export with async CPU path progress and Ctrl+C cancellation\n- Optional image-based environment lighting from LDR/HDR equirectangular maps\n\nCPU Whitted ray tracing\n- Recursive reflection/refraction paths\n- PBR local lighting with hard/transparent shadows\n- Texture-aware material evaluation and normal mapping\n\nCPU path tracing\n- BRDF importance sampling, Next Event Estimation (NEE), Russian Roulette, low-discrepancy sampling\n- Emissive-material light transport\n- Temporal accumulation and a compact SVGF-style preview denoiser with history reprojection (not a full paper SVGF)\n- Tiled CPU path rendering with progress reporting and cancelable export batches\n- Uniform, power-based, and contribution-weighted light selection (contribution is per shading point, not a persistent light tree)\n- Optional Intel Open Image Denoise when ASTRATRACE_ENABLE_OIDN=ON\n\nBackends: cpu-whitted (default) and cpu-path. Samplers: random, Halton, Sobol.\n\nTech stack\n- C++20, CMake, SDL3, GLM, tinygltf, nlohmann/json, stb, OpenMP; optional Intel Open Image Denoise",
+          "image": "/images/astra-trace-spheres.jpg",
+          "video": "",
+          "media": [
+            {
+              "type": "image",
+              "src": "/images/astra-trace-spheres.jpg"
+            },
+            {
+              "type": "image",
+              "src": "/images/astra-trace-lego.png"
+            },
+            {
+              "type": "image",
+              "src": "/images/astra-trace-chess.jpg"
+            },
+            {
+              "type": "image",
+              "src": "/images/astra-trace-thin-film.jpg"
+            }
+          ],
+          "technologies": [
+            "C++20",
+            "Path Tracing",
+            "glTF 2.0",
+            "PBR",
+            "BVH",
+            "SDL3",
+            "OpenMP",
+            "CMake"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/Momen-Sanad/AstraTrace"
+            }
+          ]
+        },
+        {
+          "title": "Parallel Deferred Renderer",
+          "shortDescription": "A high-performance OpenGL 3.3 deferred renderer with a fault-tolerant distributed layer over gRPC: multiple replicas, automatic failover, performance metrics, and optional Spark streaming.",
+          "fullDescription": "Parallel Deferred Renderer is an OpenGL deferred rendering engine. Geometry processing is separated from lighting so many lights can be handled efficiently. Phase 3 wraps the renderer in a gRPC service as a fault-tolerant distributed system.\n\nCore renderer\n- Deferred pipeline with a G-buffer (position, normal, albedo) written in a geometry pass, then lighting, SAO, postprocess, forward, and GUI passes\n- G-buffer also stores roughness, metalness, ambient occlusion, depth, and velocity; keys 1–9 switch debug views\n- Physically based BRDF: GGX, Smith geometry, Schlick Fresnel, Disney diffuse\n- Point lights and a directional light, with quadratic or UE4 attenuation\n- Image-based lighting: lat-long maps to cubemap, irradiance, prefiltered specular, BRDF LUT\n- Assimp model loading (sphere, teapot, shader ball; OBJ, FBX, and others)\n- PBR materials: rusted iron, gold, woodfloor\n- SAO, FXAA, motion blur, and Reinhard / Filmic / Uncharted tonemapping\n- Exposure from aperture, shutter speed, and ISO\n- WASD camera, mouse look, ImGui, per-pass timings\n- Modular C++: camera, lighting, mesh, renderer, resources\n\nPhase 3: fault-tolerant distributed system\n- gRPC service wrapping the C++ OpenGL renderer\n- Two or more replicas (primary and standby; ports 50051, 50052, …)\n- Client with auto-retry and automatic failover; replica manager with health checks and auto-restart\n- Load generator with adjustable rate and duration, including simulated camera movement\n- Metrics: throughput, latency (P50 / P95 / P99), success rate, recovery time\n- Optional Spark streaming with micro-batches at about 30 FPS\n\nTypical results (120-second test, from the project README)\n- 3,438 requests, 99.21% success, 28.5 ms average latency, P50 26.3 ms, P95 45.2 ms, P99 68.7 ms, 28.6 req/s, 30 ms recovery\n- Streaming: 29.3 FPS, 1.4 ms frame latency, batch size 10 frames\n\nTech stack\n- C++, OpenGL 3.3+, GLFW, GLAD, GLM, Assimp, STB, ImGui, CMake\n- Python 3.10+, gRPC, optional Spark",
+          "image": "/images/parallel-deferred-renderer.jpg",
+          "video": "",
+          "technologies": [
+            "C++",
+            "OpenGL 3.3",
+            "Deferred Rendering",
+            "gRPC",
+            "Python",
+            "PBR",
+            "ImGui",
+            "Spark"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Parallel-Defered-Renderer/tree/phase3-with-renderer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "software",
+      "title": "Software",
+      "projects": [
+        {
+          "title": "Interactive VR Architecture Showcase",
+          "shortDescription": "A fully commercial automated VR ArcViz platform that works in VR and in first person. Architectural interiors and exteriors can be navigated, with interaction for furniture, materials, and models. Users sign in from the app main menu over HTTP to a custom Python Flask backend and Postgres database. A custom 3ds Max plugin plus Datasmith and Dataprep automates setup in Unreal Engine.",
+          "fullDescription": "Interactive VR Architecture Showcase is a fully commercial automated VR ArcViz platform that works in VR and in first person. Architectural interior and exterior design can be navigated. Furniture, materials, and models can be interacted with, including checking different models. Screenshots can be taken, time of day can be changed, measurements can be taken and the measurement unit can be changed, and the movement mode can be changed for more accessibility. Objects such as TVs can be interacted with. There are interactable lights and interactable doors. There is a first person mode if VR is not used.\n\nIt has a fully automated system for creating and setting up the environment. A designer in 3ds Max uses a custom plugin built for 3ds Max, with UI to change metadata on each object or class: which objects in the 3ds Max scene are supposed to be interactable, and what the interaction options are. The plugin bakes in that metadata for all objects when they are exported with Datasmith. The scene is imported into Unreal Engine using a Dataprep recipe that automatically puts in all of the interactive classes with their options based on what the designer set.\n\nExtra and new levels can be built into pack files and then mounted at runtime, so a new project does not have to be rebuilt each time.\n\nIt had a full system that let users sign in in the app itself, in the main menu. That was linked to a custom backend over HTTP. The backend was made with Python Flask, with a Postgres database for the users. Each user had their levels, and each user had a subscription for how many levels they have. Users could request edits. There was an admin page to manage users and upload new pack files that contain new levels, and users can download them there.",
+          "image": "/images/interactive-vr-architecture-showcase.jpg",
+          "video": "https://drive.google.com/file/d/16bmZ1aaSfkEDhF6jGDhxFlm1uG4mt_aZ/view?usp=sharing",
+          "media": [
+            {
+              "type": "image",
+              "src": "/images/interactive-vr-architecture-showcase.jpg"
+            },
+            {
+              "type": "video",
+              "src": "https://drive.google.com/file/d/16bmZ1aaSfkEDhF6jGDhxFlm1uG4mt_aZ/view?usp=sharing"
+            }
+          ],
+          "technologies": [
+            "Unreal Engine",
+            "3ds Max",
+            "Datasmith",
+            "Dataprep",
+            "VR",
+            "Python",
+            "Flask",
+            "Postgres"
+          ],
+          "links": []
+        },
+        {
+          "title": "Virtual Reality Training Simulation",
+          "shortDescription": "A VR training platform for medical students to practice anatomy in an interactive 3D environment. The whole experience was designed around hand tracking, gestures, and hand poses — no controllers — so it stays more immersive.",
+          "fullDescription": "Virtual Reality Training Simulation is a VR application for medical education built in Unreal Engine. It provides an interactive environment for studying human anatomy outside traditional lab constraints.\n\nEverything was developed, and the experience was designed, to use hand tracking, gestures, and hand poses rather than controllers, so it is much more immersive.\n\nFeatures\n- Detailed anatomical 3D models\n- Structured learning modules\n- Real-time feedback during interaction\n- Progress tracking and assessment support\n- Multi-user collaboration support\n- Hand tracking, gestures, and poses instead of controllers\n\nUse Case\nThe platform is designed to give students repeated, low-risk practice with complex anatomical structures and procedural tasks that are difficult to scale with physical models alone.",
+          "image": "/images/virtual-reality-training.png",
+          "video": "https://drive.google.com/file/d/1H6xBYDqYk4O1HzfC7aWT68DRVX-UFDMl/view",
+          "technologies": [
+            "Unreal Engine",
+            "C++",
+            "VR Development",
+            "Hand Tracking",
+            "3D Modeling",
+            "Medical Education"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/VrTrainingSimulation"
+            }
+          ]
+        },
+        {
+          "title": "Real-Time AI Avatars",
+          "shortDescription": "Real-time conversational MetaHuman avatars for MarsX AI Solutions in the UAE. A custom backend talks to cloud or local LLMs, TTS (ElevenLabs via my Unreal plugin, or local models such as Chatterbox), STT, and NVIDIA Audio2Face, all driven from a character dashboard.",
+          "fullDescription": "Real-Time AI Avatars is a MetaHuman conversation product I built for MarsX AI Solutions, an AI company in the United Arab Emirates. The point is a lifelike digital human you can talk to: it listens, thinks, answers out loud in real time, and the face and body follow the voice — without anyone operating the character by hand.\n\nHow it works\nSpeech-to-text turns what you say into text. A custom backend sends that to an LLM — either a provider API or a model running locally — with that character’s background and knowledge. The reply goes to text-to-speech. Cloud voices go through ElevenLabs using my Unreal Engine plugin. Local voices use open-source TTS run in-engine, including Chatterbox and other models in the same slot. The same audio drives NVIDIA Audio2Face so the MetaHuman lip-syncs and emotes as it speaks. Procedural animation keeps the body in a live conversational state. You can talk; it talks back, with different voices and different knowledge per character.\n\nWhy those pieces\nThe backend is the switchboard so the same MetaHuman can sit on a cloud LLM one day and a local one the next, without rebuilding the character. ElevenLabs covers production streaming TTS (and STT on that path). Local TTS/LLM covers on-prem and offline setups. Audio2Face is the in-engine face so the mouth is not a canned clip — it is generated from the speech as it happens.\n\nDashboard\nCharacters are not hard-wired in the scene. An online dashboard creates them, binds each one to a character ID the Unreal client loads, and gives each avatar its own background, lighting, voice, API/provider settings, files, and knowledge. Operators can stand up a new ambassador, point it at the right models and documents, and the runtime picks that identity up.\n\nMarsX positions this class of AI digital human for governments, exhibitions, museums, and enterprise experiences in the UAE, with Arabic and English. The still is a MetaHuman in that product line. There is no public source repository.",
+          "image": "/images/real-time-ai-avatars.jpg",
+          "video": "https://drive.google.com/file/d/1Yno6WqyTHphhwRrnkNWmCxIVUpcJjj_d/view?usp=sharing",
+          "media": [
+            {
+              "type": "image",
+              "src": "/images/real-time-ai-avatars.jpg"
+            },
+            {
+              "type": "video",
+              "src": "https://drive.google.com/file/d/1Yno6WqyTHphhwRrnkNWmCxIVUpcJjj_d/view?usp=sharing"
+            }
+          ],
+          "technologies": [
+            "Unreal Engine 5.7",
+            "MetaHuman",
+            "NVIDIA Audio2Face",
+            "ElevenLabs",
+            "Chatterbox",
+            "LLM",
+            "STT",
+            "TTS"
+          ],
+          "links": [
+            {
+              "type": "Website",
+              "url": "https://marsx.ae/"
+            }
+          ]
+        },
+        {
+          "title": "3D Game Portfolio",
+          "shortDescription": "An interactive 3D gamified portfolio I created, with a playable Game Mode and an accessible Normal Mode sharing one Sanity CMS. The 3D design was very distracting and did not give people the chance to actually appreciate the projects enough, so it ended up being a project itself.",
+          "fullDescription": "3D Game Portfolio is an interactive 3D gamified portfolio I created. It is Unreal-inspired: greybox primitives, a grid floor, engine-like viewport chrome, third-person movement, and interactive statues as content portals. The design was very distracting and did not give people the chance to actually appreciate the projects enough, so it ended up being a project itself.\n\nTwo synchronized experiences, one Sanity source of truth\n- Game Mode: real-time 3D explorable portfolio\n- Normal Mode: traditional web layout (semantic main/nav/sections), usable without 3D, with a control to return to Game Mode\n\nGame Mode (as implemented)\n- Fullscreen Three.js viewport through React Three Fiber, Rapier physics, Drei keyboard controls\n- Third-person character: WASD / arrows, Shift to sprint, left-mouse drag to look; on mobile, a virtual stick plus look-touch\n- Kinematic capsule movement with grounded raycast, gravity, and collision-aware camera (raycast so the camera does not clip through walls)\n- Unreal-style top chrome: Simulation ACTIVE_STATE, TERMINATE (quit to Normal Mode), REBOOT_ENTITY (respawn), FPS, sound mute\n- Loading/constructing screen, onboarding, PC and mobile tutorials\n- Statues for portfolio sections; nearby labels, click to focus camera, HTML overlays for content; statue exploration tracked with a quest modal and achievement toasts\n- Quality / performance: high and low tiers, adaptive monitor, extreme FPS mode, prefers-reduced-motion, optional sound\n\nNormal Mode and CMS\n- Same projects, education, work, skills, contact, about, and blog content as Game Mode\n- Sanity Studio schemas for site settings, sections, projects and media, timelines, skills, character GLB/animations/speeds, and scene/primitives\n- Deployed on Cloudflare Pages\n\nTech stack (approved in the requirements doc and used in web/): React, TypeScript, Vite, Three.js, React Three Fiber, Drei, Rapier, @react-three/postprocessing, Sanity, Tailwind CSS, Zustand, Framer Motion.",
+          "image": "/images/3d-game-portfolio.jpg",
+          "video": "",
+          "technologies": [
+            "React",
+            "TypeScript",
+            "Three.js",
+            "React Three Fiber",
+            "Rapier",
+            "Sanity",
+            "Vite",
+            "Cloudflare Pages"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/3D-Game-Portfolio"
+            },
+            {
+              "type": "Live",
+              "url": "https://ameen-dyq.pages.dev/"
+            }
+          ]
+        },
+        {
+          "title": "Quizify",
+          "shortDescription": "An ASP.NET learning platform with social features, gamification, and Azure deployment.",
+          "fullDescription": "Quizify is a web-based learning platform built with ASP.NET Razor Pages and C#. It combines quiz authoring, social interaction, and progress tracking in a single application.\n\nTechnical Implementation\n- ASP.NET Razor Pages backend in C#\n- SQL database for content and user data\n- Azure App Services deployment\n- CI/CD through Azure DevOps\n- Authentication and authorization for user accounts\n\nProduct Features\n- Quiz creation and management\n- Social learning workflows\n- Progress tracking and analytics\n- Gamified feedback loops\n\nThe project was developed with structured documentation, testing, and iterative delivery practices.",
+          "image": "/images/quizify.png",
+          "video": "",
+          "technologies": [
+            "ASP.NET",
+            "C#",
+            "SQL",
+            "Azure",
+            "CI/CD",
+            "Agile Development"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Quizify"
+            }
+          ]
+        },
+        {
+          "title": "Blackmagic Camera Control Center",
+          "shortDescription": "A web, cross-platform control center I built for the Blackmagic Camera iOS app. It talks to Blackmagic’s documented REST API and WebSocket events so I can run the phone as a professional camera without touching it.",
+          "fullDescription": "Blackmagic Camera Control Center is a web, cross-platform remote control and monitoring app for the Blackmagic Camera app on iOS — and any device that speaks the same documented Camera Control REST API. I built it so I can use my phone as a professional camera: record, expose, and run the set from a desktop, without touching the phone.\n\nThe phone already exposes recording, exposure, lens, audio, monitoring overlays, slate, presets, media, color, livestream, and telemetry over the LAN. The phone UI is awkward to drive while shooting. This project turns that API into a dockable desktop workspace with live status and keyboard control. Package version is 0.1.0.\n\nArchitecture\nAn npm workspaces monorepo: packages/shared (TypeScript types, endpoint registry, WebSocket protocols, state diffs), packages/server (Fastify, undici, ws, bonjour-service), packages/web (React 18, Vite, Tailwind, shadcn/ui-style, zustand, dockview, sonner). The browser never talks to cameras. Self-signed TLS and mDNS are not browser-friendly, so all traffic goes camera ⇄ HTTPS REST + camera WebSocket (TLS accepted on the LAN) ⇄ server ⇄ /api REST proxy + /api/stream WebSocket ⇄ web.\n\nConnection and state\nCameras are found with mDNS (_blackmagic._tcp) or added by IP (iOS control API is typically HTTPS port 4444; hardware Blackmagic cameras are probed on 4444, 443, and 80). Each camera is isolated: one drop does not take the others down. Reconnect uses exponential backoff (2s up to 30s). On connect the backend seeds state with a REST sweep, then keeps it live from the camera’s event WebSocket. Writes that the camera does not emit events for are re-read after the call (record, livestream, autofocus, auto WB, slate reset, presets, media). RTT is measured as connection quality. The backend loads each camera’s own OpenAPI docs and dims controls the device does not implement (for example ND filter on iPhone). Unsupported paths can also be marked at runtime from 404/501. A transparent REST proxy forwards any camera path, including endpoints added in later app versions, without a backend change.\n\nWorkspace\nDockable panels: Cameras, Multi View (grid with tally, timecode, storage, battery, quick REC; 1–9 selects the active camera), Recording (status strip; stop asks for confirmation), and control tabs Exposure, Lens, Audio, Color, Monitoring, Slate, Media, Presets, Stream. Events panel plus toasts for recording, storage/battery band crossings, and connection. Workspaces save/apply/delete dock layouts; the current layout autosaves. Dark-first, with a light theme. Shortcuts: R record (guarded stop), 1–9 camera, F fullscreen, T theme, ? help.\n\nControls covered\nExposure: ISO, shutter speed/angle, auto exposure, white balance and tint, auto WB, ND, gain, sharpening. Lens: focus, autofocus, zoom, iris, OIS, per-device descriptions. Audio: per-channel input, gain, phantom, pad, low-cut. Color: lift, gamma, gain, offset, contrast, hue/saturation, luma contribution. Monitoring: zebra, focus assist, false color, frame guides, grids, safe area, LUT, clean feed. Slate: scene/take/shot/reel/lens/project with take increment and reset. Media: working set, active media, guarded format. Presets: list, apply, save, delete. Livestream: platform, start/stop. Persistence is JSON (cameras, workspaces, preferences).\n\nA mock camera is included for development and Vitest, with ticking timecode, draining storage, and discharging battery. Node.js 20+.\n\nLimits (documented)\nThe REST API does not expose a video feed or audio meters (levels shown are gain). Preset binary download is not proxied; apply/save/delete work. Some properties (livestream status) are polled. v1.1 is sketched as MediaMTX SRT/RTMP ingest and WebRTC preview in the multiview tiles; that path is stubbed, not wired.\n\nNo cloud accounts, no mobile client, no on-camera file transfer.",
+          "image": "/images/blackmagic-camera-control-center.jpg",
+          "video": "",
+          "technologies": [
+            "TypeScript",
+            "Fastify",
+            "React",
+            "Vite",
+            "WebSocket",
+            "mDNS",
+            "Zustand",
+            "Dockview"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Blackmagic-Camera-Control-Center"
+            }
+          ]
+        },
+        {
+          "title": "Haze Launcher",
+          "shortDescription": "Object-oriented analysis and design for a Steam-like game launcher — library, store, news, clans, and friends — with user stories, UML in PlantUML, and a modern UI in Figma. Course work, not an implementation.",
+          "fullDescription": "Haze Launcher is a design and analysis project for an object-oriented analysis and design course. It is not an implementation. I wrote the user stories and the full design of a Steam-like game launcher with a modern UI: a game library, a store, news, clans, and friends — a social layer on top of buying and managing games.\n\nThe problem the spec starts from is a fragmented gamer experience: purchases, library, achievements, and social features split across platforms. Haze Launcher is specified as one place for those activities.\n\nRequirements and use cases\nFunctional requirements in the SRS: user registration, login, browse games, game purchase, manage friends, and track achievements. Each is a fully dressed use case (actors, main flow, alternatives, pre- and post-conditions). Browse covers catalog, search/filter, and game details. Purchase covers payment and adding the title to the library. Friends covers search, requests, accept/reject. Achievements are viewed per game from the library. Non-functional targets in the spec include persisted data, 50 concurrent users at ≤3s response, encryption of sensitive data, and 99.9% availability.\n\nDomain and object design\nThe domain model centers on User, with Library, Game, Achievement, Friend, Payment, and Email. A user owns a library of games, has a many-to-many friends relationship, earns achievements tied to games, and payments trigger confirmation email. The class design adds operations (register, login, browse, purchase, manage friends, track achievements; library add/remove; payment process/verify). The ER diagram maps those entities for persistence. OCL constraints in the SDS cover unique email, password rules, sufficient funds, bidirectional friendship, a friend cap, unique games in a library, and achievements only for owned games.\n\nArchitecture and patterns (design, not built)\nThe SDS decomposes the system into user management, game store, library, achievement tracking, and social network. Logical architecture is four layers: presentation (UI), application (controllers/services), domain, and persistence. Intended mapping in the design docs: Java, Spring Boot, Thymeleaf, MySQL, Spring Data JPA, JWT, BCrypt. Design patterns specified: Singleton (configuration), Factory (payment methods), Observer (library/update notifications).\n\nDiagrams and UI assets\nDiagrams were written in PlantUML: use cases, domain model, class diagram, ERD, logical architecture, system sequence diagrams (game purchase, unlock achievement), interaction diagrams (login, purchase), activity diagrams (registration, purchase, achievement tracking), and state machines for UI navigation (authentication, library, achievements). Figma mockups in the SDS cover Home (featured games, news, store, library), Login, Library, Game, and News. The sample still is the Game Library screen from that Figma file.\n\nThe GitHub repo holds the SRS, SDS, PlantUML sources, exported diagram PNGs, and the Figma UI assets.",
+          "image": "/images/haze-launcher.png",
+          "video": "",
+          "media": [
+            {
+              "type": "image",
+              "src": "/images/haze-launcher.png"
+            },
+            {
+              "type": "image",
+              "src": "/images/haze-launcher-game.png"
+            },
+            {
+              "type": "image",
+              "src": "/images/haze-launcher-signin.png"
+            },
+            {
+              "type": "image",
+              "src": "/images/haze-launcher-news.png"
+            }
+          ],
+          "technologies": [
+            "Figma",
+            "PlantUML",
+            "UML",
+            "OOAD"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Haze_Luncher"
+            }
+          ]
+        },
+        {
+          "title": "Python 2D Physics Engine",
+          "shortDescription": "A custom 2D physics engine in Python, demonstrated through a full 8-ball pool simulation.",
+          "fullDescription": "A custom 2D physics engine implemented in Python and demonstrated through an 8-ball pool game built with Pygame. The engine uses position-based dynamics, Verlet integration, and iterative constraint solving.\n\nEngine Features\nPhysics Core\n- Rigid bodies with mass, inertia, and restitution\n- Verlet integration for stable time-step behavior\n- Position-based constraint solver for soft and rigid interactions\n\nCollision and Constraints\n- Circle-circle and circle-edge collision detection\n- Impulse-based response with penetration correction\n- Distance constraints for spring-like behavior\n- Friction modeled through contact forces\n\nDemo Game\n- Configurable ball mass, friction, and restitution\n- Cue control with angle and power input\n- Pocket detection and table reset logic\n\nTech Stack\n- Python 3.8+, Pygame, NumPy\n- Modular layout separating physics core from game presentation",
+          "image": "/images/physics-engine.png",
+          "video": "",
+          "technologies": [
+            "Python",
+            "Pygame",
+            "NumPy",
+            "Physics Simulation",
+            "Game Development",
+            "Mathematics",
+            "Software Architecture"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Python-2D-Physics-Engine"
+            }
+          ]
+        },
+        {
+          "title": "PathFinder-AI",
+          "shortDescription": "A Python pathfinding visualizer for grid environments with multiple search algorithms and real-time playback.",
+          "fullDescription": "PathFinder-AI is a Python pathfinding visualizer for grid-based environments. An agent navigates an n×n grid containing obstacles, collectibles, and a goal state while maximizing collected items.\n\nOverview\n- Grid states include position and collected item configuration\n- Objective: reach the goal while collecting items efficiently\n- Supports four-directional movement without diagonals\n\nAlgorithms Implemented\n- Uninformed search: DFS, BFS, iterative deepening\n- Informed search: greedy best-first and A*\n- Cost-based search: uniform cost search\n- Local search: hill climbing and simulated annealing\n\nEngineering\n- Object-oriented grid and state modeling\n- Pygame visualization for agent movement\n- NetworkX and Matplotlib for search tree inspection\n- Test coverage for path validity, optimality, and edge cases\n\nThe project separates search logic from visualization so new algorithms and grid layouts can be added with minimal coupling.",
+          "image": "/images/pathfinder-ai.png",
+          "video": "",
+          "technologies": [
+            "Python",
+            "Pygame",
+            "NetworkX",
+            "Matplotlib",
+            "AI",
+            "Pathfinding",
+            "OOP",
+            "Data Structures"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/PathFinder-AI"
+            }
+          ]
+        },
+        {
+          "title": "Eleven Labs Unreal Engine Plugin",
+          "shortDescription": "A production-oriented Unreal Engine runtime plugin for ElevenLabs text-to-speech streaming, with Blueprint-first async APIs, PCM-to-WAV packaging, and runtime audio helpers.",
+          "fullDescription": "Eleven Labs Unreal Engine Plugin is a runtime Unreal Engine plugin for ElevenLabs Text-to-Speech (TTS) streaming. It is Blueprint-first, with async APIs, PCM-to-WAV packaging, and runtime audio helpers. Plugin version in the .uplugin is 0.1.0 (beta). Category: Audio.\n\nImplemented\n- Runtime module ElevenLabs (Type = Runtime, LoadingPhase = Default)\n- Project settings via UDeveloperSettings: Edit → Project Settings → Plugins → Eleven Labs (API key and default timeout)\n- Async TTS entry point UElevenLabsSynthesizeTextAsync for Blueprint and C++\n- Streaming HTTP against ElevenLabs /v1/text-to-speech/{voice_id}/stream\n- Optional progressive chunk callbacks; a final assembled WAV is always produced on success\n- WAV helpers: PCM16 to WAV, WAV to USoundWaveProcedural, optional save to Saved/ElevenLabs/*.wav\n\nNot implemented yet (architecture allows extension): STT, voices listing/management, dubbing, history; authentication beyond the plugin API key; native cancellation of in-flight requests; multi-channel output (current flow is mono).\n\nRequest flow\nBlueprint or C++ calls SynthesizeTextToWav with text and FElevenLabsTTSConfig (voice ID required; default model eleven_multilingual_v2). The service validates text, voice ID, and API key, POSTs the stream endpoint, accumulates PCM (preserving odd-byte remainder), and builds WAV. ChunkMode Progressive emits per-chunk WAV events; AssembleThenReturn waits for the full utterance. On success, OnReceive fires with bIsFinal true. On failure, OnError fires with a message (empty text, missing voice ID, missing API key, HTTP/timeout, empty audio, WAV packaging failure).\n\nAudio\n- output_format pcm at the requested sample rate (default 16000, min 8000)\n- 16-bit PCM, mono\n- Runtime playback via USoundWaveProcedural in SOUNDGROUP_Voice\n\nTech stack from the plugin build: Core, CoreUObject, Engine, HTTP, Json, JsonUtilities, DeveloperSettings.",
+          "image": "",
+          "video": "",
+          "technologies": [
+            "Unreal Engine",
+            "ElevenLabs",
+            "TTS",
+            "Blueprint",
+            "C++",
+            "HTTP"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/Eleven-Labs-Unreal-Engine"
+            }
+          ]
+        },
+        {
+          "title": "3DS Max Automation Plugin",
+          "shortDescription": "A version-agnostic 3ds Max C++ SDK plugin used in Interactive VR Architecture Showcase. Designers set object metadata through UI; the plugin writes it onto each object so Datasmith and a Dataprep recipe in Unreal Engine can set up the scene automatically.",
+          "fullDescription": "This is the custom 3ds Max plugin used in Interactive VR Architecture Showcase to automate environment setup. It was made with the 3ds Max C++ SDK. It is version-agnostic and works across most recent 3ds Max versions.\n\nA designer adds a modifier on the object they want to set up. That modifier is a UI for the object’s metadata and properties: what the object is meant to be in Unreal, and what interaction options it has — for example other models to swap to, or materials on specific parts of the mesh. The plugin writes that data onto the object so it travels with the Datasmith export. In Unreal Engine, a Dataprep recipe reads it and automatically applies the matching interactive setup.\n\nThat is the whole loop: UI in Max, metadata on the object, Datasmith out, Dataprep in Unreal, scene ready without hand-wiring each asset.",
+          "image": "",
+          "video": "",
+          "technologies": [
+            "3ds Max",
+            "C++ SDK",
+            "Datasmith",
+            "Dataprep",
+            "Unreal Engine"
+          ],
+          "links": [
+            {
+              "type": "GitHub",
+              "url": "https://github.com/budi641/MaxPlugin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visualization",
+      "title": "Visualization",
+      "layout": "showcase",
+      "projects": [
+        {
+          "title": "Me vs. Darth Vader",
+          "shortDescription": "An eight-second fight-scene render in Unreal Engine 5.5 of a MetaHuman character made with my face, fighting Darth Vader. Made for a university virtual effects course.",
+          "fullDescription": "Me vs. Darth Vader is an eight-second render of a fight scene, built in Unreal Engine 5.5. A MetaHuman character made with my face fights Darth Vader in the middle of a battle.\n\nIt was part of a virtual effects course project at university. I storyboarded the scene, used Mixamo animations, used models from Sketchfab, created the environment with lighting and particle effects, did the facial animation for my character, animated the camera, and rendered the piece.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/1KUgpu2iOVsLkWlodCG0rNKzet6KlIEz8/view?usp=sharing",
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "MetaHuman",
+            "Mixamo",
+            "Sketchfab",
+            "Facial Animation"
+          ],
+          "links": []
+        },
+        {
+          "title": "Graduation Project Promo Render",
+          "shortDescription": "A short promo video used at the beginning of the presentation for a graduation project: a medical imaging visualization platform for students and physicians. Rendered in Unreal Engine 5.7, with assets from Fab, animations from Mixamo, and real CT scans rendered as volume textures in-engine.",
+          "fullDescription": "Graduation Project Promo Render is a short promo video used at the beginning of the presentation for a graduation project: a medical imaging visualization platform for students and physicians.\n\nIt was rendered in Unreal Engine 5.7. Assets came from Fab. Animations came from Mixamo. Real CT scans were rendered as volume textures inside Unreal Engine, to create the effect of a 2D scan materializing into a 3D scan, and of a 3D scan appearing out of a laptop.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/13oHUGuz3pJS0Sk3YDPLIc0d2rYqzj7L4/view?usp=sharing",
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.7",
+            "Fab",
+            "Mixamo",
+            "Volume Texture",
+            "CT Scans"
+          ],
+          "links": []
+        },
+        {
+          "title": "MetaHuman Self-Portrait",
+          "shortDescription": "A MetaHuman likeness updated as new MetaHuman tools are released. The latest version is built from an iPhone face scan in Unreal Engine 5.8, with matching body, hair, and accessories, and used in Unreal Engine’s Game Animation Sample project.",
+          "fullDescription": "MetaHuman Self-Portrait is a MetaHuman likeness rebuilt as new MetaHuman technologies are released. The latest version is the most accurate so far in body proportions, accessories, facial reactions, and hair.\n\nThe latest iteration is based on a 3D face scan captured on iPhone with Polycam, cleaned in Blender, and imported into Unreal Engine 5.8 to create a MetaHuman identity. MetaHuman Creator was used to set body fat, muscle, height, per-body-part height, and other body parameters.\n\nAccessories match what is worn in real life: glasses, ring, bracelet, and Apple Watch. The glasses and ring were modeled for the character. The glasses were textured, with materials built in Unreal Engine’s shader graph. Hair uses MetaHuman Creator hair at the same length.\n\nAn animation blueprint drives procedural facial actions. The character is placed in Unreal Engine’s latest Game Animation Sample project. The video shows the character being walked around and used in that project. Stills include a close-up and the same close-up with DLSS 5.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/1PvCpaR0_VRhQkKd1c-URFUg8s7h-UnFL/view?usp=sharing",
+          "media": [
+            {
+              "type": "video",
+              "src": "https://drive.google.com/file/d/1PvCpaR0_VRhQkKd1c-URFUg8s7h-UnFL/view?usp=sharing"
+            },
+            {
+              "type": "image",
+              "src": "/images/metahuman-self-portrait.png"
+            },
+            {
+              "type": "image",
+              "src": "/images/metahuman-self-portrait-dlss.png"
+            }
+          ],
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.8",
+            "MetaHuman Creator",
+            "Polycam",
+            "Blender",
+            "DLSS 5"
+          ],
+          "links": []
+        },
+        {
+          "title": "Apartment Render",
+          "shortDescription": "A cinematic interior sequence of an apartment. Interior design was created by an interior designer in 3ds Max. This project sat alongside that work: a Datasmith and Dataprep recipe imported the scene into Unreal Engine 5.5, with lighting and camera animation set up for render.",
+          "fullDescription": "Apartment Render is a cinematic sequence of an apartment interior. The interior design was not created for this piece; it was designed by an interior designer in 3ds Max, and this project was done alongside that designer.\n\nA Datasmith and Dataprep porting recipe was built to import the scene into Unreal Engine 5.5 and set it up ready to render. Lighting, camera work, and camera animations were created in-engine. The result is a cinematic render, not a real-time sequence.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/11ROmWqQNrA3R6P3slUAx3UFK5mxULHgh/view?usp=sharing",
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "3ds Max",
+            "Datasmith",
+            "Dataprep",
+            "Cinematic Sequence"
+          ],
+          "links": []
+        },
+        {
+          "title": "Twin House Villa",
+          "shortDescription": "A cinematic interior sequence of Twin House Villa. Interior design was created by an interior designer in 3ds Max. This project sat alongside that work: a Datasmith and Dataprep recipe imported the scene into Unreal Engine 5.5, with lighting and camera animation set up for render.",
+          "fullDescription": "Twin House Villa is a cinematic sequence of a villa interior. The interior design was not created for this piece; it was designed by an interior designer in 3ds Max, and this project was done alongside that designer.\n\nThe same pipeline as Apartment Render: a Datasmith and Dataprep porting recipe was built to import the scene into Unreal Engine 5.5 and set it up ready to render. Lighting, camera work, and camera animations were created in-engine. The result is a cinematic render, not a real-time sequence.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/1KR-PJBUMIgy5uvURqYd3DFYtBNnwTG_c/view?usp=sharing",
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "3ds Max",
+            "Datasmith",
+            "Dataprep",
+            "Cinematic Sequence"
+          ],
+          "links": []
+        },
+        {
+          "title": "Bedroom Render",
+          "shortDescription": "A cinematic interior sequence of a bedroom. Interior design was created by an interior designer in 3ds Max. This project sat alongside that work: a Datasmith and Dataprep recipe imported the scene into Unreal Engine 5.5, with lighting and camera animation set up for render.",
+          "fullDescription": "Bedroom Render is a cinematic sequence of a bedroom interior. The interior design was not created for this piece; it was designed by an interior designer in 3ds Max, and this project was done alongside that designer.\n\nThe same pipeline as Apartment Render: a Datasmith and Dataprep porting recipe was built to import the scene into Unreal Engine 5.5 and set it up ready to render. Lighting, camera work, and camera animations were created in-engine. The result is a cinematic render, not a real-time sequence.",
+          "image": "",
+          "video": "https://drive.google.com/file/d/1kxc5cvYb3AZ2IxtQwtGr5Pdoq83TjGU2/view?usp=sharing",
+          "orientation": "landscape",
+          "technologies": [
+            "Unreal Engine 5.5",
+            "3ds Max",
+            "Datasmith",
+            "Dataprep",
+            "Cinematic Sequence"
+          ],
+          "links": []
+        }
+      ]
+    }
+  ]
+}

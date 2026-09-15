@@ -1,126 +1,26 @@
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "*.{js,ts,jsx,tsx,mdx}",
-  ],
-  prefix: "",
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       colors: {
-        midnight: "#050b1e",
-        royal: "#2148c0",
-        "soft-white": "#f4f7ff",
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-        // Deep navy and electric blue color palette
-        electric: {
-          50: "#e6f3ff",
-          100: "#cce7ff",
-          200: "#99cfff",
-          300: "#66b7ff",
-          400: "#339fff",
-          500: "#0087ff", // Electric blue
-          600: "#006ecc",
-          700: "#005599",
-          800: "#003c66",
-          900: "#002333",
-          950: "#001119",
-        },
-        navy: {
-          50: "#e6e8f0",
-          100: "#ccd1e1",
-          200: "#99a3c3",
-          300: "#6675a5",
-          400: "#334787",
-          500: "#001969", // Deep navy blue
-          600: "#001454",
-          700: "#000f3f",
-          800: "#000a2a",
-          900: "#000515",
-          950: "#00020a",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        paper: "#f3eee4",
+        ink: "#1f1b16",
+        mute: "#5c5348",
+        rule: "#c9c1b2",
+        margin: "#c45c5c",
+        pen: "#243652",
       },
       fontFamily: {
-        sans: ["var(--font-geist)", "system-ui", "sans-serif"],
-        display: ["var(--font-space-grotesk)", "var(--font-geist)", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        hand: ["var(--font-hand)", "Comic Sans MS", "Comic Neue", "cursive"],
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0px) rotateX(0deg)" },
-          "50%": { transform: "translateY(-20px) rotateX(5deg)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(0, 135, 255, 0.3)" },
-          "50%": { boxShadow: "0 0 40px rgba(56, 182, 255, 0.55)" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        float: "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+      borderRadius: {
+        DEFAULT: "0.375rem",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 } satisfies Config
 
 export default config

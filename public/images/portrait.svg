@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="460" viewBox="0 0 460 460">
+  <rect width="460" height="460" fill="#ebe4d6"/>
+  <line x1="36" y1="0" x2="36" y2="460" stroke="#c45c5c" stroke-opacity="0.45" stroke-width="1"/>
+  <text x="230" y="258" text-anchor="middle" font-family="Georgia, serif" font-size="120" fill="#1f1b16">AA</text>
+</svg>
