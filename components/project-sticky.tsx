@@ -4,7 +4,13 @@ import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { MediaFrame } from "@/components/media-frame"
-import { projectMedia, type MediaOrientation, type Project } from "@/lib/content"
+import { assetPath } from "@/lib/asset-path"
+import { projectMedia, type MediaOrientation, type Project, type ProjectMedia } from "@/lib/content"
+
+function mediaUrl(path: string) {
+  if (path.startsWith("http://") || path.startsWith("https://")) return path
+  return assetPath(path)
+}
 
 function wrapIndex(index: number, length: number) {
   return (index + length) % length
@@ -42,6 +48,62 @@ function GalleryArrows({
         <ChevronRight className="h-7 w-7" />
       </button>
     </>
+  )
+}
+
+function GalleryMedia({
+  item,
+  alt,
+  orientation,
+  playable,
+}: {
+  item: ProjectMedia
+  alt: string
+  orientation: MediaOrientation
+  playable: boolean
+}) {
+  const [shown, setShown] = useState(item)
+  const [fading, setFading] = useState(false)
+
+  useEffect(() => {
+    if (item.src === shown.src && item.type === shown.type) return
+
+    let cancelled = false
+    const reveal = () => {
+      if (cancelled) return
+      setShown(item)
+      setFading(true)
+    }
+
+    if (item.type !== "image") {
+      reveal()
+      return
+    }
+
+    const image = new Image()
+    image.src = mediaUrl(item.src)
+    const finish = () => reveal()
+    if (image.complete && image.naturalWidth > 0) {
+      finish()
+    } else {
+      image.addEventListener("load", finish)
+      image.addEventListener("error", finish)
+    }
+
+    return () => {
+      cancelled = true
+      image.removeEventListener("load", finish)
+      image.removeEventListener("error", finish)
+    }
+  }, [item, shown.src, shown.type])
+
+  return (
+    <div
+      className={fading ? "gallery-swap" : undefined}
+      onAnimationEnd={() => setFading(false)}
+    >
+      <MediaFrame item={shown} alt={alt} orientation={orientation} playable={playable} eager />
+    </div>
   )
 }
 
@@ -85,6 +147,16 @@ export function ProjectSticky({
     }
   }, [open, media.length])
 
+  useEffect(() => {
+    const neighbors = [wrapIndex(index + 1, media.length), wrapIndex(index - 1, media.length)]
+    for (const neighbor of neighbors) {
+      const item = media[neighbor]
+      if (item?.type !== "image") continue
+      const image = new Image()
+      image.src = mediaUrl(item.src)
+    }
+  }, [index, media])
+
   const goPrev = () => setIndex((value) => wrapIndex(value - 1, media.length))
   const goNext = () => setIndex((value) => wrapIndex(value + 1, media.length))
 
@@ -104,8 +176,7 @@ export function ProjectSticky({
       >
         <div className="sticky-media">
           {current ? (
-            <MediaFrame
-              key={`${current.type}-${current.src}-${index}`}
+            <GalleryMedia
               item={current}
               alt={project.title}
               orientation={orientation}
@@ -126,8 +197,7 @@ export function ProjectSticky({
               >
                 <div className="sticky-media">
                   {current ? (
-                    <MediaFrame
-                      key={`modal-${current.type}-${current.src}-${index}`}
+                    <GalleryMedia
                       item={current}
                       alt={project.title}
                       orientation={orientation}

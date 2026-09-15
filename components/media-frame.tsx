@@ -27,10 +27,12 @@ function PlayMark() {
 function PosterImage({
   sources,
   alt,
+  eager = false,
   onExhausted,
 }: {
   sources: string[]
   alt: string
+  eager?: boolean
   onExhausted?: () => void
 }) {
   const [index, setIndex] = useState(0)
@@ -43,7 +45,7 @@ function PosterImage({
       alt={alt}
       referrerPolicy="no-referrer"
       className="h-full w-full object-cover"
-      loading="lazy"
+      loading={eager ? "eager" : "lazy"}
       decoding="async"
       onError={() => {
         if (index + 1 >= sources.length) onExhausted?.()
@@ -58,11 +60,13 @@ export function MediaFrame({
   alt,
   orientation = "landscape",
   playable = true,
+  eager = false,
 }: {
   item: ProjectMedia
   alt: string
   orientation?: MediaOrientation
   playable?: boolean
+  eager?: boolean
 }) {
   const [playing, setPlaying] = useState(false)
   const [posterFailed, setPosterFailed] = useState(false)
@@ -84,7 +88,7 @@ export function MediaFrame({
           src={mediaSrc(item.src)}
           alt={alt}
           className="h-auto w-full"
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
           decoding="async"
         />
       </div>
@@ -111,6 +115,7 @@ export function MediaFrame({
     <PosterImage
       sources={posterSources}
       alt={playable ? "" : alt}
+      eager={eager}
       onExhausted={() => setPosterFailed(true)}
     />
   )
