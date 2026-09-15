@@ -1,46 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import { assetPath } from "@/lib/asset-path"
 import { navItems } from "@/lib/content"
 
 export function Header() {
   const [open, setOpen] = useState(false)
-  const skipRestore = useRef(false)
-
-  useEffect(() => {
-    if (!open) return
-
-    const y = window.scrollY
-    const { body } = document
-    const previous = {
-      position: body.style.position,
-      top: body.style.top,
-      left: body.style.left,
-      right: body.style.right,
-      overflow: body.style.overflow,
-    }
-
-    body.style.position = "fixed"
-    body.style.top = `-${y}px`
-    body.style.left = "0"
-    body.style.right = "0"
-    body.style.overflow = "hidden"
-
-    return () => {
-      body.style.position = previous.position
-      body.style.top = previous.top
-      body.style.left = previous.left
-      body.style.right = previous.right
-      body.style.overflow = previous.overflow
-      if (skipRestore.current) {
-        skipRestore.current = false
-        return
-      }
-      window.scrollTo(0, y)
-    }
-  }, [open])
 
   return (
     <>
@@ -53,10 +19,7 @@ export function Header() {
           <a
             href="#home"
             className="flex h-11 w-11 items-center justify-center"
-            onClick={() => {
-              skipRestore.current = true
-              setOpen(false)
-            }}
+            onClick={() => setOpen(false)}
             aria-label="Go to Home"
           >
             <img src={assetPath("/images/joystick.png")} alt="" className="h-11 w-11 object-contain" />
@@ -91,10 +54,7 @@ export function Header() {
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => {
-                    skipRestore.current = true
-                    setOpen(false)
-                  }}
+                  onClick={() => setOpen(false)}
                   className="nav-link py-[var(--line)] text-[1.75rem] leading-[var(--line)] text-ink"
                 >
                   {item.label}
