@@ -154,7 +154,7 @@
   }
 
   .hero-name {
-    font-size: clamp(1.85rem, 12cqw, 6rem);
+    font-size: clamp(2.96rem, 19.2cqw, 9.6rem);
     line-height: 0.95;
     overflow-wrap: normal;
     word-break: keep-all;
@@ -175,11 +175,6 @@
     container-type: inline-size;
     flex: 1 1 0;
     min-width: 0;
-  }
-
-  .hero-blurb {
-    font-size: 160%;
-    line-height: calc(var(--line) * 1.5);
   }
 
   .polaroid {

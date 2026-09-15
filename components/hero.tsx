@@ -10,7 +10,7 @@ export function Hero() {
       <div className="hero-row">
         <div className="hero-copy">
           <h1 className="hero-name whitespace-pre-line text-ink">{name}</h1>
-          <p className="hero-blurb mt-[var(--line)] max-w-xl text-ink/85">{text}</p>
+          <p className="mt-[var(--line)] max-w-xl text-ink/85">{text}</p>
         </div>
         {photo.trim() ? (
           <div className="photo-home">
