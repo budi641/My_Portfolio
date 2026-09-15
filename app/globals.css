@@ -323,6 +323,10 @@
     background: #efe6c9;
   }
 
+  .sticky-note .media-frame-video {
+    background: #1f1b16;
+  }
+
   .sticky-note .media-frame img {
     position: absolute;
     inset: 0;

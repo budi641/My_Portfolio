@@ -55,12 +55,10 @@ function GalleryMedia({
   item,
   alt,
   orientation,
-  playable,
 }: {
   item: ProjectMedia
   alt: string
   orientation: MediaOrientation
-  playable: boolean
 }) {
   const [shown, setShown] = useState(item)
   const [fading, setFading] = useState(false)
@@ -76,7 +74,8 @@ function GalleryMedia({
     }
 
     if (item.type !== "image") {
-      reveal()
+      setShown(item)
+      setFading(false)
       return
     }
 
@@ -102,7 +101,14 @@ function GalleryMedia({
       className={fading ? "gallery-swap" : undefined}
       onAnimationEnd={() => setFading(false)}
     >
-      <MediaFrame item={shown} alt={alt} orientation={orientation} playable={playable} eager />
+      <MediaFrame
+        key={`${shown.type}-${shown.src}`}
+        item={shown}
+        alt={alt}
+        orientation={orientation}
+        playable={shown.type === "video"}
+        eager
+      />
     </div>
   )
 }
@@ -172,7 +178,7 @@ export function ProjectSticky({
     <>
       <div
         className={`sticky-note ${tiltClass}${canExpand ? " sticky-interactive" : ""}`}
-        onClick={canExpand ? () => setOpen(true) : undefined}
+        onClick={canExpand && current?.type !== "video" ? () => setOpen(true) : undefined}
       >
         <div className="sticky-media">
           {current ? (
@@ -180,7 +186,6 @@ export function ProjectSticky({
               item={current}
               alt={project.title}
               orientation={orientation}
-              playable={!canExpand}
             />
           ) : null}
           {canExpand ? <GalleryArrows onPrev={goPrev} onNext={goNext} /> : null}
@@ -201,7 +206,6 @@ export function ProjectSticky({
                       item={current}
                       alt={project.title}
                       orientation={orientation}
-                      playable
                     />
                   ) : null}
                   <GalleryArrows onPrev={goPrev} onNext={goNext} />

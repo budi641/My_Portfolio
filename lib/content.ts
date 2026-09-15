@@ -31,16 +31,25 @@ export type Project = {
   links: ProjectLink[]
 }
 
+function nearestStill(items: ProjectMedia[], index: number) {
+  for (let cursor = index - 1; cursor >= 0; cursor -= 1) {
+    if (items[cursor].type === "image" && items[cursor].src.trim()) return items[cursor].src.trim()
+  }
+  for (let cursor = index + 1; cursor < items.length; cursor += 1) {
+    if (items[cursor].type === "image" && items[cursor].src.trim()) return items[cursor].src.trim()
+  }
+  return ""
+}
+
 export function projectMedia(project: Project): ProjectMedia[] {
   if (project.media?.length) {
     const items = project.media.filter((item) => item.src.trim())
-    const stills = new Set(items.filter((item) => item.type === "image").map((item) => item.src.trim()))
+    const fallbackPoster = project.image.trim()
 
-    return items.map((item) => {
-      if (item.type === "video" && item.poster && stills.has(item.poster.trim())) {
-        return { type: "video", src: item.src }
-      }
-      return item
+    return items.map((item, index) => {
+      if (item.type !== "video") return item
+      const poster = item.poster?.trim() || fallbackPoster || nearestStill(items, index)
+      return poster ? { ...item, poster } : item
     })
   }
 

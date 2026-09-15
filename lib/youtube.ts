@@ -28,14 +28,20 @@ export function driveFileId(url: string) {
 export function videoEmbedSrc(url: string, autoplay = false) {
   const youtube = youtubeId(url)
   if (youtube) {
-    const params = autoplay ? "autoplay=1&rel=0" : "rel=0"
-    return `https://www.youtube-nocookie.com/embed/${youtube}?${params}`
+    const params = autoplay ? "autoplay=1&rel=0&playsinline=1" : "rel=0&playsinline=1"
+    return `https://www.youtube.com/embed/${youtube}?${params}`
   }
 
   const drive = driveFileId(url)
   if (drive) return `https://drive.google.com/file/d/${drive}/preview`
 
   return null
+}
+
+export function drivePlaybackSrc(url: string) {
+  const drive = driveFileId(url)
+  if (!drive) return null
+  return `https://drive.google.com/uc?export=download&id=${drive}`
 }
 
 export function videoPosterCandidates(url: string) {
