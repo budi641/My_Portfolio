@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from "lucide-react"
+import { ExternalLink, Github, Mail } from "lucide-react"
 import { ProjectSticky } from "@/components/project-sticky"
 import { Squiggle } from "@/components/squiggle"
 import type { Project, SectionLayout } from "@/lib/content"
@@ -7,9 +7,17 @@ function LinkButtons({ links, centered }: { links: Project["links"]; centered?: 
   return (
     <div className={`cluster flex flex-wrap gap-x-3 gap-y-0 ${centered ? "justify-center" : ""}`}>
       {links.map((link, index) => {
+        const icon =
+          link.type === "GitHub" ? (
+            <Github className="h-5 w-5" />
+          ) : link.type === "Email" ? (
+            <Mail className="h-5 w-5" />
+          ) : (
+            <ExternalLink className="h-5 w-5" />
+          )
         const label = (
           <>
-            {link.type === "GitHub" ? <Github className="h-5 w-5" /> : <ExternalLink className="h-5 w-5" />}
+            {icon}
             {link.type}
           </>
         )
@@ -22,8 +30,16 @@ function LinkButtons({ links, centered }: { links: Project["links"]; centered?: 
           )
         }
 
+        const isMail = link.url.startsWith("mailto:")
+
         return (
-          <a key={link.url} href={link.url} target="_blank" rel="noreferrer" className="text-btn">
+          <a
+            key={link.url}
+            href={link.url}
+            target={isMail ? undefined : "_blank"}
+            rel={isMail ? undefined : "noreferrer"}
+            className="text-btn"
+          >
             {label}
           </a>
         )
@@ -53,12 +69,14 @@ function ProjectDetails({ project, align }: { project: Project; align: "left" | 
           <LinkButtons links={project.links} centered={align === "center"} />
         </div>
       ) : null}
-      <details className="mt-[var(--line)]">
-        <summary className="cursor-pointer text-pen underline decoration-pen/30 underline-offset-4 hover:decoration-pen">
-          Full details
-        </summary>
-        <div className="mt-[var(--line)] whitespace-pre-wrap text-left text-ink/75">{project.fullDescription}</div>
-      </details>
+      {project.fullDescription.trim() ? (
+        <details className="mt-[var(--line)]">
+          <summary className="cursor-pointer text-pen underline decoration-pen/30 underline-offset-4 hover:decoration-pen">
+            Full details
+          </summary>
+          <div className="mt-[var(--line)] whitespace-pre-wrap text-left text-ink/75">{project.fullDescription}</div>
+        </details>
+      ) : null}
     </div>
   )
 }

@@ -190,22 +190,40 @@
           ]
         },
         {
-          "title": "In Their Wake\n(unannounced)",
-          "shortDescription": "",
+          "title": "Steampunk Game\n(unannounced)",
+          "shortDescription": "An unannounced project at Nout Games, an independent studio. For more information, contact the studio.",
           "fullDescription": "",
-          "image": "",
+          "image": "/images/nout-logo.jpg",
           "video": "",
           "technologies": [],
-          "links": []
+          "links": [
+            {
+              "type": "Website",
+              "url": "https://noutgames.com/"
+            },
+            {
+              "type": "Email",
+              "url": "mailto:info@noutgames.com"
+            }
+          ]
         },
         {
           "title": "EDIOS\n(unannounced)",
-          "shortDescription": "",
+          "shortDescription": "An unannounced project at Nout Games, an independent studio. For more information, contact the studio.",
           "fullDescription": "",
-          "image": "",
+          "image": "/images/nout-logo.jpg",
           "video": "",
           "technologies": [],
-          "links": []
+          "links": [
+            {
+              "type": "Website",
+              "url": "https://noutgames.com/"
+            },
+            {
+              "type": "Email",
+              "url": "mailto:info@noutgames.com"
+            }
+          ]
         }
       ]
     },
