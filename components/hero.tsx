@@ -17,7 +17,7 @@ export function Hero() {
             <div className="polaroid">
               <img
                 src={assetPath(photo)}
-                alt={content.site.name}
+                alt={`${content.site.name}, technical game designer and game developer`}
                 width={1024}
                 height={765}
               />
