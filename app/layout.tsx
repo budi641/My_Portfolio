@@ -55,7 +55,7 @@ export const metadata: Metadata = {
         url: ogImage,
         width: 1024,
         height: 765,
-        alt: `${content.site.name}, technical game designer and game developer`,
+        alt: content.site.name,
       },
     ],
   },

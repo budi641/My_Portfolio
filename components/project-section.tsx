@@ -72,7 +72,7 @@ function ProjectDetails({ project, align }: { project: Project; align: "left" | 
       {project.fullDescription.trim() ? (
         <details className="mt-[var(--line)]">
           <summary className="cursor-pointer text-pen underline decoration-pen/30 underline-offset-4 hover:decoration-pen">
-            Full details
+            More
           </summary>
           <div className="mt-[var(--line)] whitespace-pre-wrap text-left text-ink/75">{project.fullDescription}</div>
         </details>

@@ -20,7 +20,7 @@ export const techNames = Array.from(
 export const seo = {
   title: `${content.site.name} | Technical Game Designer and Game Developer`,
   description:
-    "Abdelrahman Ameen is an Arab technical game designer, game developer, and software engineer in Egypt. Portfolio of games, Unreal Engine work, graphics programming, VR, tools, and interactive software.",
+    "Games, Unreal work, graphics, VR, tools, and software by Abdelrahman Ameen. Technical game designer and developer.",
   keywords: [
     content.site.name,
     "Abdelrahman Ameen",
